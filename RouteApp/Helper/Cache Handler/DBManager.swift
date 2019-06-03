@@ -104,4 +104,8 @@ class DBManager: NSObject {
         }
         return []
     }
+    
+    func cacheAvailable() -> Bool {
+        return allRecords().count > 0
+    }
 }

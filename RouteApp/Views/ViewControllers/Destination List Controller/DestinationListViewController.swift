@@ -22,7 +22,7 @@ class DestinationListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if ReachabilityManager.sharedInstance.isReachableToInternet() {
+        if ReachabilityManager.sharedInstance.isReachableToInternet() || DBManager.sharedInstance.cacheAvailable() {
             destinationListViewModel.getDestinationList()
         } else {
             showAlert(title: StringConstants.errorTitle, message: StringConstants.internetErrorMessage)

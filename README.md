@@ -46,3 +46,9 @@ For pagination logic, App will assume more pages till the time it either don't g
 
 ![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/destinationList.png)
 ![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/map.png)
+
+# Flow Chart
+
+![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/flow.png)
+
+
