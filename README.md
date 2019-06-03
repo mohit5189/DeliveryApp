@@ -2,13 +2,14 @@
 
 To run this project, you just need to take checkout and run direct. Pod files has been commited along with project to avoid any hurdles.
 
-# Unit Testing
+# Unit Testing frameworks
 
 I have used Quick/Nimble framework to write unit test. Framework is basically for BDD (Behaviour driven development), so I tried to kept my test development to be focused on BDD instead of TDD ( Test driven development )
 
-# Design pattern
+# Design patterns
 
-MVVM
+1. MVVM
+2. Adapter
 
 # Caching
 
@@ -36,6 +37,10 @@ This app perform network api call for destinations listing, if network call is s
 # Displaying map
 
 Once user select any addess, app shows point to selected address and in backgroung start fetching current location of user. In case if current location found and their is a route between current location and selected address, App display that route to the user.
+
+# Assumption
+
+For pagination logic, App will assume more pages till the time it either don't get any server error OR don't get any empty response for particular page.
 
 # ScreenShots
 

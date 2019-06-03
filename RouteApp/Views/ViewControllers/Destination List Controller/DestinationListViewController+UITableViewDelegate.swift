@@ -10,10 +10,12 @@ import UIKit
 
 extension DestinationListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let mapVC = MapViewController()
-        mapVC.viewModel = MapControllerViewModel()
-        mapVC.viewModel.selectedLocation = destinationListViewModel.getDestination(index: indexPath.row)
-        navigationController?.pushViewController(mapVC, animated: true)
+        if indexPath.row < destinationListViewModel.destinationList.count {
+            let mapVC = MapViewController()
+            mapVC.viewModel = MapControllerViewModel()
+            mapVC.viewModel.selectedLocation = destinationListViewModel.getDestination(index: indexPath.row)
+            navigationController?.pushViewController(mapVC, animated: true)
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

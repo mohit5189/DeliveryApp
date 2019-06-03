@@ -21,7 +21,7 @@ class DestinationListViewControllerTests: QuickSpec {
                 beforeEach {
                     self.destinationListVC = DestinationListViewController.stub()
                 }
-                
+                                
                 context("and when setupUI is called") {
                     beforeEach {
                         self.destinationListVC.setupUI()
@@ -41,9 +41,9 @@ class DestinationListViewControllerTests: QuickSpec {
                     }
                     
                     it("should render data in tableview") {
-                        expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == self.destinationListVC.destinationListViewModel.numberOfRows()).to(beTrue())
+                        expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == self.destinationListVC.destinationListViewModel.numberOfRows()).toEventually(beTrue(), timeout: 10)
                     }
-                    
+                                        
                     context("and when network not available") {
                         beforeEach {
                             self.destinationListVC.destinationListViewModel.destinationList = []
@@ -56,7 +56,7 @@ class DestinationListViewControllerTests: QuickSpec {
                         }
                         
                         it("should load data from cache") {
-                            expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == 21).to(beTrue())
+                            expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == self.destinationListVC.destinationListViewModel.numberOfRows()).toEventually(beTrue(), timeout: 10)
                         }
                     }
                     
