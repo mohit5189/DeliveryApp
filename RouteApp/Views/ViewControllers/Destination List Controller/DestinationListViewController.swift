@@ -11,8 +11,8 @@ import MBProgressHUD
 
 class DestinationListViewController: UIViewController {
     var tableView: UITableView!
-
-    var destinationListViewModel:DestinationListViewModel = DestinationListViewModel()
+    var destinationListViewModel:DestinationListControllerViewModel = DestinationListControllerViewModel()
+    let refreshControl = UIRefreshControl()
 
     override func loadView() {
         super.loadView()
@@ -21,34 +21,69 @@ class DestinationListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        destinationListViewModel.getDestinationList()
         
+        if ReachabilityManager.sharedInstance.isReachableToInternet() {
+            destinationListViewModel.getDestinationList()
+        } else {
+            showAlert(title: StringConstants.errorTitle, message: StringConstants.internetErrorMessage)
+        }
+        
+        title = StringConstants.destinationListScreenTitle
         destinationListViewModel.completionHandler = {
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
+            DispatchQueue.main.async { [weak self] in
+                self?.refreshControl.endRefreshing()
+                self?.tableView.reloadData()
             }
         }
         
         destinationListViewModel.errorHandler = { [weak self] error in
-            DispatchQueue.main.async {
-                let alertController = UIAlertController(title: "Error", message: "Something went wrong, Please try again!", preferredStyle: .alert)
-                
-                let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
-                alertController.addAction(okAction)
-                self?.present(alertController, animated: true)
+            DispatchQueue.main.async { [weak self] in
+                self?.refreshControl.endRefreshing()
+                self?.showAlert(title: StringConstants.errorTitle, message: StringConstants.errorMessage)
             }
         }
 
     }
     
-    func setupUI() {
-        tableView = UITableView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height), style: .plain)
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 80
-        view.addSubview(tableView)
-        
-        tableView.register(LocationCell.self, forCellReuseIdentifier: String(describing: LocationCell.self))
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: StringConstants.okButtonTitle, style: .default) { action in
+            self.refreshControl.endRefreshing()
+            
+        }
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
     }
     
+    func setupUI() {
+        tableView = UITableView(frame: .zero)
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        view.addSubview(tableView)
+        tableView.register(LocationCell.self, forCellReuseIdentifier: String(describing: LocationCell.self))
+        tableView.register(LoaderCell.self, forCellReuseIdentifier: String(describing: LoaderCell.self))
+
+        tableView.topAnchor.constraint(equalTo:view.topAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo:view.bottomAnchor).isActive = true
+        tableView.leftAnchor.constraint(equalTo:view.leftAnchor).isActive = true
+        tableView.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
+
+        addRefreshControl()
+    }
+    
+    func addRefreshControl() {
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action:  #selector(refreshData(_:)), for: .valueChanged)
+    }
+    
+    @objc
+    private func refreshData(_ sender: Any) {
+        if ReachabilityManager.sharedInstance.isReachableToInternet() {
+            destinationListViewModel.handlePullToRefresh()
+        } else {
+            showAlert(title: StringConstants.errorTitle, message: StringConstants.internetErrorMessage)
+        }
+    }
 }

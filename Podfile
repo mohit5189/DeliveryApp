@@ -2,11 +2,11 @@ platform :ios, '9.0'
 
 target 'RouteApp' do
   use_frameworks!
-pod 'SDWebImage'
-pod 'MBProgressHUD'
+pod 'SDWebImage', '~> 5.0'
+pod 'MBProgressHUD', '~> 1.1.0'
 def testing_pods
-  pod 'Quick'
-  pod 'Nimble'
+  pod 'Quick', '~> 2.1.0'
+  pod 'Nimble', '~> 8.0.1'
 end
 
   target 'RouteAppTests' do

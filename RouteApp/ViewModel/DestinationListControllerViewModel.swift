@@ -1,5 +1,5 @@
 //
-//  DestinationListViewModel.swift
+//  DestinationListControllerViewModel.swift
 //  RouteApp
 //
 //  Created by Mohit Kumar on 5/28/19.
@@ -9,27 +9,33 @@
 import UIKit
 import MBProgressHUD
 
-class DestinationListViewModel: NSObject {
+class DestinationListControllerViewModel: NSObject {
     var completionHandler = {() -> () in }
     var reachabilityManager = Reachability(hostname: Constants.baseURL)
     var errorHandler = {(error:Error) -> () in }
+    var containsMoreRecords = true
     
     var offset = 0
     var limit = 20
 
+    var performingPullToRefresh = false
+    
     var destinationList: [DestinationModel] = [] {
         didSet {
             refreshData()
         }
     }
 
-    func refreshData(){
+    func refreshData() {
         completionHandler();
     }
 
     // MARK: TableView methods
     
-    func numberOfDestinations() -> Int {
+    func numberOfRows() -> Int {
+        if containsMoreRecords, destinationList.count > 0 {
+            return destinationList.count + 1
+        }
         return destinationList.count
     }
 
@@ -37,10 +43,9 @@ class DestinationListViewModel: NSObject {
         return destinationList[index]
     }
     
-    
     private func handleProgressLoader(shouldShowLoader: Bool) {
-        DispatchQueue.main.async {
-            guard let view = UIApplication.shared.keyWindow?.rootViewController?.view  else {
+        DispatchQueue.main.async { [weak self] in
+            guard let weakSelf = self, let view = UIApplication.shared.keyWindow?.rootViewController?.view, weakSelf.offset == 0, !weakSelf.performingPullToRefresh else {
                 return
             }
 
@@ -52,7 +57,13 @@ class DestinationListViewModel: NSObject {
         }
     }
     
-    
+    // MARk: pull to refresh actiom
+    func handlePullToRefresh() {
+        performingPullToRefresh = true
+        offset = 0
+        containsMoreRecords = true
+        getDestinationList()
+    }
     // MARK: API Handling
 
     func getDestinationList() {
@@ -60,8 +71,10 @@ class DestinationListViewModel: NSObject {
     }
     
     func makeNextPageCall() {
-        offset = offset + limit
-        getDestinationList()
+        if containsMoreRecords {
+            offset = destinationList.count
+            getDestinationList()
+        }
     }
     
     func getEndPoint() -> String {
@@ -81,7 +94,15 @@ class DestinationListViewModel: NSObject {
                 }
                 weakSelf.handleProgressLoader(shouldShowLoader: false)
                 if error == nil, let locations = response as? [DestinationModel] {
-                    weakSelf.destinationList += locations
+                    weakSelf.containsMoreRecords = locations.count > 0 // set pagination true if got records
+
+                    if weakSelf.performingPullToRefresh {
+                        weakSelf.performingPullToRefresh = false
+                        weakSelf.destinationList = locations
+                    } else {
+                        weakSelf.destinationList += locations
+                    }
+                    
                     DispatchQueue.main.async {
                         DBManager.sharedInstance.saveDestinations(destinations: locations) // save locations in DB
                     }
@@ -97,9 +118,14 @@ class DestinationListViewModel: NSObject {
     func handleListFromCache(error: Error = NSError()) {
         let destinationsFromCache = DBManager.sharedInstance.getDestinations(offset: offset, limit: limit)
         if destinationsFromCache.count > 0 {
-            destinationList += destinationsFromCache
+            if performingPullToRefresh {
+                performingPullToRefresh = false
+                destinationList = destinationsFromCache
+            } else {
+                destinationList += destinationsFromCache
+            }
         } else {
-            offset = (offset == 0 ? offset - limit : offset)
+            containsMoreRecords = false // set to false once received error from server
             errorHandler(error)
         }
     }

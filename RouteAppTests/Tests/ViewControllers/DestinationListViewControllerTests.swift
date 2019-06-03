@@ -41,7 +41,7 @@ class DestinationListViewControllerTests: QuickSpec {
                     }
                     
                     it("should render data in tableview") {
-                        expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == self.destinationListVC.destinationListViewModel.numberOfDestinations()).to(beTrue())
+                        expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == self.destinationListVC.destinationListViewModel.numberOfRows()).to(beTrue())
                     }
                     
                     context("and when network not available") {
@@ -56,18 +56,18 @@ class DestinationListViewControllerTests: QuickSpec {
                         }
                         
                         it("should load data from cache") {
-                            expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == 20).to(beTrue())
+                            expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == 21).to(beTrue())
                         }
                     }
                     
                     context("and when table scroll to bottom and will displaycell method called") {
                         beforeEach {
                             self.destinationListVC.destinationListViewModel.offset = 0
-                            self.destinationListVC.tableView.delegate!.tableView!(self.destinationListVC.tableView, willDisplay: LocationCell(), forRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.offset + self.destinationListVC.destinationListViewModel.limit - 1, section: 0))
+                            self.destinationListVC.tableView.delegate!.tableView!(self.destinationListVC.tableView, willDisplay: LocationCell(), forRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0))
                         }
                         
                         it("should update offset value") {
-                            expect(self.destinationListVC.destinationListViewModel.offset == 20).to(beTrue())
+                            expect(self.destinationListVC.destinationListViewModel.offset == self.destinationListVC.destinationListViewModel.destinationList.count).to(beTrue())
                         }
                     }
 

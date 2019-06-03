@@ -24,3 +24,21 @@ App manages caching of response using core data.
 # Network calling
 
 App used NSURLSession for making http call.
+
+# App Flow
+
+This app perform network api call for destinations listing, if network call is successful, it display the list and save in DB to show it later in offline mode. In case if user come next time and make network call for any specific page, app try to fetch data from network and if not found then try to find same page data in local DB. So sequence will be like:
+
+1. App make network call
+2. if network call succeed then app display data and cache the JSON in DB
+3. if network call failes, app try to fetch data from local DB and if found then display in list else gives error.
+
+# Displaying map
+
+Once user select any addess, app shows point to selected address and in backgroung start fetching current location of user. In case if current location found and their is a route between current location and selected address, App display that route to the user.
+
+#ScreenShots
+
+1. Listing page
+
+![alt text](https://www.photobox.co.uk/my/photo/full?photo_id=501904549500)

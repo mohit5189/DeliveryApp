@@ -11,6 +11,9 @@
 		5CED2D016B6391A8CF487A60 /* Pods_RouteApp_RouteAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD484A1C5DCBFD20C0496CD /* Pods_RouteApp_RouteAppTests.framework */; };
 		5E62EFC39DC5BD97AC35339B /* Pods_RouteApp_RouteAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AEC84B862322A30C42AD8EF /* Pods_RouteApp_RouteAppUITests.framework */; };
 		B7337BFD229F8ED0001F853E /* MapVireController+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337BFC229F8ED0001F853E /* MapVireController+Stub.swift */; };
+		B7337C0D22A3B9AC001F853E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7337C0F22A3B9AC001F853E /* Localizable.strings */; };
+		B7337C1122A3BE16001F853E /* LoaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1022A3BE16001F853E /* LoaderCell.swift */; };
+		B7337C1322A3D20D001F853E /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1222A3D20D001F853E /* ReachabilityManager.swift */; };
 		B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A89229AAC2E0015794D /* AppDelegate.swift */; };
 		B7467A8C229AAC2E0015794D /* DestinationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DestinationListViewController.swift */; };
 		B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7467A90229AAC2F0015794D /* Assets.xcassets */; };
@@ -36,7 +39,7 @@
 		B7467AFA229BF9860015794D /* destination.json in Resources */ = {isa = PBXBuildFile; fileRef = B7467AF9229BF9860015794D /* destination.json */; };
 		B7467AFD229BFA050015794D /* HTTPClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AFC229BFA050015794D /* HTTPClientMock.swift */; };
 		B7467AFE229BFCDC0015794D /* destination.json in Resources */ = {isa = PBXBuildFile; fileRef = B7467AF9229BF9860015794D /* destination.json */; };
-		B7467B04229D28EA0015794D /* DestinationListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B03229D28EA0015794D /* DestinationListViewModel.swift */; };
+		B7467B04229D28EA0015794D /* DestinationListControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B03229D28EA0015794D /* DestinationListControllerViewModel.swift */; };
 		B7467B06229D3B150015794D /* MapControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B05229D3B150015794D /* MapControllerViewModel.swift */; };
 		B7467B0E229D597A0015794D /* MyDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7467B0C229D597A0015794D /* MyDB.xcdatamodeld */; };
 		B7467B29229D5BBB0015794D /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B28229D5BBB0015794D /* DBManager.swift */; };
@@ -71,6 +74,9 @@
 		8AEC84B862322A30C42AD8EF /* Pods_RouteApp_RouteAppUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RouteApp_RouteAppUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD484A1C5DCBFD20C0496CD /* Pods_RouteApp_RouteAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RouteApp_RouteAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7337BFC229F8ED0001F853E /* MapVireController+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapVireController+Stub.swift"; sourceTree = "<group>"; };
+		B7337C0E22A3B9AC001F853E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		B7337C1022A3BE16001F853E /* LoaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCell.swift; sourceTree = "<group>"; };
+		B7337C1222A3D20D001F853E /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		B7467A86229AAC2E0015794D /* RouteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467A89229AAC2E0015794D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7467A8B229AAC2E0015794D /* DestinationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListViewController.swift; sourceTree = "<group>"; };
@@ -101,7 +107,7 @@
 		B7467AF6229BF5390015794D /* MapViewController+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+Map.swift"; sourceTree = "<group>"; };
 		B7467AF9229BF9860015794D /* destination.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = destination.json; sourceTree = "<group>"; };
 		B7467AFC229BFA050015794D /* HTTPClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientMock.swift; sourceTree = "<group>"; };
-		B7467B03229D28EA0015794D /* DestinationListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListViewModel.swift; sourceTree = "<group>"; };
+		B7467B03229D28EA0015794D /* DestinationListControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListControllerViewModel.swift; sourceTree = "<group>"; };
 		B7467B05229D3B150015794D /* MapControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapControllerViewModel.swift; sourceTree = "<group>"; };
 		B7467B0D229D597A0015794D /* MyDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyDB.xcdatamodel; sourceTree = "<group>"; };
 		B7467B28229D5BBB0015794D /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -153,6 +159,41 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B7337C0722A392BE001F853E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B7467B0C229D597A0015794D /* MyDB.xcdatamodeld */,
+				B7467A90229AAC2F0015794D /* Assets.xcassets */,
+				B7467AEE229BD0D50015794D /* LaunchScreen.storyboard */,
+				B7337C0F22A3B9AC001F853E /* Localizable.strings */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		B7337C0822A392FF001F853E /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B7467A89229AAC2E0015794D /* AppDelegate.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B7337C0922A3931E001F853E /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C0A22A39325001F853E /* AppConfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		B7337C0A22A39325001F853E /* AppConfig */ = {
+			isa = PBXGroup;
+			children = (
+				B7467A95229AAC2F0015794D /* Info.plist */,
+			);
+			path = AppConfig;
+			sourceTree = "<group>";
+		};
 		B7467A7D229AAC2E0015794D = {
 			isa = PBXGroup;
 			children = (
@@ -183,10 +224,9 @@
 				B7467AC1229AB0020015794D /* Models */,
 				B7467AC7229AB2440015794D /* Helper */,
 				B7467B01229D287A0015794D /* Networking */,
-				B7467A89229AAC2E0015794D /* AppDelegate.swift */,
-				B7467A90229AAC2F0015794D /* Assets.xcassets */,
-				B7467A95229AAC2F0015794D /* Info.plist */,
-				B7467AEE229BD0D50015794D /* LaunchScreen.storyboard */,
+				B7337C0822A392FF001F853E /* Common */,
+				B7337C0922A3931E001F853E /* Config */,
+				B7337C0722A392BE001F853E /* Resources */,
 			);
 			path = RouteApp;
 			sourceTree = "<group>";
@@ -218,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				B7467ABA229AAD440015794D /* LocationCell.swift */,
+				B7337C1022A3BE16001F853E /* LoaderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -367,7 +408,7 @@
 		B7467B00229D284D0015794D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B7467B03229D28EA0015794D /* DestinationListViewModel.swift */,
+				B7467B03229D28EA0015794D /* DestinationListControllerViewModel.swift */,
 				B7467B05229D3B150015794D /* MapControllerViewModel.swift */,
 			);
 			path = ViewModel;
@@ -386,7 +427,6 @@
 			isa = PBXGroup;
 			children = (
 				B7467B28229D5BBB0015794D /* DBManager.swift */,
-				B7467B0C229D597A0015794D /* MyDB.xcdatamodeld */,
 			);
 			path = "Cache Handler";
 			sourceTree = "<group>";
@@ -395,6 +435,7 @@
 			isa = PBXGroup;
 			children = (
 				B7467B2D229D635E0015794D /* Reachability.swift */,
+				B7337C1222A3D20D001F853E /* ReachabilityManager.swift */,
 			);
 			path = Reachability;
 			sourceTree = "<group>";
@@ -527,6 +568,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7337C0D22A3B9AC001F853E /* Localizable.strings in Resources */,
 				B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */,
 				B7467AFE229BFCDC0015794D /* destination.json in Resources */,
 				B7467AEF229BD0D50015794D /* LaunchScreen.storyboard in Resources */,
@@ -704,7 +746,7 @@
 				B7467B06229D3B150015794D /* MapControllerViewModel.swift in Sources */,
 				B7467AD7229AC3EB0015794D /* LocationHelper.swift in Sources */,
 				B7467A8C229AAC2E0015794D /* DestinationListViewController.swift in Sources */,
-				B7467B04229D28EA0015794D /* DestinationListViewModel.swift in Sources */,
+				B7467B04229D28EA0015794D /* DestinationListControllerViewModel.swift in Sources */,
 				B7467ABE229AAF780015794D /* HTTPClient.swift in Sources */,
 				B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */,
 				B7467AE6229BB6690015794D /* URLBuilder.swift in Sources */,
@@ -712,11 +754,13 @@
 				B7467AF4229BF3F10015794D /* DestinationListViewController+UITableViewDelegate.swift in Sources */,
 				B7467AD5229AC37C0015794D /* CustomPin.swift in Sources */,
 				B7467ABB229AAD440015794D /* LocationCell.swift in Sources */,
+				B7337C1322A3D20D001F853E /* ReachabilityManager.swift in Sources */,
 				B7467AF2229BF3BB0015794D /* DestinationListViewController+UITableViewDataSource.swift in Sources */,
 				B7467AC9229AB2620015794D /* Constants.swift in Sources */,
 				B7467B29229D5BBB0015794D /* DBManager.swift in Sources */,
 				B7467AB9229AAD2C0015794D /* MapViewController.swift in Sources */,
 				B7467ACC229AB4DB0015794D /* DestinationListAdapter.swift in Sources */,
+				B7337C1122A3BE16001F853E /* LoaderCell.swift in Sources */,
 				B7467AC6229AB0690015794D /* DestinationModel.swift in Sources */,
 				B7467B2E229D635E0015794D /* Reachability.swift in Sources */,
 				B7467B0E229D597A0015794D /* MyDB.xcdatamodeld in Sources */,
@@ -760,6 +804,17 @@
 			targetProxy = B7467AA6229AAC2F0015794D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B7337C0F22A3B9AC001F853E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B7337C0E22A3B9AC001F853E /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		B7467AAC229AAC2F0015794D /* Debug */ = {
@@ -884,7 +939,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RouteApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RouteApp/Config/AppConfig/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -902,7 +958,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = RouteApp/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/RouteApp/Config/AppConfig/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

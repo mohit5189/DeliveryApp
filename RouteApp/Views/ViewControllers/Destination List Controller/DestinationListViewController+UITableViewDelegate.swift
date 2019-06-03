@@ -17,7 +17,7 @@ extension DestinationListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        if indexPath.row == destinationListViewModel.offset + destinationListViewModel.limit - 1 { // call api for next page before 1 rows to visible
+        if indexPath.row == destinationListViewModel.numberOfRows() - 1 { // call api for next page before 1 rows to visible
             destinationListViewModel.makeNextPageCall()
         }
     }

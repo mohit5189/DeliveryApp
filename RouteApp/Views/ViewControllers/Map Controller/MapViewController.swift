@@ -18,6 +18,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        title = StringConstants.mapScreenTitle
         viewModel.getCurrentLocation()
         viewModel.currentLocationCompletionHandler = { [weak self] in
             self?.drawRoute()
@@ -27,18 +28,60 @@ class MapViewController: UIViewController {
     
     func setupUI() {
         view.backgroundColor = .white
-        mapView = MKMapView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height-80))
+        mapView = MKMapView(frame: .zero)
+        mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.delegate = self
         view.addSubview(mapView)
         
-        destinationImageView = UIImageView(frame: CGRect(x: 10, y: mapView.frame.height + 10, width: 60, height: 60))
+        destinationImageView = UIImageView(frame: .zero)
+        destinationImageView.translatesAutoresizingMaskIntoConstraints = false
         destinationImageView.sd_setImage(with: URL(string: viewModel.selectedLocation?.imageUrl ?? ""), placeholderImage: nil)
         view.addSubview(destinationImageView)
-        destinationLabel = UILabel(frame: CGRect(x: destinationImageView.frame.width + destinationImageView.frame.origin.x + 10, y: destinationImageView.frame.origin.y, width: view.frame.size.width - destinationImageView.frame.width - 30, height: destinationImageView.frame.height))
-        destinationLabel.numberOfLines = 2
+        
+        destinationLabel = UILabel(frame: .zero)
+        destinationLabel.numberOfLines = 0
+        destinationLabel.translatesAutoresizingMaskIntoConstraints = false
         if let selectedLocation = viewModel.selectedLocation {
             destinationLabel.text = String(format: "%@ at %@", selectedLocation.description, selectedLocation.location.address)
         }
         view.addSubview(destinationLabel)
+        
+        addCOnstraints()
+    }
+    
+    func addCOnstraints() {
+        let views: [String: Any] = [
+            "mapView": mapView,
+            "destinationImageView": destinationImageView,
+            "destinationLabel": destinationLabel]
+        
+        var allConstraints: [NSLayoutConstraint] = []
+        
+        let mapHorizontalConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|[mapView]|",
+            metrics: nil,
+            views: views)
+        allConstraints += mapHorizontalConstraints
+        
+        let bottomViewHorizontalConstraints = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[destinationImageView(80)]-10-[destinationLabel]-10-|",
+            metrics: nil,
+            views: views)
+        allConstraints += bottomViewHorizontalConstraints
+        
+        let imageVerticalConstraint = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|[mapView]-10-[destinationImageView(80)]-50-|",
+            metrics: nil,
+            views: views)
+        allConstraints += imageVerticalConstraint
+
+        let labelVerticalConstraint = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|[mapView]-10-[destinationLabel]-50-|",
+            metrics: nil,
+            views: views)
+        allConstraints += labelVerticalConstraint
+
+        view.addConstraints(allConstraints)
+
     }
 }

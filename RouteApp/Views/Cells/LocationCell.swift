@@ -19,12 +19,45 @@ class LocationCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        destinationImageView = UIImageView(frame: CGRect(x: 10, y: 10, width: 60, height: 60))
-        destinationLabel = UILabel(frame: CGRect(x: destinationImageView.frame.width + destinationImageView.frame.origin.x + 10, y: destinationImageView.frame.origin.y, width: frame.size.width - destinationImageView.frame.width - 30, height: destinationImageView.frame.height))
-        addSubview(destinationImageView)
-        destinationLabel.numberOfLines = 2
-        addSubview(destinationLabel)
+        destinationImageView = UIImageView(frame: .zero)
+        destinationImageView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(destinationImageView)
+
+        destinationLabel = UILabel(frame: .zero)
+        destinationLabel.numberOfLines = 0
         selectionStyle = .none
+        destinationLabel.translatesAutoresizingMaskIntoConstraints = false
+        contentView.addSubview(destinationLabel)
+        
+        addConstraints()
+    }
+    
+    func addConstraints() {
+        let views: [String: Any] = [
+            "destinationImageView": destinationImageView,
+            "destinationLabel": destinationLabel]
+        
+        var allConstraints: [NSLayoutConstraint] = []
+       
+        let horizontalConstraint = NSLayoutConstraint.constraints(
+            withVisualFormat: "H:|-10-[destinationImageView(80)]-10-[destinationLabel]-10-|",
+            metrics: nil,
+            views: views)
+        allConstraints += horizontalConstraint
+
+        let imageVerticalConstraint = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-10-[destinationImageView(80)]-10-|",
+            metrics: nil,
+            views: views)
+        allConstraints += imageVerticalConstraint
+        
+        let labelVerticalConstraint = NSLayoutConstraint.constraints(
+            withVisualFormat: "V:|-10-[destinationLabel]-10-|",
+            metrics: nil,
+            views: views)
+        allConstraints += labelVerticalConstraint
+
+        contentView.addConstraints(allConstraints)
     }
     
     
