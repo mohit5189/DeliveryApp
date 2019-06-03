@@ -43,7 +43,10 @@ class DestinationListViewControllerTests: QuickSpec {
                     it("should render data in tableview") {
                         expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == self.destinationListVC.destinationListViewModel.numberOfRows()).toEventually(beTrue(), timeout: 10)
                     }
-                                        
+                    
+                    it("should display loader at bottom") {
+                        expect(self.destinationListVC.tableView(self.destinationListVC.tableView, cellForRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0)).isKind(of: LoaderCell.self)).toEventually(beTrue(), timeout: 10)
+                    }
                     context("and when network not available") {
                         beforeEach {
                             self.destinationListVC.destinationListViewModel.destinationList = []
