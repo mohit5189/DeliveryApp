@@ -39,5 +39,4 @@ Once user select any addess, app shows point to selected address and in backgrou
 
 # ScreenShots
 
-![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/listing.png)
 ![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/map.png)
