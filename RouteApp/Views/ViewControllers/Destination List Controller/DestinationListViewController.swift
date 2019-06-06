@@ -13,7 +13,8 @@ class DestinationListViewController: UIViewController {
     var tableView: UITableView!
     var destinationListViewModel:DestinationListControllerViewModel = DestinationListControllerViewModel()
     let refreshControl = UIRefreshControl()
-
+    var reachabilityManager: ReachabilityAdapter = ReachabilityManager.sharedInstance
+    
     override func loadView() {
         super.loadView()
         setupUI()
@@ -22,7 +23,7 @@ class DestinationListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if ReachabilityManager.sharedInstance.isReachableToInternet() || DBManager.sharedInstance.cacheAvailable() {
+        if reachabilityManager.isReachableToInternet() || DBManager.sharedInstance.cacheAvailable() {
             destinationListViewModel.getDestinationList()
         } else {
             showAlert(title: StringConstants.errorTitle, message: StringConstants.internetErrorMessage)

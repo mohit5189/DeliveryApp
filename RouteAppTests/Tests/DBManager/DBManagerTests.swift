@@ -56,7 +56,13 @@ class DBManagerTests: QuickSpec {
             
             context("when fetching item with offset and limit") {
                 it("should return proper list as required") {
-                    expect(self.dbManager.getDestinations(offset: 0, limit: 5).count == 5).to(beTrue())
+                    waitUntil(action: { done in
+                        self.dbManager.getDestinations(offset: 0, limit: 5, onSuccess: { destinations, error in
+                            expect(destinations?.count == 5).to(beTrue())
+                        })
+                        
+                        done()
+                    })
                 }
             }
         }

@@ -7,6 +7,8 @@ class DBManager: NSObject {
     
     var managedObjectContext:NSManagedObjectContext?
     
+    typealias ResponseBlock = (_ response: [DestinationModel]?, _ error: Error?) -> Void
+
     override init() {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
@@ -58,29 +60,38 @@ class DBManager: NSObject {
         return false
     }
     
-    func getDestinations(offset: Int, limit: Int) -> [DestinationModel] {
+    func getDestinations(offset: Int, limit: Int, onSuccess: @escaping ResponseBlock) {
         var destinations:[DestinationModel] = []
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Destination")
         fetchRequest.fetchOffset = offset
         fetchRequest.fetchLimit = limit
         
-        do {
-            let records = try managedObjectContext!.fetch(fetchRequest) as! [Destination]
-            for destination in records {
-                let id = destination.id
-                let desc = destination.desc
-                let imageUrl = destination.imageUrl
-                let lat = destination.location?.lat
-                let long = destination.location?.long
-                let address = destination.location?.address
-                destinations.append(DestinationModel(id: Int(id), description: desc ?? "", imageUrl: imageUrl ?? "", location: AddressModel(lat: lat ?? 0, lng: long ?? 0, address: address ?? "")))
+        let asynchronousFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (asynchronousFetchResult) -> Void in
+            DispatchQueue.main.async {
+                if let result = asynchronousFetchResult.finalResult {
+                    let records = result as! [Destination]
+                    
+                    for destination in records {
+                        let id = destination.id
+                        let desc = destination.desc
+                        let imageUrl = destination.imageUrl
+                        let lat = destination.location?.lat
+                        let long = destination.location?.long
+                        let address = destination.location?.address
+                        destinations.append(DestinationModel(id: Int(id), description: desc ?? "", imageUrl: imageUrl ?? "", location: AddressModel(lat: lat ?? 0, lng: long ?? 0, address: address ?? "")))
+                    }
+                }
+                onSuccess(destinations, nil)
             }
-        } catch {
+            
         }
-        
-        return destinations
+        do {
+            try managedObjectContext?.execute(asynchronousFetchRequest)
+        } catch {
+            onSuccess(nil, NSError(domain: "Invalid Query", code: 0, userInfo: nil))
+        }
     }
-    
+        
     func cleanCache() {
         do {
             let records = try managedObjectContext!.fetch(Destination.fetchRequest()) as! [NSManagedObject]

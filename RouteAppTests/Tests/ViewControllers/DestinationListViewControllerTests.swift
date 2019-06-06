@@ -49,9 +49,11 @@ class DestinationListViewControllerTests: QuickSpec {
                     }
                     context("and when network not available") {
                         beforeEach {
+                            let reachabilityMock = ReachabilityManagerMock()
+                            reachabilityMock.isReachable = false
+                            self.destinationListVC = DestinationListViewController.stub(reachabilityManager: reachabilityMock)
                             self.destinationListVC.destinationListViewModel.destinationList = []
                             self.destinationListVC.destinationListViewModel.offset = 0
-                            self.destinationListVC.destinationListViewModel.reachabilityManager = nil
                             let networkClient = HTTPClientMock()
                             networkClient.jsonData = JSONHelper.jsonFileToData(jsonName: "destination")
                             networkClient.nextError = nil

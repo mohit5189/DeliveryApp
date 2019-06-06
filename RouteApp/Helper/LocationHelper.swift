@@ -26,9 +26,15 @@ class LocationHelper: NSObject {
         manager = CLLocationManager()
     }
     
-    private var manager: CLLocationManager!
-    var currentLocation: CLLocation?
     weak var delegate: LocationHelperDelegate?
+    private var manager: CLLocationManager!
+    var currentLocation: CLLocation? {
+        didSet {
+            if let location = currentLocation {
+                delegate?.didUpdateCurrentLocation(location: location)
+            }
+        }
+    }
     
     //Entry point to Location Manager. First the initialization has to be done
     func initializeLocationManager() {
@@ -44,13 +50,6 @@ class LocationHelper: NSObject {
     func startUpdating() {
         manager.startUpdatingLocation()
     }
-    
-    //Check for whether location services are disabled.
-    func locationServicesEnabled() -> Bool {
-        let isAllowed = CLLocationManager.locationServicesEnabled()
-        return isAllowed
-    }
-    
 }
 
 //MARK: - CLLocation Manager delegate methods
@@ -63,6 +62,5 @@ extension LocationHelper: CLLocationManagerDelegate {
         currentLocation = location
         manager.stopUpdatingLocation()
         manager.delegate = nil
-        delegate?.didUpdateCurrentLocation(location: location)
     }
 }

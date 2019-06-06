@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,8 @@
 		B7337C0D22A3B9AC001F853E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7337C0F22A3B9AC001F853E /* Localizable.strings */; };
 		B7337C1122A3BE16001F853E /* LoaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1022A3BE16001F853E /* LoaderCell.swift */; };
 		B7337C1322A3D20D001F853E /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1222A3D20D001F853E /* ReachabilityManager.swift */; };
+		B7337C1522A8E12F001F853E /* ReachabilityManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */; };
+		B7337C1722A8E289001F853E /* ReachabilityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1622A8E289001F853E /* ReachabilityAdapter.swift */; };
 		B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A89229AAC2E0015794D /* AppDelegate.swift */; };
 		B7467A8C229AAC2E0015794D /* DestinationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DestinationListViewController.swift */; };
 		B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7467A90229AAC2F0015794D /* Assets.xcassets */; };
@@ -77,6 +79,8 @@
 		B7337C0E22A3B9AC001F853E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B7337C1022A3BE16001F853E /* LoaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCell.swift; sourceTree = "<group>"; };
 		B7337C1222A3D20D001F853E /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
+		B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManagerMock.swift; sourceTree = "<group>"; };
+		B7337C1622A8E289001F853E /* ReachabilityAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityAdapter.swift; sourceTree = "<group>"; };
 		B7467A86229AAC2E0015794D /* RouteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467A89229AAC2E0015794D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7467A8B229AAC2E0015794D /* DestinationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListViewController.swift; sourceTree = "<group>"; };
@@ -401,6 +405,7 @@
 			isa = PBXGroup;
 			children = (
 				B7467AFC229BFA050015794D /* HTTPClientMock.swift */,
+				B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 			children = (
 				B7467B2D229D635E0015794D /* Reachability.swift */,
 				B7337C1222A3D20D001F853E /* ReachabilityManager.swift */,
+				B7337C1622A8E289001F853E /* ReachabilityAdapter.swift */,
 			);
 			path = Reachability;
 			sourceTree = "<group>";
@@ -665,22 +671,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RouteApp-RouteAppUITests/Pods-RouteApp-RouteAppUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-RouteApp-RouteAppUITests/Pods-RouteApp-RouteAppUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-RouteApp-RouteAppUITests/Pods-RouteApp-RouteAppUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RouteApp-RouteAppUITests/Pods-RouteApp-RouteAppUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RouteApp-RouteAppUITests/Pods-RouteApp-RouteAppUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BDB23E15D91E4BE55B1DA8EF /* [CP] Embed Pods Frameworks */ = {
@@ -689,26 +688,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RouteApp-RouteAppTests/Pods-RouteApp-RouteAppTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/Nimble/Nimble.framework",
-				"${BUILT_PRODUCTS_DIR}/Quick/Quick.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-RouteApp-RouteAppTests/Pods-RouteApp-RouteAppTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Nimble.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Quick.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-RouteApp-RouteAppTests/Pods-RouteApp-RouteAppTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RouteApp-RouteAppTests/Pods-RouteApp-RouteAppTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RouteApp-RouteAppTests/Pods-RouteApp-RouteAppTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C74573FE378E7582949ABF2B /* [CP] Embed Pods Frameworks */ = {
@@ -717,22 +705,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-RouteApp/Pods-RouteApp-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-RouteApp/Pods-RouteApp-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-RouteApp/Pods-RouteApp-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-RouteApp/Pods-RouteApp-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-RouteApp/Pods-RouteApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -758,6 +739,7 @@
 				B7467AF2229BF3BB0015794D /* DestinationListViewController+UITableViewDataSource.swift in Sources */,
 				B7467AC9229AB2620015794D /* Constants.swift in Sources */,
 				B7467B29229D5BBB0015794D /* DBManager.swift in Sources */,
+				B7337C1722A8E289001F853E /* ReachabilityAdapter.swift in Sources */,
 				B7467AB9229AAD2C0015794D /* MapViewController.swift in Sources */,
 				B7467ACC229AB4DB0015794D /* DestinationListAdapter.swift in Sources */,
 				B7337C1122A3BE16001F853E /* LoaderCell.swift in Sources */,
@@ -778,6 +760,7 @@
 				B7467A9F229AAC2F0015794D /* RouteAppTests.swift in Sources */,
 				B7467B31229D6B3D0015794D /* DBManagerTests.swift in Sources */,
 				B7467AFD229BFA050015794D /* HTTPClientMock.swift in Sources */,
+				B7337C1522A8E12F001F853E /* ReachabilityManagerMock.swift in Sources */,
 				B7467ADF229ACC6B0015794D /* JSONHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

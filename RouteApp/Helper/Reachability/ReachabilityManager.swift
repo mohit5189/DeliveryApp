@@ -8,11 +8,11 @@
 
 import Foundation
 
-class ReachabilityManager: NSObject {
+class ReachabilityManager: ReachabilityAdapter {
     var reachabilityManager: Reachability!
 
     static var sharedInstance = ReachabilityManager()
-    override init() {
+    init() {
         reachabilityManager = Reachability(hostname: Constants.baseURL)
     }
 
