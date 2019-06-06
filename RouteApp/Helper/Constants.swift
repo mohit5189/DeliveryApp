@@ -20,5 +20,6 @@ struct StringConstants {
     static let destinationListScreenTitle = NSLocalizedString("destinationListTitle", comment: "")
     static let mapScreenTitle = NSLocalizedString("mapScreenTitle", comment: "")
     static let internetErrorMessage = NSLocalizedString("internetErrorMessage", comment: "")
+    static let currentLocationTitle = NSLocalizedString("currentLocationTitle", comment: "")
 }
 

@@ -31,6 +31,7 @@ class MapViewController: UIViewController {
         mapView = MKMapView(frame: .zero)
         mapView.translatesAutoresizingMaskIntoConstraints = false
         mapView.delegate = self
+        mapView.showsUserLocation = true
         view.addSubview(mapView)
         
         destinationImageView = UIImageView(frame: .zero)

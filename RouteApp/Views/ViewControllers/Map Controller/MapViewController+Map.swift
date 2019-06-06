@@ -31,15 +31,11 @@ extension MapViewController: MKMapViewDelegate{
                 return
             }
             
-            let sourcePin = CustomPin(location: currentLocation.coordinate)
-            weakSelf.mapView.addAnnotation(sourcePin)
-
             let route = response.routes[0]
             weakSelf.mapView.addOverlay(route.polyline, level: .aboveRoads)
             let rect = route.polyline.boundingMapRect
             weakSelf.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
         }
-        
     }
     
     func dropDestinationPin() {
@@ -50,7 +46,9 @@ extension MapViewController: MKMapViewDelegate{
         let destinationLocation = CLLocationCoordinate2D(latitude:destinationLatitude , longitude: destinationLongitude)
         let destinationPin = CustomPin(title: viewModel.selectedLocation?.location.address ?? "", location: destinationLocation)
         mapView.addAnnotation(destinationPin)
-        mapView.setCenter(destinationLocation, animated: true)
+        let viewRegion = MKCoordinateRegion(center: destinationLocation, latitudinalMeters: 500, longitudinalMeters: 500)
+        mapView.setRegion(viewRegion, animated: true)
+
     }
 
 

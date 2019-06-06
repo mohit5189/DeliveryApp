@@ -31,11 +31,13 @@ class MapViewControllerTests: QuickSpec {
                 }
                 
                 it("should add marker at destination address") {
-                    expect(self.mapVC.mapView.annotations.count == 1).to(beTrue())
-                }
-                
-                it("should set title for annotation") {
-                    expect(self.mapVC.mapView.annotations[0].title == self.mapVC.viewModel.selectedLocation!.location.address).to(beTrue())
+                    waitUntil(action: { done in
+                        for annotation in self.mapVC.mapView.annotations {
+                            if annotation.title == self.mapVC.viewModel.selectedLocation!.location.address {
+                                done()
+                            }
+                        }
+                    })
                 }
             }
         }
