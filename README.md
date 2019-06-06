@@ -32,7 +32,7 @@ This app perform network api call for destinations listing, if network call is s
 
 1. App make network call
 2. if network call succeed then app display data and cache the JSON in DB
-3. if network call failes, app try to fetch data from local DB and if found then display in list else gives error.
+3. if network call failes, app try to fetch data from local DB and if found then display in list.
 
 ![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/flow.png)
 
