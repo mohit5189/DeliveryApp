@@ -1,15 +1,21 @@
 # DestinationsSample
 
-To run this project, you just need to take checkout and run direct. Pod files has been commited along with project to avoid any hurdles.
+To run this project, please follow following steps:
+
+1. Open terminal and go to project folder where .podfile is stored.
+2. Run pod install.
+3. Once command run successfully, go to project folder and open workspace file in xcode.
 
 # Unit Testing frameworks
 
-I have used Quick/Nimble framework to write unit test. Framework is basically for BDD (Behaviour driven development), so I tried to kept my test development to be focused on BDD instead of TDD ( Test driven development )
+- Used Nimble/Quick for unit testing purpose
+- Test cases are written with BDD (Behaviour driven development) approach.
+- XCUITest not covered in this sample.
 
 # Design patterns
 
 1. MVVM
-2. Adapter
+2. Adapter design pattern
 
 # Caching
 
@@ -39,7 +45,7 @@ This app perform network api call for destinations listing, if network call is s
 
 # Displaying map
 
-1. Once user select any addess, app shows point to selected address and in backgroung start fetching current location of user. 
+1. Once user select any addess, app shows annotation to selected address and in backgroung start fetching current location of user. 
 
 2. In case if current location found and their is a route between current location and selected address, App display that route to the user.
 
