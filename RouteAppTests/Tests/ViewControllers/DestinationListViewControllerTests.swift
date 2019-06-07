@@ -94,7 +94,7 @@ class DestinationListViewControllerTests: QuickSpec {
                         it("should update offset value for next page api call") {
                             expect(self.destinationListVC.destinationListViewModel.offset == self.destinationListVC.destinationListViewModel.destinationList.count).to(beTrue())
                         }
-                        
+                                                
                         context("and when next page api call return success") {
                             beforeEach {
                                 let networkClient = HTTPClientMock()
@@ -118,6 +118,25 @@ class DestinationListViewControllerTests: QuickSpec {
                             expect(self.destinationListVC.navigationController?.topViewController!.isKind(of: MapViewController.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                             
                             expect((self.destinationListVC.navigationController!.topViewController! as! MapViewController).viewModel.selectedLocation!.description == self.destinationListVC.destinationListViewModel.getDestination(index: 1).description).to(beTrue())
+                        }
+                    }
+                }
+                
+                context("and when perform pull to refresh") {
+                    context("and when internet if off") {
+                        beforeEach {
+                            let reachabilityMock = ReachabilityManagerMock()
+                            reachabilityMock.isReachable = false
+                            self.destinationListVC = DestinationListViewController.stub(reachabilityManager: reachabilityMock)
+                            self.destinationListVC.destinationListViewModel.handlePullToRefresh()
+                        }
+                        
+                        it("should display error alert") {
+                            expect(self.destinationListVC.presentedViewController?.isKind(of: UIAlertController.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
+                        }
+                        
+                        it("should set isPerformingPullToRefresh to false") {
+                            expect(self.destinationListVC.destinationListViewModel.isPerformingPullToRefresh).to(beFalse())
                         }
                     }
                 }
