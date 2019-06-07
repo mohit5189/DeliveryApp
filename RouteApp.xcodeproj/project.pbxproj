@@ -20,7 +20,6 @@
 		B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A89229AAC2E0015794D /* AppDelegate.swift */; };
 		B7467A8C229AAC2E0015794D /* DestinationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DestinationListViewController.swift */; };
 		B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7467A90229AAC2F0015794D /* Assets.xcassets */; };
-		B7467A9F229AAC2F0015794D /* RouteAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A9E229AAC2F0015794D /* RouteAppTests.swift */; };
 		B7467AAA229AAC2F0015794D /* RouteAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AA9229AAC2F0015794D /* RouteAppUITests.swift */; };
 		B7467AB9229AAD2C0015794D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AB8229AAD2C0015794D /* MapViewController.swift */; };
 		B7467ABB229AAD440015794D /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ABA229AAD440015794D /* LocationCell.swift */; };
@@ -89,7 +88,6 @@
 		B7467A90229AAC2F0015794D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7467A95229AAC2F0015794D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7467A9A229AAC2F0015794D /* RouteAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouteAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7467A9E229AAC2F0015794D /* RouteAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAppTests.swift; sourceTree = "<group>"; };
 		B7467AA0229AAC2F0015794D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7467AA5229AAC2F0015794D /* RouteAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouteAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467AA9229AAC2F0015794D /* RouteAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAppUITests.swift; sourceTree = "<group>"; };
@@ -245,7 +243,6 @@
 				B7467ADD229ACC510015794D /* Helper */,
 				B7467ADC229ACC400015794D /* Tests */,
 				B7467AD8229ACBF50015794D /* Stub */,
-				B7467A9E229AAC2F0015794D /* RouteAppTests.swift */,
 				B7467AA0229AAC2F0015794D /* Info.plist */,
 			);
 			path = RouteAppTests;
@@ -760,7 +757,6 @@
 				B7467B33229D6EBD0015794D /* MapViewControllerTests.swift in Sources */,
 				B7467AE1229ACD650015794D /* DestinationListViewControllerTests.swift in Sources */,
 				B7467AE3229ACE620015794D /* DestinationListViewController+Stub.swift in Sources */,
-				B7467A9F229AAC2F0015794D /* RouteAppTests.swift in Sources */,
 				B7337C1922A92227001F853E /* RouteAppTestConstants.swift in Sources */,
 				B7467B31229D6B3D0015794D /* DBManagerTests.swift in Sources */,
 				B7467AFD229BFA050015794D /* HTTPClientMock.swift in Sources */,

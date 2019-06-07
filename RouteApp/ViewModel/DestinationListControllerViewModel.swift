@@ -136,13 +136,13 @@ class DestinationListControllerViewModel: NSObject {
                 
                 weakSelf.updatePullToRefreshFlag()
             } else {
-                weakSelf.handleListFromCache(error: error)
+                weakSelf.handleListFromCache(serverError: error)
             }
         }
     }
     
     // MARK: Cache handling
-    func handleListFromCache(error: Error? = nil) {
+    func handleListFromCache(serverError: Error? = nil) {
         DispatchQueue.main.async { [weak self] in
             guard let weakSelf = self else { return }
             DBManager.sharedInstance.getDestinations(offset: weakSelf.offset, limit: weakSelf.limit) { [weak self] destinations, dbError in
@@ -151,8 +151,8 @@ class DestinationListControllerViewModel: NSObject {
                     weakSelf.destinationList = weakSelf.isPerformingPullToRefresh ? destinationList : (weakSelf.destinationList + destinationList)
                 } else {
                     weakSelf.loadMoreCompletionHandler()
-                    if error != nil {
-                        weakSelf.errorHandler(error!)
+                    if serverError != nil {
+                        weakSelf.errorHandler(serverError!)
                     }
                 }
 
