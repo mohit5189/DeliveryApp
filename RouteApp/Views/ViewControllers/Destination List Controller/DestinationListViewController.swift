@@ -40,7 +40,7 @@ class DestinationListViewController: UIViewController {
                 self?.showAlert(title: LocalizeStrings.errorTitle, message: errorMessage)
             }
         }
-
+        
         destinationListViewModel.loadMoreCompletionHandler = { [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                 self?.hideBottomLoader()
@@ -89,12 +89,12 @@ class DestinationListViewController: UIViewController {
         view.addSubview(tableView)
         tableView.register(LocationCell.self, forCellReuseIdentifier: String(describing: LocationCell.self))
         tableView.register(LoaderCell.self, forCellReuseIdentifier: String(describing: LoaderCell.self))
-
+        
         tableView.topAnchor.constraint(equalTo:view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo:view.bottomAnchor).isActive = true
         tableView.leftAnchor.constraint(equalTo:view.leftAnchor).isActive = true
         tableView.rightAnchor.constraint(equalTo:view.rightAnchor).isActive = true
-
+        
         addRefreshControl()
     }
     

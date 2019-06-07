@@ -48,10 +48,10 @@ extension MapViewController: MKMapViewDelegate{
         mapView.addAnnotation(destinationPin)
         let viewRegion = MKCoordinateRegion(center: destinationLocation, latitudinalMeters: routeVisibilityArea, longitudinalMeters: routeVisibilityArea)
         mapView.setRegion(viewRegion, animated: true)
-
+        
     }
-
-
+    
+    
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let polineLineRenderer = MKPolylineRenderer(overlay: overlay)
         polineLineRenderer.strokeColor = .red
@@ -75,5 +75,5 @@ extension MapViewController: MKMapViewDelegate{
         }
         return view
     }
-
+    
 }

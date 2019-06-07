@@ -78,14 +78,14 @@ class MapViewController: UIViewController {
             metrics: nil,
             views: views)
         allConstraints += imageVerticalConstraint
-
+        
         let labelVerticalConstraint = NSLayoutConstraint.constraints(
             withVisualFormat: "V:|[mapView]-10-[destinationLabel]-50-|",
             metrics: nil,
             views: views)
         allConstraints += labelVerticalConstraint
-
+        
         view.addConstraints(allConstraints)
-
+        
     }
 }

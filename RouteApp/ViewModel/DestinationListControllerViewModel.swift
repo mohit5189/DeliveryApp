@@ -21,7 +21,7 @@ class DestinationListControllerViewModel: NSObject {
     var pullToRefreshCompletionHandler = {() -> () in}
     var loadMoreCompletionHandler = {() -> () in}
     var reachabilityManager: ReachabilityAdapter = ReachabilityManager.sharedInstance
-
+    
     var isNextPageAvailable = true
     var isPerformingPullToRefresh = false {
         didSet {
@@ -36,11 +36,11 @@ class DestinationListControllerViewModel: NSObject {
             refreshData()
         }
     }
-
+    
     func refreshData() {
         completionHandler();
     }
-
+    
     func updatePullToRefreshFlag() {
         if isPerformingPullToRefresh { // check to avoid unrequired processing to hide refresh control
             isPerformingPullToRefresh = false
@@ -54,7 +54,7 @@ class DestinationListControllerViewModel: NSObject {
         }
         loaderHandler(showLoader)
     }
-
+    
     // MARK: TableView methods
     func numberOfRows() -> Int {
         if isNextPageAvailable, destinationList.count > 0 {
@@ -62,7 +62,7 @@ class DestinationListControllerViewModel: NSObject {
         }
         return destinationList.count
     }
-
+    
     func getDestination(index:Int) -> DestinationModel {
         return destinationList[index]
     }
@@ -86,14 +86,14 @@ class DestinationListControllerViewModel: NSObject {
     }
     
     // MARK: API Handling
-
+    
     func getEndPoint() -> String {
         let url = URLBuilder(baseUrl: Constants.baseURL, endPoint: Constants.endPoint)
         url.addQueryParameter(paramKey: offsetJsonKey, value: "\(offset)")
         url.addQueryParameter(paramKey: limitJsonKey, value: "\(limit)")
         return url.getFinalUrl()
     }
-
+    
     func getDestinationList() {
         guard reachabilityManager.isReachableToInternet() || DBManager.sharedInstance.cacheAvailable() else {
             loadMoreCompletionHandler()
@@ -154,7 +154,7 @@ class DestinationListControllerViewModel: NSObject {
                         weakSelf.errorHandler(serverError!)
                     }
                 }
-
+                
                 weakSelf.updatePullToRefreshFlag()
             }
         }

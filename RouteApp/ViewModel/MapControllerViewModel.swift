@@ -13,13 +13,13 @@ class MapControllerViewModel: NSObject {
     var selectedLocation: DestinationModel?
     let locationHelper = LocationHelper.sharedInstance
     var  currentLocationCompletionHandler = {() -> () in }
- 
+    
     var currentLocation: CLLocation? {
         didSet {
             currentLocationCompletionHandler()
         }
     }
-
+    
     func getCurrentLocation() {
         locationHelper.initializeLocationManager()
         locationHelper.delegate = self

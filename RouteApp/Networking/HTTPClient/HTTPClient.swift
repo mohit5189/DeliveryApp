@@ -15,17 +15,16 @@ enum ApiType:String{
 class HTTPClient: NetworkClientAdapter {
     var url: String
     var requestJson: [String:String]?
-
+    
     init(url: String, requestJson: [String:String] = [:]) {
         self.url = url
         self.requestJson = requestJson
     }
     
     func sendRequest(completionHandler: @escaping CompletionBlock) {
-        
         let request:NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string: url)! as URL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: Constants.networkTimeoutInterval)
         request.httpMethod = ApiType.GET.rawValue
-
+        
         let session = URLSession.shared
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in

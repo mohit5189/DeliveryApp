@@ -2,17 +2,17 @@ import UIKit
 import CoreData
 
 class DBManager: NSObject {
-
+    
     static var sharedInstance = DBManager()
     
     var managedObjectContext:NSManagedObjectContext?
     
     typealias ResponseBlock = (_ response: [DestinationModel]?, _ error: Error?) -> Void
-
+    
     override fileprivate init() {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-         managedObjectContext = appDelegate.persistentContainer.viewContext
+        managedObjectContext = appDelegate.persistentContainer.viewContext
     }
     
     
@@ -20,7 +20,7 @@ class DBManager: NSObject {
         
         let destinationEntity = NSEntityDescription.entity(forEntityName: "Destination", in: managedObjectContext!)!
         let addressEntity = NSEntityDescription.entity(forEntityName: "Address", in: managedObjectContext!)!
-
+        
         for destination in destinations {
             var cacheDestinationModel: Destination? = getDestinationFromCache(destinationID: destination.id)
             if cacheDestinationModel == nil {
@@ -93,7 +93,7 @@ class DBManager: NSObject {
             onSuccess(nil, NSError(domain: "Invalid Query", code: 0, userInfo: nil))
         }
     }
-        
+    
     func cleanCache() {
         do {
             let records = try managedObjectContext!.fetch(Destination.fetchRequest()) as! [NSManagedObject]

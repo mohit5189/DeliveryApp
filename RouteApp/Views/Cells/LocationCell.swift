@@ -22,7 +22,7 @@ class LocationCell: UITableViewCell {
         destinationImageView = UIImageView(frame: .zero)
         destinationImageView.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(destinationImageView)
-
+        
         destinationLabel = UILabel(frame: .zero)
         destinationLabel.numberOfLines = 0
         selectionStyle = .none
@@ -39,7 +39,7 @@ class LocationCell: UITableViewCell {
             "superview": contentView]
         
         var allConstraints: [NSLayoutConstraint] = []
-       
+        
         let horizontalConstraint = NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[destinationImageView(80)]-10-[destinationLabel]-10-|",
             metrics: nil,
@@ -51,15 +51,15 @@ class LocationCell: UITableViewCell {
             metrics: nil,
             views: views)
         allConstraints += imageVerticalConstraint
-
+        
         let labelVerticalConstraint = NSLayoutConstraint.constraints(
             withVisualFormat: "V:|-10-[destinationLabel]-10-|",
             metrics: nil,
             views: views)
         allConstraints += labelVerticalConstraint
-
+        
         destinationImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-
+        
         contentView.addConstraints(allConstraints)
     }
     

@@ -22,7 +22,7 @@ class DestinationListViewControllerTests: QuickSpec {
                 beforeEach {
                     self.destinationListVC = DestinationListViewController.stub()
                 }
-                                
+                
                 context("and when setupUI is called") {
                     beforeEach {
                         self.destinationListVC.setupUI()
@@ -32,7 +32,7 @@ class DestinationListViewControllerTests: QuickSpec {
                         expect(self.destinationListVC.tableView).notTo(beNil())
                     }
                 }
-
+                
                 context("and when making api call for destination list and server gives error and no cache found") {
                     beforeEach {
                         DBManager.sharedInstance.cleanCache()
@@ -70,7 +70,7 @@ class DestinationListViewControllerTests: QuickSpec {
                     
                     context("and when stopSpinner method is called for loader cell") {
                         beforeEach {
-                            self.loaderCell = self.destinationListVC.tableView(self.destinationListVC.tableView, cellForRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0)) as! LoaderCell
+                            self.loaderCell = (self.destinationListVC.tableView(self.destinationListVC.tableView, cellForRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0)) as! LoaderCell)
                             self.loaderCell.stopSpinner()
                         }
                         
@@ -84,7 +84,7 @@ class DestinationListViewControllerTests: QuickSpec {
                                 self.loaderCell = (self.destinationListVC.tableView(self.destinationListVC.tableView, cellForRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0)) as! LoaderCell)
                                 self.loaderCell.setNeedsLayout()
                                 self.loaderCell.layoutIfNeeded()
-
+                                
                             }
                             
                             it("should display animated loader") {
@@ -122,7 +122,7 @@ class DestinationListViewControllerTests: QuickSpec {
                         it("should update offset value for next page api call") {
                             expect(self.destinationListVC.destinationListViewModel.offset == self.destinationListVC.destinationListViewModel.destinationList.count).to(beTrue())
                         }
-                                                
+                        
                         context("and when next page api call return success") {
                             beforeEach {
                                 let networkClient = HTTPClientMock()
@@ -136,7 +136,7 @@ class DestinationListViewControllerTests: QuickSpec {
                             }
                         }
                     }
-
+                    
                     context("and when tapped on any address") {
                         beforeEach {
                             self.destinationListVC.tableView!.delegate?.tableView!(self.destinationListVC.tableView, didSelectRowAt: IndexPath (row: 1, section: 0))
