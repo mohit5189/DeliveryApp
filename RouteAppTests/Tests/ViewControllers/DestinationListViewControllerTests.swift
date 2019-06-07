@@ -14,6 +14,7 @@ import Quick
 
 class DestinationListViewControllerTests: QuickSpec {
     var destinationListVC: DestinationListViewController!
+    var loaderCell: LoaderCell!
     
     override func spec() {
         describe("DestinationListViewController") {
@@ -66,6 +67,33 @@ class DestinationListViewControllerTests: QuickSpec {
                     it("should display loader at bottom") {
                         expect(self.destinationListVC.tableView(self.destinationListVC.tableView, cellForRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0)).isKind(of: LoaderCell.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                     }
+                    
+                    context("and when stopSpinner method is called for loader cell") {
+                        beforeEach {
+                            self.loaderCell = self.destinationListVC.tableView(self.destinationListVC.tableView, cellForRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0)) as! LoaderCell
+                            self.loaderCell.stopSpinner()
+                        }
+                        
+                        it("should stop and hide spinner") {
+                            expect(self.loaderCell.spinner.isAnimating).to(beFalse())
+                            expect(self.loaderCell.spinner.isHidden).to(beTrue())
+                        }
+                        
+                        context("and when cell layoutSubviews is called") {
+                            beforeEach {
+                                self.loaderCell = (self.destinationListVC.tableView(self.destinationListVC.tableView, cellForRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0)) as! LoaderCell)
+                                self.loaderCell.setNeedsLayout()
+                                self.loaderCell.layoutIfNeeded()
+
+                            }
+                            
+                            it("should display animated loader") {
+                                expect(self.loaderCell.spinner.isAnimating).to(beTrue())
+                                expect(self.loaderCell.spinner.isHidden).to(beFalse())
+                            }
+                        }
+                    }
+                    
                     
                     context("and when network not available") {
                         beforeEach {
