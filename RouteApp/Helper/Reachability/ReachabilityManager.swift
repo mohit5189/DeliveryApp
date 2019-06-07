@@ -12,7 +12,7 @@ class ReachabilityManager: ReachabilityAdapter {
     var reachabilityManager: Reachability!
 
     static var sharedInstance = ReachabilityManager()
-    init() {
+    fileprivate init() {
         reachabilityManager = Reachability(hostname: Constants.baseURL)
     }
 

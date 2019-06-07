@@ -41,11 +41,11 @@ class DestinationListViewControllerTests: QuickSpec {
                     }
                     
                     it("should render data in tableview") {
-                        expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == self.destinationListVC.destinationListViewModel.numberOfRows()).toEventually(beTrue(), timeout: 10)
+                        expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == self.destinationListVC.destinationListViewModel.numberOfRows()).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                     }
                     
                     it("should display loader at bottom") {
-                        expect(self.destinationListVC.tableView(self.destinationListVC.tableView, cellForRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0)).isKind(of: LoaderCell.self)).toEventually(beTrue(), timeout: 10)
+                        expect(self.destinationListVC.tableView(self.destinationListVC.tableView, cellForRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0)).isKind(of: LoaderCell.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                     }
                     context("and when network not available") {
                         beforeEach {
@@ -61,17 +61,17 @@ class DestinationListViewControllerTests: QuickSpec {
                         }
                         
                         it("should load data from cache") {
-                            expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == self.destinationListVC.destinationListViewModel.numberOfRows()).toEventually(beTrue(), timeout: 10)
+                            expect(self.destinationListVC.tableView.numberOfRows(inSection: 0) == self.destinationListVC.destinationListViewModel.numberOfRows()).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                         }
                     }
                     
-                    context("and when table scroll to bottom and will displaycell method called") {
+                    context("and when table scroll to bottom and will displaycell method called for next page") {
                         beforeEach {
                             self.destinationListVC.destinationListViewModel.offset = 0
                             self.destinationListVC.tableView.delegate!.tableView!(self.destinationListVC.tableView, willDisplay: LocationCell(), forRowAt: IndexPath(row: self.destinationListVC.destinationListViewModel.numberOfRows() - 1, section: 0))
                         }
                         
-                        it("should update offset value") {
+                        it("should update offset value for next page api call") {
                             expect(self.destinationListVC.destinationListViewModel.offset == self.destinationListVC.destinationListViewModel.destinationList.count).to(beTrue())
                         }
                     }
@@ -82,7 +82,7 @@ class DestinationListViewControllerTests: QuickSpec {
                         }
                         
                         it("should open map screen with selected location parameter") {
-                            expect(self.destinationListVC.navigationController?.topViewController!.isKind(of: MapViewController.self)).toEventually(beTrue(), timeout: 10)
+                            expect(self.destinationListVC.navigationController?.topViewController!.isKind(of: MapViewController.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                             
                             expect((self.destinationListVC.navigationController!.topViewController! as! MapViewController).viewModel.selectedLocation!.description == self.destinationListVC.destinationListViewModel.getDestination(index: 1).description).to(beTrue())
                         }
@@ -99,7 +99,11 @@ class DestinationListViewControllerTests: QuickSpec {
                     }
                     
                     it("should display error alert") {
-                        expect(self.destinationListVC.presentedViewController?.isKind(of: UIAlertController.self)).toEventually(beTrue(), timeout: 10)
+                        expect(self.destinationListVC.presentedViewController?.isKind(of: UIAlertController.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
+                    }
+                    
+                    it("should not reset next page boolean variable") {
+                        expect(self.destinationListVC.destinationListViewModel.isNextPageAvailable).to(beTrue())
                     }
                 }
             }

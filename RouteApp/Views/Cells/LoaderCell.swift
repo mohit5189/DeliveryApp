@@ -20,7 +20,6 @@ class LoaderCell: UITableViewCell {
         
         spinner = UIActivityIndicatorView(style: .gray)
         spinner.hidesWhenStopped = true
-        spinner.translatesAutoresizingMaskIntoConstraints = false
         contentView.addSubview(spinner)
         selectionStyle = .none
     }
@@ -29,5 +28,9 @@ class LoaderCell: UITableViewCell {
         super.layoutSubviews()
         spinner.center = contentView.center
         spinner.startAnimating()
+    }
+    
+    func stopSpinner() {
+        spinner.stopAnimating()
     }
 }

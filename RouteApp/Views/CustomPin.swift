@@ -12,9 +12,8 @@ import MapKit
 class CustomPin: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
-    static let currentLocationPinTitle = NSLocalizedString("currentLocationTitle", comment: "")
     
-    init(title:String = currentLocationPinTitle, location:CLLocationCoordinate2D) {
+    init(title:String = LocalizeStrings.currentLocationTitle, location:CLLocationCoordinate2D) {
         self.title = title
         self.coordinate = location
     }

@@ -14,11 +14,14 @@ class MapViewController: UIViewController {
     var destinationImageView: UIImageView!
     var destinationLabel: UILabel!
     var viewModel: MapControllerViewModel!
+    let markerIdentifier = "marker"
+    let routeVisibilityArea: Double = 500
+    let routeLineWidth: CGFloat = 5.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        title = StringConstants.mapScreenTitle
+        title = LocalizeStrings.mapScreenTitle
         viewModel.getCurrentLocation()
         viewModel.currentLocationCompletionHandler = { [weak self] in
             self?.drawRoute()

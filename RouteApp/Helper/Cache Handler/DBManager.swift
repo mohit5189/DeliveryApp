@@ -9,7 +9,7 @@ class DBManager: NSObject {
     
     typealias ResponseBlock = (_ response: [DestinationModel]?, _ error: Error?) -> Void
 
-    override init() {
+    override fileprivate init() {
         
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
          managedObjectContext = appDelegate.persistentContainer.viewContext
@@ -22,13 +22,15 @@ class DBManager: NSObject {
         let addressEntity = NSEntityDescription.entity(forEntityName: "Address", in: managedObjectContext!)!
 
         for destination in destinations {
-            if !isDestinationExist(destinationID: destination.id) {
-                let destinationModel:Destination = NSManagedObject(entity: destinationEntity, insertInto: managedObjectContext!) as! Destination
-                
+            var cacheDestinationModel: Destination? = getDestinationFromCache(destinationID: destination.id)
+            if cacheDestinationModel == nil {
+                cacheDestinationModel = NSManagedObject(entity: destinationEntity, insertInto: managedObjectContext!) as? Destination
+            }
+            if let destinationModel = cacheDestinationModel {
                 destinationModel.id = Int32(destination.id)
                 destinationModel.desc = destination.description
                 destinationModel.imageUrl = destination.imageUrl
-             
+                
                 let location:Address = NSManagedObject(entity: addressEntity, insertInto: managedObjectContext!) as! Address
                 location.lat = destination.location.lat
                 location.long = destination.location.lng
@@ -45,19 +47,19 @@ class DBManager: NSObject {
         }
     }
     
-    func isDestinationExist(destinationID: Int) -> Bool {
+    func getDestinationFromCache(destinationID: Int) -> Destination? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Destination")
         let predicate = NSPredicate(format: "id = %d", destinationID)
         fetchRequest.predicate = predicate
         
         do {
-            let records = try managedObjectContext!.fetch(fetchRequest) as! [NSManagedObject]
+            let records = try managedObjectContext!.fetch(fetchRequest) as! [Destination]
             if records.count > 0 {
-                return true
+                return records[0]
             }
         } catch {
         }
-        return false
+        return nil
     }
     
     func getDestinations(offset: Int, limit: Int, onSuccess: @escaping ResponseBlock) {

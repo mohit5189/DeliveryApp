@@ -25,10 +25,10 @@ class DestinationListAdapter: NSObject {
                     let locations = try decoder.decode([DestinationModel].self, from: data)
                     completion(locations, nil)
                 } catch {
-                    completion(nil, NSError(domain: "Server error", code: 100, userInfo: nil))
+                    completion(nil, NSError(domain: Constants.serverErrorDomain, code: Constants.serverErrorCode, userInfo: nil))
                 }
             } else {
-                completion(nil, NSError(domain: "Server error", code: 100, userInfo: nil))
+                completion(nil, NSError(domain: Constants.serverErrorDomain, code: Constants.serverErrorCode, userInfo: nil))
             }
         }
     }

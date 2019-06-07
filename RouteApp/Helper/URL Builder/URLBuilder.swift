@@ -12,15 +12,17 @@ class URLBuilder: NSObject {
     var baseUrl: String
     var endPoint: String
     var finalUrl: String
-    
+    let questionMark = "?"
+    let queryParamSeperater = "&"
+
     init(baseUrl: String, endPoint: String) {
         self.baseUrl = baseUrl
         self.endPoint = endPoint
-        self.finalUrl = baseUrl + endPoint + "?"
+        self.finalUrl = baseUrl + endPoint + questionMark
     }
     
     func addQueryParameter(paramKey: String, value: String) {
-        finalUrl += String(format: "%@=%@&", paramKey, value)
+        finalUrl += String(format: "%@=%@%@", paramKey, value, queryParamSeperater)
     }
     
     func getFinalUrl() -> String {

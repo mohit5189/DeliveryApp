@@ -10,15 +10,26 @@ import UIKit
 import MBProgressHUD
 
 class DestinationListControllerViewModel: NSObject {
-    var completionHandler = {() -> () in }
-    var errorHandler = {(error:Error) -> () in }
-    var containsMoreRecords = true
-    var reachabilityManager: ReachabilityAdapter = ReachabilityManager.sharedInstance
+    var offset  = 0
+    let limit   = 20
+    let offsetJsonKey   = "offset"
+    let limitJsonKey    = "limit"
     
-    var offset = 0
-    var limit = 20
+    var completionHandler = {() -> () in }
+    var errorHandler = {(error: Error) -> () in }
+    var loaderHandler = {(showLoader: Bool) -> () in }
+    var pullToRefreshCompletionHandler = {() -> () in}
+    var loadMoreCompletionHandler = {() -> () in}
+    var reachabilityManager: ReachabilityAdapter = ReachabilityManager.sharedInstance
 
-    var performingPullToRefresh = false
+    var isNextPageAvailable = true
+    var isPerformingPullToRefresh = false {
+        didSet {
+            if !isPerformingPullToRefresh {
+                pullToRefreshCompletionHandler()
+            }
+        }
+    }
     
     var destinationList: [DestinationModel] = [] {
         didSet {
@@ -30,25 +41,23 @@ class DestinationListControllerViewModel: NSObject {
         completionHandler();
     }
 
+    func updatePullToRefreshFlag() {
+        if isPerformingPullToRefresh { // check to avoind unrequired processing to hide refresh control
+            isPerformingPullToRefresh = false
+        }
+    }
+    
     // MARK: Handle loader
     private func handleProgressLoader(showLoader: Bool) {
-        DispatchQueue.main.async { [weak self] in
-            guard let weakSelf = self, let view = UIApplication.shared.keyWindow?.rootViewController?.view, weakSelf.offset == 0, !weakSelf.performingPullToRefresh else {
-                return
-            }
-            
-            if showLoader {
-                MBProgressHUD.showAdded(to: view, animated: true)
-            } else {
-                MBProgressHUD.hide(for: view, animated: true)
-            }
+        guard offset == 0, !isPerformingPullToRefresh else {
+            return
         }
+        loaderHandler(showLoader)
     }
 
     // MARK: TableView methods
-    
     func numberOfRows() -> Int {
-        if containsMoreRecords, destinationList.count > 0 {
+        if isNextPageAvailable, destinationList.count > 0 {
             return destinationList.count + 1
         }
         return destinationList.count
@@ -61,84 +70,93 @@ class DestinationListControllerViewModel: NSObject {
     
     // MARk: pull to refresh actiom
     func handlePullToRefresh() {
-        performingPullToRefresh = true
+        isPerformingPullToRefresh = true
         offset = 0
-        containsMoreRecords = true
-        getDestinationList()
+        isNextPageAvailable = true
+        if reachabilityManager.isReachableToInternet() {
+            getDestinationList()
+        } else {
+            errorHandler(getInternetErrorObject())
+            updatePullToRefreshFlag()
+        }
+    }
+    
+    private func getInternetErrorObject() -> NSError {
+        return NSError(domain: Constants.serverErrorDomain, code: Constants.internetErrorCode, userInfo: nil)
     }
     
     // MARK: API Handling
 
     func getEndPoint() -> String {
         let url = URLBuilder(baseUrl: Constants.baseURL, endPoint: Constants.endPoint)
-        url.addQueryParameter(paramKey: "offset", value: "\(offset)")
-        url.addQueryParameter(paramKey: "limit", value: "\(limit)")
+        url.addQueryParameter(paramKey: offsetJsonKey, value: "\(offset)")
+        url.addQueryParameter(paramKey: limitJsonKey, value: "\(limit)")
         return url.getFinalUrl()
     }
 
     func getDestinationList() {
+        guard reachabilityManager.isReachableToInternet() || DBManager.sharedInstance.cacheAvailable() else {
+            loadMoreCompletionHandler()
+            errorHandler(getInternetErrorObject())
+            return
+        }
         fetchDestinations(networkClient: HTTPClient(url: getEndPoint()))
     }
     
     func makeNextPageCall() {
-        if containsMoreRecords {
-            offset = destinationList.count
-            getDestinationList()
+        guard isNextPageAvailable else {
+            loadMoreCompletionHandler()
+            return
         }
+        offset = destinationList.count
+        getDestinationList()
     }
     
     func fetchDestinations(networkClient: NetworkClientAdapter) {
-        if reachabilityManager.isReachableToInternet() {
-            handleProgressLoader(showLoader: true)
-            let destinationAdapter = DestinationListAdapter(networkClient: networkClient)
-            destinationAdapter.fetchDestinations { [weak self] response, error in
-                guard let weakSelf = self else {
-                    return
-                }
-                weakSelf.handleProgressLoader(showLoader: false)
-                if error == nil, let locations = response as? [DestinationModel] {
-                    weakSelf.containsMoreRecords = locations.count > 0 // set pagination true if got records
-
-                    if weakSelf.performingPullToRefresh {
-                        weakSelf.performingPullToRefresh = false
-                        weakSelf.destinationList = locations
-                    } else {
-                        weakSelf.destinationList += locations
-                    }
-                    
-                    DispatchQueue.main.async {
-                        DBManager.sharedInstance.saveDestinations(destinations: locations) // save locations in DB
-                    }
-                } else {
-                    weakSelf.handleListFromCache(error: error)
-                }
-            }
-        } else {
+        guard reachabilityManager.isReachableToInternet() else {
             handleListFromCache()
+            return
+        }
+        
+        handleProgressLoader(showLoader: true)
+        let destinationAdapter = DestinationListAdapter(networkClient: networkClient)
+        destinationAdapter.fetchDestinations { [weak self] response, error in
+            guard let weakSelf = self else {
+                return
+            }
+            weakSelf.handleProgressLoader(showLoader: false)
+            if error == nil, let locations = response as? [DestinationModel] {
+                weakSelf.isNextPageAvailable = locations.count > 0 // set pagination true if got records
+                
+                weakSelf.destinationList = weakSelf.isPerformingPullToRefresh ? locations : (weakSelf.destinationList + locations)
+                
+                DispatchQueue.main.async {
+                    DBManager.sharedInstance.saveDestinations(destinations: locations) // save locations in DB
+                }
+                
+                weakSelf.updatePullToRefreshFlag()
+            } else {
+                weakSelf.handleListFromCache(error: error)
+            }
         }
     }
     
     // MARK: Cache handling
-    
     func handleListFromCache(error: Error? = nil) {
-        DBManager.sharedInstance.getDestinations(offset: offset, limit: limit) { [weak self] destinations, dbError in
-            guard let weakSelf = self else {
-                return
-            }
-            
-            if dbError == nil, let destinationList = destinations, destinationList.count > 0 {
-                if weakSelf.performingPullToRefresh {
-                    weakSelf.performingPullToRefresh = false
-                    weakSelf.destinationList = destinationList
+        DispatchQueue.main.async { [weak self] in
+            guard let weakSelf = self else { return }
+            DBManager.sharedInstance.getDestinations(offset: weakSelf.offset, limit: weakSelf.limit) { [weak self] destinations, dbError in
+                guard let weakSelf = self else { return }
+                if dbError == nil, let destinationList = destinations, destinationList.count > 0 {
+                    weakSelf.destinationList = weakSelf.isPerformingPullToRefresh ? destinationList : (weakSelf.destinationList + destinationList)
                 } else {
-                    weakSelf.destinationList += destinationList
+                    weakSelf.loadMoreCompletionHandler()
+                    if error != nil {
+                        weakSelf.errorHandler(error!)
+                    }
                 }
-            } else {
-                weakSelf.refreshData()
-                weakSelf.containsMoreRecords = false // set to false once received error from server
-                if error != nil {
-                    weakSelf.errorHandler(error!)
-                }
+
+                weakSelf.updatePullToRefreshFlag()
             }
         }
     }

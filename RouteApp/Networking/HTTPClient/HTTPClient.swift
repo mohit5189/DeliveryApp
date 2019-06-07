@@ -10,13 +10,12 @@ import UIKit
 
 enum ApiType:String{
     case GET = "GET"
-    case POST = "POST"
 }
 
 class HTTPClient: NetworkClientAdapter {
     var url: String
     var requestJson: [String:String]?
-    
+
     init(url: String, requestJson: [String:String] = [:]) {
         self.url = url
         self.requestJson = requestJson
@@ -24,8 +23,8 @@ class HTTPClient: NetworkClientAdapter {
     
     func sendRequest(completionHandler: @escaping CompletionBlock) {
         
-        let request:NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string: url)! as URL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: 10)
-        request.httpMethod = "GET"
+        let request:NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string: url)! as URL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: Constants.networkTimeoutInterval)
+        request.httpMethod = ApiType.GET.rawValue
 
         let session = URLSession.shared
         

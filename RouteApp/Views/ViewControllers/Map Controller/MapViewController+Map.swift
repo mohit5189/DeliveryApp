@@ -46,7 +46,7 @@ extension MapViewController: MKMapViewDelegate{
         let destinationLocation = CLLocationCoordinate2D(latitude:destinationLatitude , longitude: destinationLongitude)
         let destinationPin = CustomPin(title: viewModel.selectedLocation?.location.address ?? "", location: destinationLocation)
         mapView.addAnnotation(destinationPin)
-        let viewRegion = MKCoordinateRegion(center: destinationLocation, latitudinalMeters: 500, longitudinalMeters: 500)
+        let viewRegion = MKCoordinateRegion(center: destinationLocation, latitudinalMeters: routeVisibilityArea, longitudinalMeters: routeVisibilityArea)
         mapView.setRegion(viewRegion, animated: true)
 
     }
@@ -54,23 +54,22 @@ extension MapViewController: MKMapViewDelegate{
 
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let polineLineRenderer = MKPolylineRenderer(overlay: overlay)
-        polineLineRenderer.strokeColor = UIColor.red
-        polineLineRenderer.lineWidth = 5.0
+        polineLineRenderer.strokeColor = .red
+        polineLineRenderer.lineWidth = routeLineWidth
         return polineLineRenderer
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? CustomPin else { return nil }
-        let identifier = "marker"
         var view: MKMarkerAnnotationView
         // 4
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier)
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: markerIdentifier)
             as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
             // 5
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: markerIdentifier)
             view.canShowCallout = true
             view.detailCalloutAccessoryView = UIView()
         }

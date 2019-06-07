@@ -54,7 +54,6 @@ class LocationHelper: NSObject {
 
 //MARK: - CLLocation Manager delegate methods
 extension LocationHelper: CLLocationManagerDelegate {
-    //Updates locations when locations are received from hardware.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {
             return
