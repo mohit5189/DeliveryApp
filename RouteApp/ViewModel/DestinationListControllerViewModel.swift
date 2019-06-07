@@ -42,7 +42,7 @@ class DestinationListControllerViewModel: NSObject {
     }
 
     func updatePullToRefreshFlag() {
-        if isPerformingPullToRefresh { // check to avoind unrequired processing to hide refresh control
+        if isPerformingPullToRefresh { // check to avoid unrequired processing to hide refresh control
             isPerformingPullToRefresh = false
         }
     }
@@ -105,7 +105,6 @@ class DestinationListControllerViewModel: NSObject {
     
     func makeNextPageCall() {
         guard isNextPageAvailable else {
-            loadMoreCompletionHandler()
             return
         }
         offset = destinationList.count

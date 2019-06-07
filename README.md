@@ -32,18 +32,20 @@ This app perform network api call for destinations listing, if network call is s
 
 1. App make network call
 2. if network call succeed then app display data and cache the JSON in DB
-3. if network call failes, app try to fetch data from local DB and if found then display in list.
+3. if network call failes, app try to fetch data from local DB and if found then display in list else it show error to user.
 
 ![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/flow.png)
 
 
 # Displaying map
 
-Once user select any addess, app shows point to selected address and in backgroung start fetching current location of user. In case if current location found and their is a route between current location and selected address, App display that route to the user.
+1. Once user select any addess, app shows point to selected address and in backgroung start fetching current location of user. 
+
+2. In case if current location found and their is a route between current location and selected address, App display that route to the user.
 
 # Assumption
 
-For pagination logic, App will assume more pages till the time it either don't get any server error OR don't get any empty response for particular page.
+For pagination logic, App will assume more pages till the time it don't get empty list of response from server. In case of offline mode, it will always try for next page ( this is to make sure that if app comes online then it should return response).
 
 # ScreenShots
 
