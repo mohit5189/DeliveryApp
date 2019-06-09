@@ -27,13 +27,13 @@ class MapViewControllerTests: QuickSpec {
                 }
                 
                 it("should display address at bottom") {
-                    expect(self.mapVC.destinationLabel.text == String(format: "%@ at %@", self.mapVC.viewModel.selectedLocation!.description, self.mapVC.viewModel.selectedLocation!.location.address)).to(beTrue())
+                    expect(self.mapVC.destinationLabel.text == String(format: "%@ at %@", self.mapVC.viewModel.selectedDelivery.description, self.mapVC.viewModel.selectedDelivery.location.address)).to(beTrue())
                 }
                 
                 it("should add marker at destination address") {
                     waitUntil(action: { done in
                         for annotation in self.mapVC.mapView.annotations {
-                            if annotation.title == self.mapVC.viewModel.selectedLocation!.location.address {
+                            if annotation.title == self.mapVC.viewModel.selectedDelivery.location.address {
                                 done()
                             }
                         }

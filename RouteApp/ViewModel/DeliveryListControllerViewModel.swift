@@ -1,5 +1,5 @@
 //
-//  DestinationListControllerViewModel.swift
+//  DeliveryListControllerViewModel.swift
 //  RouteApp
 //
 //  Created by Mohit Kumar on 5/28/19.
@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class DestinationListControllerViewModel: NSObject {
+class DeliveryListControllerViewModel: NSObject {
     var offset  = 0
     let limit   = 20
     let offsetJsonKey   = "offset"
@@ -21,6 +21,7 @@ class DestinationListControllerViewModel: NSObject {
     var pullToRefreshCompletionHandler = {() -> () in}
     var loadMoreCompletionHandler = {() -> () in}
     var reachabilityManager: ReachabilityAdapter = ReachabilityManager.sharedInstance
+    var dbManager: DBManagerAdapter = DBManager.sharedInstance
     
     var isNextPageAvailable = true
     var isPerformingPullToRefresh = false {
@@ -31,7 +32,7 @@ class DestinationListControllerViewModel: NSObject {
         }
     }
     
-    var destinationList: [DestinationModel] = [] {
+    var deliveryList: [DeliveryModel] = [] {
         didSet {
             refreshData()
         }
@@ -47,6 +48,19 @@ class DestinationListControllerViewModel: NSObject {
         }
     }
     
+    func getDeliveriesCount() -> Int {
+        return deliveryList.count
+    }
+    
+    // Model properties
+    func getDeliveryText(index: Int) -> String {
+        return index < deliveryList.count ? String(format: "%@ at %@", deliveryList[index].description, deliveryList[index].location.address) : ""
+    }
+    
+    func getImageUrl(index: Int) -> URL? {
+        return index < deliveryList.count ? URL(string: deliveryList[index].imageUrl) : nil
+    }
+    
     // MARK: Handle loader
     private func handleProgressLoader(showLoader: Bool) {
         guard offset == 0, !isPerformingPullToRefresh else {
@@ -57,14 +71,14 @@ class DestinationListControllerViewModel: NSObject {
     
     // MARK: TableView methods
     func numberOfRows() -> Int {
-        if isNextPageAvailable, destinationList.count > 0 {
-            return destinationList.count + 1
+        if isNextPageAvailable, deliveryList.count > 0 {
+            return deliveryList.count + 1
         }
-        return destinationList.count
+        return deliveryList.count
     }
     
-    func getDestination(index:Int) -> DestinationModel {
-        return destinationList[index]
+    func getDelivery(index:Int) -> DeliveryModel {
+        return deliveryList[index]
     }
     
     
@@ -74,7 +88,7 @@ class DestinationListControllerViewModel: NSObject {
         offset = 0
         isNextPageAvailable = true
         if reachabilityManager.isReachableToInternet() {
-            getDestinationList()
+            getDeliveryList()
         } else {
             errorHandler(getInternetErrorObject())
             updatePullToRefreshFlag()
@@ -94,43 +108,43 @@ class DestinationListControllerViewModel: NSObject {
         return url.getFinalUrl()
     }
     
-    func getDestinationList() {
-        guard reachabilityManager.isReachableToInternet() || DBManager.sharedInstance.cacheAvailable() else {
+    func getDeliveryList() {
+        guard reachabilityManager.isReachableToInternet() || dbManager.isCacheAvailable() else {
             loadMoreCompletionHandler()
             errorHandler(getInternetErrorObject())
             return
         }
-        fetchDestinations(networkClient: HTTPClient(url: getEndPoint()))
+        fetchDeliveries(networkClient: HTTPClient(url: getEndPoint()))
     }
     
     func makeNextPageCall() {
         guard isNextPageAvailable else {
             return
         }
-        offset = destinationList.count
-        getDestinationList()
+        offset = deliveryList.count
+        getDeliveryList()
     }
     
-    func fetchDestinations(networkClient: NetworkClientAdapter) {
+    func fetchDeliveries(networkClient: NetworkClientAdapter) {
         guard reachabilityManager.isReachableToInternet() else {
             handleListFromCache()
             return
         }
         
         handleProgressLoader(showLoader: true)
-        let destinationAdapter = DestinationListAdapter(networkClient: networkClient)
-        destinationAdapter.fetchDestinations { [weak self] response, error in
+        let deliveryAdapter = DeliveryListAdapter(networkClient: networkClient)
+        deliveryAdapter.fetchDeliveries { [weak self] response, error in
             guard let weakSelf = self else {
                 return
             }
             weakSelf.handleProgressLoader(showLoader: false)
-            if error == nil, let locations = response as? [DestinationModel] {
-                weakSelf.isNextPageAvailable = locations.count > 0 // set pagination true if got records
+            if error == nil, let deliveries = response as? [DeliveryModel] {
+                weakSelf.isNextPageAvailable = deliveries.count > 0 // set pagination true if got records
                 
-                weakSelf.destinationList = weakSelf.isPerformingPullToRefresh ? locations : (weakSelf.destinationList + locations)
+                weakSelf.deliveryList = weakSelf.isPerformingPullToRefresh ? deliveries : (weakSelf.deliveryList + deliveries)
                 
                 DispatchQueue.main.async {
-                    DBManager.sharedInstance.saveDestinations(destinations: locations) // save locations in DB
+                    weakSelf.dbManager.saveDeliveries(deliveries: deliveries) // save deliveries in DB
                 }
                 
                 weakSelf.updatePullToRefreshFlag()
@@ -144,10 +158,10 @@ class DestinationListControllerViewModel: NSObject {
     func handleListFromCache(serverError: Error? = nil) {
         DispatchQueue.main.async { [weak self] in
             guard let weakSelf = self else { return }
-            DBManager.sharedInstance.getDestinations(offset: weakSelf.offset, limit: weakSelf.limit) { [weak self] destinations, dbError in
+            weakSelf.dbManager.getDeliveries(offset: weakSelf.offset, limit: weakSelf.limit) { [weak self] deliveries, dbError in
                 guard let weakSelf = self else { return }
-                if dbError == nil, let destinationList = destinations, destinationList.count > 0 {
-                    weakSelf.destinationList = weakSelf.isPerformingPullToRefresh ? destinationList : (weakSelf.destinationList + destinationList)
+                if dbError == nil, let deliveries = deliveries, deliveries.count > 0 {
+                    weakSelf.deliveryList = weakSelf.isPerformingPullToRefresh ? deliveries : (weakSelf.deliveryList + deliveries)
                 } else {
                     weakSelf.loadMoreCompletionHandler()
                     if serverError != nil {

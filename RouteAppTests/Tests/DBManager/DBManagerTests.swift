@@ -13,7 +13,7 @@ import Quick
 @testable import RouteApp
 
 class DBManagerTests: QuickSpec {
-    var dbManager: DBManager!
+    var dbManager: DBManagerAdapter!
     
     override func spec() {
         describe("DBManager") {
@@ -26,8 +26,8 @@ class DBManagerTests: QuickSpec {
                     self.dbManager.cleanCache()
                     do {
                         let decoder = JSONDecoder()
-                        let locations = try decoder.decode([DestinationModel].self, from: JSONHelper.jsonFileToData(jsonName: "destination")!)
-                        self.dbManager.saveDestinations(destinations: locations)
+                        let deliveries = try decoder.decode([DeliveryModel].self, from: JSONHelper.jsonFileToData(jsonName: "deliveryList")!)
+                        self.dbManager.saveDeliveries(deliveries: deliveries)
                     } catch {
                         fail()
                     }
@@ -41,8 +41,8 @@ class DBManagerTests: QuickSpec {
                     beforeEach {
                         do {
                             let decoder = JSONDecoder()
-                            let locations = try decoder.decode([DestinationModel].self, from: JSONHelper.jsonFileToData(jsonName: "destination")!)
-                            self.dbManager.saveDestinations(destinations: locations)
+                            let deliveries = try decoder.decode([DeliveryModel].self, from: JSONHelper.jsonFileToData(jsonName: "deliveryList")!)
+                            self.dbManager.saveDeliveries(deliveries: deliveries)
                         } catch {
                             fail()
                         }
@@ -57,7 +57,7 @@ class DBManagerTests: QuickSpec {
             context("when fetching item with offset and limit") {
                 it("should return proper list as required") {
                     waitUntil(action: { done in
-                        self.dbManager.getDestinations(offset: 0, limit: 5, onSuccess: { destinations, error in
+                        self.dbManager.getDeliveries(offset: 0, limit: 5, onSuccess: { destinations, error in
                             expect(destinations?.count == 5).to(beTrue())
                         })
                         

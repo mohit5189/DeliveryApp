@@ -1,5 +1,5 @@
 //
-//  DestinationModel.swift
+//  DeliveryModel.swift
 //  RouteApp
 //
 //  Created by Mohit Kumar on 5/26/19.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct DestinationModel: Codable {
+struct DeliveryModel: Codable {
     let id: Int
     let description: String
     let imageUrl: String
-    let location: AddressModel
+    let location: LocationModel
 }
 
-struct AddressModel: Codable {
+struct LocationModel: Codable {
     let lat: Double
     let lng: Double
     let address: String

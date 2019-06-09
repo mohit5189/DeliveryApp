@@ -15,8 +15,17 @@ class MapViewController: UIViewController {
     var destinationLabel: UILabel!
     var viewModel: MapControllerViewModel!
     let markerIdentifier = "marker"
-    let routeVisibilityArea: Double = 500
+    let routeVisibilityArea: Double = 1000
     let routeLineWidth: CGFloat = 5.0
+    
+    init(viewModel: MapControllerViewModel) {
+        super.init(nibName: nil, bundle: nil)
+        self.viewModel = viewModel
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,15 +48,13 @@ class MapViewController: UIViewController {
         
         destinationImageView = UIImageView(frame: .zero)
         destinationImageView.translatesAutoresizingMaskIntoConstraints = false
-        destinationImageView.sd_setImage(with: URL(string: viewModel.selectedLocation?.imageUrl ?? ""), placeholderImage: nil)
+        destinationImageView.sd_setImage(with: viewModel.getImageUrl(), placeholderImage: nil)
         view.addSubview(destinationImageView)
         
         destinationLabel = UILabel(frame: .zero)
         destinationLabel.numberOfLines = 0
         destinationLabel.translatesAutoresizingMaskIntoConstraints = false
-        if let selectedLocation = viewModel.selectedLocation {
-            destinationLabel.text = String(format: "%@ at %@", selectedLocation.description, selectedLocation.location.address)
-        }
+        destinationLabel.text = viewModel.getDeliveryText()
         view.addSubview(destinationLabel)
         
         addCOnstraints()

@@ -21,7 +21,7 @@ struct LocalizeStrings {
     static let genericErrorMessage = NSLocalizedString("networkErrorMessage", comment: "")
     static let errorTitle = NSLocalizedString("networkErrorTitle", comment: "")
     static let okButtonTitle = NSLocalizedString("okButtonTitle", comment: "")
-    static let destinationListScreenTitle = NSLocalizedString("destinationListTitle", comment: "")
+    static let deliveryListScreenTitle = NSLocalizedString("deliveryListTitle", comment: "")
     static let mapScreenTitle = NSLocalizedString("mapScreenTitle", comment: "")
     static let internetErrorMessage = NSLocalizedString("internetErrorMessage", comment: "")
     static let currentLocationTitle = NSLocalizedString("currentLocationTitle", comment: "")

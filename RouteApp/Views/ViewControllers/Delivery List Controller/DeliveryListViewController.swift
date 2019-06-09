@@ -1,5 +1,5 @@
 //
-//  DestinationListViewController.swift
+//  DeliveryListViewController.swift
 //  RouteApp
 //
 //  Created by Mohit Kumar on 5/26/19.
@@ -9,9 +9,9 @@
 import UIKit
 import MBProgressHUD
 
-class DestinationListViewController: UIViewController {
+class DeliveryListViewController: UIViewController {
     var tableView: UITableView!
-    var destinationListViewModel:DestinationListControllerViewModel = DestinationListControllerViewModel()
+    var deliveryListViewModel:DeliveryListControllerViewModel = DeliveryListControllerViewModel()
     let refreshControl = UIRefreshControl()
     var reachabilityManager: ReachabilityAdapter = ReachabilityManager.sharedInstance
     
@@ -22,45 +22,47 @@ class DestinationListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = LocalizeStrings.destinationListScreenTitle
+        title = LocalizeStrings.deliveryListScreenTitle
         setupEventHandlers()
-        destinationListViewModel.getDestinationList()
+        deliveryListViewModel.getDeliveryList()
     }
     
     private func setupEventHandlers() {
-        destinationListViewModel.completionHandler = {
+        deliveryListViewModel.completionHandler = {
             DispatchQueue.main.async { [weak self] in
                 self?.tableView.reloadData()
             }
         }
         
-        destinationListViewModel.errorHandler = { [weak self] error in
+        deliveryListViewModel.errorHandler = { [weak self] error in
             DispatchQueue.main.async { [weak self] in
                 let errorMessage = error._code == Constants.internetErrorCode ? LocalizeStrings.internetErrorMessage : LocalizeStrings.genericErrorMessage
                 self?.showAlert(title: LocalizeStrings.errorTitle, message: errorMessage)
             }
         }
         
-        destinationListViewModel.loadMoreCompletionHandler = { [weak self] in
+        deliveryListViewModel.loadMoreCompletionHandler = { [weak self] in
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                 self?.hideBottomLoader()
             }
         }
         
-        destinationListViewModel.loaderHandler = { [weak self] showLoader in
+        deliveryListViewModel.loaderHandler = { [weak self] showLoader in
             DispatchQueue.main.async { [weak self] in
                 guard let weakSelf = self else {
                     return
                 }
-                if showLoader {
-                    MBProgressHUD.showAdded(to: weakSelf.view, animated: true)
-                } else {
+                
+                guard showLoader else {
                     MBProgressHUD.hide(for: weakSelf.view, animated: true)
+                    return
                 }
+                
+                MBProgressHUD.showAdded(to: weakSelf.view, animated: true)
             }
         }
         
-        destinationListViewModel.pullToRefreshCompletionHandler = { [weak self] in
+        deliveryListViewModel.pullToRefreshCompletionHandler = { [weak self] in
             DispatchQueue.main.async { [weak self] in
                 self?.refreshControl.endRefreshing()
             }
@@ -68,7 +70,7 @@ class DestinationListViewController: UIViewController {
     }
     
     func hideBottomLoader() {
-        if let cell = tableView.cellForRow(at: IndexPath(row: destinationListViewModel.numberOfRows() - 1, section: 0)) as? LoaderCell {
+        if let cell = tableView.cellForRow(at: IndexPath(row: deliveryListViewModel.numberOfRows() - 1, section: 0)) as? LoaderCell {
             cell.stopSpinner()
         }
     }
@@ -87,7 +89,7 @@ class DestinationListViewController: UIViewController {
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
-        tableView.register(LocationCell.self, forCellReuseIdentifier: String(describing: LocationCell.self))
+        tableView.register(DeliveryCell.self, forCellReuseIdentifier: String(describing: DeliveryCell.self))
         tableView.register(LoaderCell.self, forCellReuseIdentifier: String(describing: LoaderCell.self))
         
         tableView.topAnchor.constraint(equalTo:view.topAnchor).isActive = true
@@ -105,6 +107,6 @@ class DestinationListViewController: UIViewController {
     
     @objc
     private func handlePullToRefresh(_ sender: Any) {
-        destinationListViewModel.handlePullToRefresh()
+        deliveryListViewModel.handlePullToRefresh()
     }
 }

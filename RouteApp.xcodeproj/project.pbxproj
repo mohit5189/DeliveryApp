@@ -13,39 +13,40 @@
 		B7337BFD229F8ED0001F853E /* MapVireController+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337BFC229F8ED0001F853E /* MapVireController+Stub.swift */; };
 		B7337C0D22A3B9AC001F853E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7337C0F22A3B9AC001F853E /* Localizable.strings */; };
 		B7337C1122A3BE16001F853E /* LoaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1022A3BE16001F853E /* LoaderCell.swift */; };
-		B7337C1322A3D20D001F853E /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1222A3D20D001F853E /* ReachabilityManager.swift */; };
 		B7337C1522A8E12F001F853E /* ReachabilityManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */; };
-		B7337C1722A8E289001F853E /* ReachabilityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1622A8E289001F853E /* ReachabilityAdapter.swift */; };
 		B7337C1922A92227001F853E /* RouteAppTestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1822A92227001F853E /* RouteAppTestConstants.swift */; };
+		B7337C2622ACA6B8001F853E /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2322ACA6B8001F853E /* ReachabilityManager.swift */; };
+		B7337C2722ACA6B8001F853E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2422ACA6B8001F853E /* Reachability.swift */; };
+		B7337C2822ACA6B8001F853E /* ReachabilityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2522ACA6B8001F853E /* ReachabilityAdapter.swift */; };
+		B7337C2B22ACA73B001F853E /* DBManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2A22ACA73B001F853E /* DBManagerAdapter.swift */; };
+		B7337C2D22ACA98C001F853E /* DeliveryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2C22ACA98C001F853E /* DeliveryModel.swift */; };
 		B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A89229AAC2E0015794D /* AppDelegate.swift */; };
-		B7467A8C229AAC2E0015794D /* DestinationListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DestinationListViewController.swift */; };
+		B7467A8C229AAC2E0015794D /* DeliveryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */; };
 		B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7467A90229AAC2F0015794D /* Assets.xcassets */; };
 		B7467AAA229AAC2F0015794D /* RouteAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AA9229AAC2F0015794D /* RouteAppUITests.swift */; };
 		B7467AB9229AAD2C0015794D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AB8229AAD2C0015794D /* MapViewController.swift */; };
-		B7467ABB229AAD440015794D /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ABA229AAD440015794D /* LocationCell.swift */; };
+		B7467ABB229AAD440015794D /* DeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ABA229AAD440015794D /* DeliveryCell.swift */; };
 		B7467ABE229AAF780015794D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ABD229AAF780015794D /* HTTPClient.swift */; };
-		B7467AC6229AB0690015794D /* DestinationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AC5229AB0690015794D /* DestinationModel.swift */; };
 		B7467AC9229AB2620015794D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AC8229AB2620015794D /* Constants.swift */; };
-		B7467ACC229AB4DB0015794D /* DestinationListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ACB229AB4DB0015794D /* DestinationListAdapter.swift */; };
+		B7467ACC229AB4DB0015794D /* DeliveryListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ACB229AB4DB0015794D /* DeliveryListAdapter.swift */; };
 		B7467ACE229AB66F0015794D /* NetworkClientAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ACD229AB66F0015794D /* NetworkClientAdapter.swift */; };
 		B7467AD5229AC37C0015794D /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AD4229AC37C0015794D /* CustomPin.swift */; };
 		B7467AD7229AC3EB0015794D /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AD6229AC3EB0015794D /* LocationHelper.swift */; };
 		B7467ADF229ACC6B0015794D /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ADE229ACC6B0015794D /* JSONHelper.swift */; };
-		B7467AE1229ACD650015794D /* DestinationListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AE0229ACD650015794D /* DestinationListViewControllerTests.swift */; };
-		B7467AE3229ACE620015794D /* DestinationListViewController+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AE2229ACE620015794D /* DestinationListViewController+Stub.swift */; };
+		B7467AE1229ACD650015794D /* DeliveryListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AE0229ACD650015794D /* DeliveryListViewControllerTests.swift */; };
+		B7467AE3229ACE620015794D /* DeliveryListViewControllerTests+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AE2229ACE620015794D /* DeliveryListViewControllerTests+Stub.swift */; };
 		B7467AE6229BB6690015794D /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AE5229BB6690015794D /* URLBuilder.swift */; };
 		B7467AEF229BD0D50015794D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7467AEE229BD0D50015794D /* LaunchScreen.storyboard */; };
-		B7467AF2229BF3BB0015794D /* DestinationListViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AF1229BF3BB0015794D /* DestinationListViewController+UITableViewDataSource.swift */; };
-		B7467AF4229BF3F10015794D /* DestinationListViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AF3229BF3F10015794D /* DestinationListViewController+UITableViewDelegate.swift */; };
+		B7467AF2229BF3BB0015794D /* DeliveryListViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AF1229BF3BB0015794D /* DeliveryListViewController+UITableViewDataSource.swift */; };
+		B7467AF4229BF3F10015794D /* DeliveryListViewController+UITableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AF3229BF3F10015794D /* DeliveryListViewController+UITableViewDelegate.swift */; };
 		B7467AF7229BF5390015794D /* MapViewController+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AF6229BF5390015794D /* MapViewController+Map.swift */; };
-		B7467AFA229BF9860015794D /* destination.json in Resources */ = {isa = PBXBuildFile; fileRef = B7467AF9229BF9860015794D /* destination.json */; };
+		B7467AFA229BF9860015794D /* deliveryList.json in Resources */ = {isa = PBXBuildFile; fileRef = B7467AF9229BF9860015794D /* deliveryList.json */; };
 		B7467AFD229BFA050015794D /* HTTPClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AFC229BFA050015794D /* HTTPClientMock.swift */; };
-		B7467AFE229BFCDC0015794D /* destination.json in Resources */ = {isa = PBXBuildFile; fileRef = B7467AF9229BF9860015794D /* destination.json */; };
-		B7467B04229D28EA0015794D /* DestinationListControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B03229D28EA0015794D /* DestinationListControllerViewModel.swift */; };
+		B7467AFE229BFCDC0015794D /* deliveryList.json in Resources */ = {isa = PBXBuildFile; fileRef = B7467AF9229BF9860015794D /* deliveryList.json */; };
+		B7467B04229D28EA0015794D /* DeliveryListControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B03229D28EA0015794D /* DeliveryListControllerViewModel.swift */; };
 		B7467B06229D3B150015794D /* MapControllerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B05229D3B150015794D /* MapControllerViewModel.swift */; };
 		B7467B0E229D597A0015794D /* MyDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B7467B0C229D597A0015794D /* MyDB.xcdatamodeld */; };
 		B7467B29229D5BBB0015794D /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B28229D5BBB0015794D /* DBManager.swift */; };
-		B7467B2E229D635E0015794D /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B2D229D635E0015794D /* Reachability.swift */; };
 		B7467B31229D6B3D0015794D /* DBManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B30229D6B3D0015794D /* DBManagerTests.swift */; };
 		B7467B33229D6EBD0015794D /* MapViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467B32229D6EBD0015794D /* MapViewControllerTests.swift */; };
 /* End PBXBuildFile section */
@@ -78,13 +79,16 @@
 		B7337BFC229F8ED0001F853E /* MapVireController+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapVireController+Stub.swift"; sourceTree = "<group>"; };
 		B7337C0E22A3B9AC001F853E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		B7337C1022A3BE16001F853E /* LoaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCell.swift; sourceTree = "<group>"; };
-		B7337C1222A3D20D001F853E /* ReachabilityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
 		B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManagerMock.swift; sourceTree = "<group>"; };
-		B7337C1622A8E289001F853E /* ReachabilityAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityAdapter.swift; sourceTree = "<group>"; };
 		B7337C1822A92227001F853E /* RouteAppTestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAppTestConstants.swift; sourceTree = "<group>"; };
+		B7337C2322ACA6B8001F853E /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
+		B7337C2422ACA6B8001F853E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		B7337C2522ACA6B8001F853E /* ReachabilityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityAdapter.swift; sourceTree = "<group>"; };
+		B7337C2A22ACA73B001F853E /* DBManagerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManagerAdapter.swift; sourceTree = "<group>"; };
+		B7337C2C22ACA98C001F853E /* DeliveryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryModel.swift; sourceTree = "<group>"; };
 		B7467A86229AAC2E0015794D /* RouteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467A89229AAC2E0015794D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B7467A8B229AAC2E0015794D /* DestinationListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListViewController.swift; sourceTree = "<group>"; };
+		B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewController.swift; sourceTree = "<group>"; };
 		B7467A90229AAC2F0015794D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7467A95229AAC2F0015794D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7467A9A229AAC2F0015794D /* RouteAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouteAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,29 +97,27 @@
 		B7467AA9229AAC2F0015794D /* RouteAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAppUITests.swift; sourceTree = "<group>"; };
 		B7467AAB229AAC2F0015794D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7467AB8229AAD2C0015794D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		B7467ABA229AAD440015794D /* LocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		B7467ABA229AAD440015794D /* DeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCell.swift; sourceTree = "<group>"; };
 		B7467ABD229AAF780015794D /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
-		B7467AC5229AB0690015794D /* DestinationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationModel.swift; sourceTree = "<group>"; };
 		B7467AC8229AB2620015794D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		B7467ACB229AB4DB0015794D /* DestinationListAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListAdapter.swift; sourceTree = "<group>"; };
+		B7467ACB229AB4DB0015794D /* DeliveryListAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListAdapter.swift; sourceTree = "<group>"; };
 		B7467ACD229AB66F0015794D /* NetworkClientAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientAdapter.swift; sourceTree = "<group>"; };
 		B7467AD4229AC37C0015794D /* CustomPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
 		B7467AD6229AC3EB0015794D /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		B7467ADE229ACC6B0015794D /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
-		B7467AE0229ACD650015794D /* DestinationListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListViewControllerTests.swift; sourceTree = "<group>"; };
-		B7467AE2229ACE620015794D /* DestinationListViewController+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DestinationListViewController+Stub.swift"; sourceTree = "<group>"; };
+		B7467AE0229ACD650015794D /* DeliveryListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewControllerTests.swift; sourceTree = "<group>"; };
+		B7467AE2229ACE620015794D /* DeliveryListViewControllerTests+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListViewControllerTests+Stub.swift"; sourceTree = "<group>"; };
 		B7467AE5229BB6690015794D /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		B7467AEE229BD0D50015794D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		B7467AF1229BF3BB0015794D /* DestinationListViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DestinationListViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
-		B7467AF3229BF3F10015794D /* DestinationListViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DestinationListViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
+		B7467AF1229BF3BB0015794D /* DeliveryListViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
+		B7467AF3229BF3F10015794D /* DeliveryListViewController+UITableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListViewController+UITableViewDelegate.swift"; sourceTree = "<group>"; };
 		B7467AF6229BF5390015794D /* MapViewController+Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapViewController+Map.swift"; sourceTree = "<group>"; };
-		B7467AF9229BF9860015794D /* destination.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = destination.json; sourceTree = "<group>"; };
+		B7467AF9229BF9860015794D /* deliveryList.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = deliveryList.json; sourceTree = "<group>"; };
 		B7467AFC229BFA050015794D /* HTTPClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientMock.swift; sourceTree = "<group>"; };
-		B7467B03229D28EA0015794D /* DestinationListControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListControllerViewModel.swift; sourceTree = "<group>"; };
+		B7467B03229D28EA0015794D /* DeliveryListControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListControllerViewModel.swift; sourceTree = "<group>"; };
 		B7467B05229D3B150015794D /* MapControllerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapControllerViewModel.swift; sourceTree = "<group>"; };
 		B7467B0D229D597A0015794D /* MyDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MyDB.xcdatamodel; sourceTree = "<group>"; };
 		B7467B28229D5BBB0015794D /* DBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
-		B7467B2D229D635E0015794D /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B7467B30229D6B3D0015794D /* DBManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManagerTests.swift; sourceTree = "<group>"; };
 		B7467B32229D6EBD0015794D /* MapViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewControllerTests.swift; sourceTree = "<group>"; };
 		D7979782ECEAB4D847773862 /* Pods-RouteApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RouteApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-RouteApp/Pods-RouteApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -198,6 +200,83 @@
 			path = AppConfig;
 			sourceTree = "<group>";
 		};
+		B7337C1A22ACA289001F853E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C2922ACA701001F853E /* Data Manager */,
+				B7467B0B229D596C0015794D /* DB Manager */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		B7337C1B22ACA37C001F853E /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C1E22ACA3BD001F853E /* Data Manager Protocol */,
+				B7337C1D22ACA3B3001F853E /* Networking Protocol */,
+				B7337C1C22ACA388001F853E /* DB Protocol */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		B7337C1C22ACA388001F853E /* DB Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C2A22ACA73B001F853E /* DBManagerAdapter.swift */,
+			);
+			path = "DB Protocol";
+			sourceTree = "<group>";
+		};
+		B7337C1D22ACA3B3001F853E /* Networking Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B7467ACD229AB66F0015794D /* NetworkClientAdapter.swift */,
+			);
+			path = "Networking Protocol";
+			sourceTree = "<group>";
+		};
+		B7337C1E22ACA3BD001F853E /* Data Manager Protocol */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Data Manager Protocol";
+			sourceTree = "<group>";
+		};
+		B7337C1F22ACA44A001F853E /* Builders */ = {
+			isa = PBXGroup;
+			children = (
+				B7467AE4229BB6590015794D /* URL Builder */,
+			);
+			path = Builders;
+			sourceTree = "<group>";
+		};
+		B7337C2122ACA4D0001F853E /* Data Layer */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C1B22ACA37C001F853E /* Protocols */,
+				B7467B01229D287A0015794D /* Networking */,
+				B7337C1A22ACA289001F853E /* Managers */,
+			);
+			path = "Data Layer";
+			sourceTree = "<group>";
+		};
+		B7337C2222ACA6B8001F853E /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C2322ACA6B8001F853E /* ReachabilityManager.swift */,
+				B7337C2422ACA6B8001F853E /* Reachability.swift */,
+				B7337C2522ACA6B8001F853E /* ReachabilityAdapter.swift */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
+		B7337C2922ACA701001F853E /* Data Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Data Manager";
+			sourceTree = "<group>";
+		};
 		B7467A7D229AAC2E0015794D = {
 			isa = PBXGroup;
 			children = (
@@ -223,11 +302,11 @@
 		B7467A88229AAC2E0015794D /* RouteApp */ = {
 			isa = PBXGroup;
 			children = (
-				B7467B00229D284D0015794D /* ViewModel */,
-				B7467AD3229AC3650015794D /* Views */,
 				B7467AC1229AB0020015794D /* Models */,
+				B7467AD3229AC3650015794D /* Views */,
+				B7467B00229D284D0015794D /* ViewModel */,
 				B7467AC7229AB2440015794D /* Helper */,
-				B7467B01229D287A0015794D /* Networking */,
+				B7337C2122ACA4D0001F853E /* Data Layer */,
 				B7337C0822A392FF001F853E /* Common */,
 				B7337C0922A3931E001F853E /* Config */,
 				B7337C0722A392BE001F853E /* Resources */,
@@ -260,7 +339,7 @@
 		B7467AB7229AAD0E0015794D /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				B7467ABA229AAD440015794D /* LocationCell.swift */,
+				B7467ABA229AAD440015794D /* DeliveryCell.swift */,
 				B7337C1022A3BE16001F853E /* LoaderCell.swift */,
 			);
 			path = Cells;
@@ -270,7 +349,6 @@
 			isa = PBXGroup;
 			children = (
 				B7467ABD229AAF780015794D /* HTTPClient.swift */,
-				B7467ACD229AB66F0015794D /* NetworkClientAdapter.swift */,
 			);
 			path = HTTPClient;
 			sourceTree = "<group>";
@@ -279,7 +357,7 @@
 			isa = PBXGroup;
 			children = (
 				B7467AF5229BF5270015794D /* Map Controller */,
-				B7467AF0229BF3A20015794D /* Destination List Controller */,
+				B7467AF0229BF3A20015794D /* Delivery List Controller */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -287,7 +365,7 @@
 		B7467AC1229AB0020015794D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				B7467AC5229AB0690015794D /* DestinationModel.swift */,
+				B7337C2C22ACA98C001F853E /* DeliveryModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -295,9 +373,8 @@
 		B7467AC7229AB2440015794D /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-				B7467B2A229D62800015794D /* Reachability */,
-				B7467B0B229D596C0015794D /* Cache Handler */,
-				B7467AE4229BB6590015794D /* URL Builder */,
+				B7337C1F22ACA44A001F853E /* Builders */,
+				B7337C2222ACA6B8001F853E /* Reachability */,
 				B7467AC8229AB2620015794D /* Constants.swift */,
 				B7467AD6229AC3EB0015794D /* LocationHelper.swift */,
 			);
@@ -307,7 +384,7 @@
 		B7467ACA229AB45D0015794D /* Network Adapter */ = {
 			isa = PBXGroup;
 			children = (
-				B7467ACB229AB4DB0015794D /* DestinationListAdapter.swift */,
+				B7467ACB229AB4DB0015794D /* DeliveryListAdapter.swift */,
 			);
 			path = "Network Adapter";
 			sourceTree = "<group>";
@@ -333,7 +410,7 @@
 		B7467AD9229ACBFC0015794D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B7467AE0229ACD650015794D /* DestinationListViewControllerTests.swift */,
+				B7467AE0229ACD650015794D /* DeliveryListViewControllerTests.swift */,
 				B7467B32229D6EBD0015794D /* MapViewControllerTests.swift */,
 			);
 			path = ViewControllers;
@@ -342,7 +419,7 @@
 		B7467ADB229ACC140015794D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B7467AE2229ACE620015794D /* DestinationListViewController+Stub.swift */,
+				B7467AE2229ACE620015794D /* DeliveryListViewControllerTests+Stub.swift */,
 				B7337BFC229F8ED0001F853E /* MapVireController+Stub.swift */,
 			);
 			path = ViewControllers;
@@ -374,14 +451,14 @@
 			path = "URL Builder";
 			sourceTree = "<group>";
 		};
-		B7467AF0229BF3A20015794D /* Destination List Controller */ = {
+		B7467AF0229BF3A20015794D /* Delivery List Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B7467A8B229AAC2E0015794D /* DestinationListViewController.swift */,
-				B7467AF1229BF3BB0015794D /* DestinationListViewController+UITableViewDataSource.swift */,
-				B7467AF3229BF3F10015794D /* DestinationListViewController+UITableViewDelegate.swift */,
+				B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */,
+				B7467AF1229BF3BB0015794D /* DeliveryListViewController+UITableViewDataSource.swift */,
+				B7467AF3229BF3F10015794D /* DeliveryListViewController+UITableViewDelegate.swift */,
 			);
-			path = "Destination List Controller";
+			path = "Delivery List Controller";
 			sourceTree = "<group>";
 		};
 		B7467AF5229BF5270015794D /* Map Controller */ = {
@@ -396,7 +473,7 @@
 		B7467AF8229BF7B10015794D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				B7467AF9229BF9860015794D /* destination.json */,
+				B7467AF9229BF9860015794D /* deliveryList.json */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -413,7 +490,7 @@
 		B7467B00229D284D0015794D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B7467B03229D28EA0015794D /* DestinationListControllerViewModel.swift */,
+				B7467B03229D28EA0015794D /* DeliveryListControllerViewModel.swift */,
 				B7467B05229D3B150015794D /* MapControllerViewModel.swift */,
 			);
 			path = ViewModel;
@@ -428,22 +505,12 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		B7467B0B229D596C0015794D /* Cache Handler */ = {
+		B7467B0B229D596C0015794D /* DB Manager */ = {
 			isa = PBXGroup;
 			children = (
 				B7467B28229D5BBB0015794D /* DBManager.swift */,
 			);
-			path = "Cache Handler";
-			sourceTree = "<group>";
-		};
-		B7467B2A229D62800015794D /* Reachability */ = {
-			isa = PBXGroup;
-			children = (
-				B7467B2D229D635E0015794D /* Reachability.swift */,
-				B7337C1222A3D20D001F853E /* ReachabilityManager.swift */,
-				B7337C1622A8E289001F853E /* ReachabilityAdapter.swift */,
-			);
-			path = Reachability;
+			path = "DB Manager";
 			sourceTree = "<group>";
 		};
 		B7467B2F229D6B2A0015794D /* DBManager */ = {
@@ -576,7 +643,7 @@
 			files = (
 				B7337C0D22A3B9AC001F853E /* Localizable.strings in Resources */,
 				B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */,
-				B7467AFE229BFCDC0015794D /* destination.json in Resources */,
+				B7467AFE229BFCDC0015794D /* deliveryList.json in Resources */,
 				B7467AEF229BD0D50015794D /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,7 +652,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7467AFA229BF9860015794D /* destination.json in Resources */,
+				B7467AFA229BF9860015794D /* deliveryList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -726,25 +793,26 @@
 				B7467ACE229AB66F0015794D /* NetworkClientAdapter.swift in Sources */,
 				B7467B06229D3B150015794D /* MapControllerViewModel.swift in Sources */,
 				B7467AD7229AC3EB0015794D /* LocationHelper.swift in Sources */,
-				B7467A8C229AAC2E0015794D /* DestinationListViewController.swift in Sources */,
-				B7467B04229D28EA0015794D /* DestinationListControllerViewModel.swift in Sources */,
+				B7467A8C229AAC2E0015794D /* DeliveryListViewController.swift in Sources */,
+				B7467B04229D28EA0015794D /* DeliveryListControllerViewModel.swift in Sources */,
 				B7467ABE229AAF780015794D /* HTTPClient.swift in Sources */,
 				B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */,
 				B7467AE6229BB6690015794D /* URLBuilder.swift in Sources */,
 				B7467AF7229BF5390015794D /* MapViewController+Map.swift in Sources */,
-				B7467AF4229BF3F10015794D /* DestinationListViewController+UITableViewDelegate.swift in Sources */,
+				B7467AF4229BF3F10015794D /* DeliveryListViewController+UITableViewDelegate.swift in Sources */,
 				B7467AD5229AC37C0015794D /* CustomPin.swift in Sources */,
-				B7467ABB229AAD440015794D /* LocationCell.swift in Sources */,
-				B7337C1322A3D20D001F853E /* ReachabilityManager.swift in Sources */,
-				B7467AF2229BF3BB0015794D /* DestinationListViewController+UITableViewDataSource.swift in Sources */,
+				B7337C2B22ACA73B001F853E /* DBManagerAdapter.swift in Sources */,
+				B7467ABB229AAD440015794D /* DeliveryCell.swift in Sources */,
+				B7467AF2229BF3BB0015794D /* DeliveryListViewController+UITableViewDataSource.swift in Sources */,
+				B7337C2D22ACA98C001F853E /* DeliveryModel.swift in Sources */,
 				B7467AC9229AB2620015794D /* Constants.swift in Sources */,
 				B7467B29229D5BBB0015794D /* DBManager.swift in Sources */,
-				B7337C1722A8E289001F853E /* ReachabilityAdapter.swift in Sources */,
 				B7467AB9229AAD2C0015794D /* MapViewController.swift in Sources */,
-				B7467ACC229AB4DB0015794D /* DestinationListAdapter.swift in Sources */,
+				B7337C2822ACA6B8001F853E /* ReachabilityAdapter.swift in Sources */,
+				B7337C2622ACA6B8001F853E /* ReachabilityManager.swift in Sources */,
+				B7467ACC229AB4DB0015794D /* DeliveryListAdapter.swift in Sources */,
+				B7337C2722ACA6B8001F853E /* Reachability.swift in Sources */,
 				B7337C1122A3BE16001F853E /* LoaderCell.swift in Sources */,
-				B7467AC6229AB0690015794D /* DestinationModel.swift in Sources */,
-				B7467B2E229D635E0015794D /* Reachability.swift in Sources */,
 				B7467B0E229D597A0015794D /* MyDB.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -755,8 +823,8 @@
 			files = (
 				B7337BFD229F8ED0001F853E /* MapVireController+Stub.swift in Sources */,
 				B7467B33229D6EBD0015794D /* MapViewControllerTests.swift in Sources */,
-				B7467AE1229ACD650015794D /* DestinationListViewControllerTests.swift in Sources */,
-				B7467AE3229ACE620015794D /* DestinationListViewController+Stub.swift in Sources */,
+				B7467AE1229ACD650015794D /* DeliveryListViewControllerTests.swift in Sources */,
+				B7467AE3229ACE620015794D /* DeliveryListViewControllerTests+Stub.swift in Sources */,
 				B7337C1922A92227001F853E /* RouteAppTestConstants.swift in Sources */,
 				B7467B31229D6B3D0015794D /* DBManagerTests.swift in Sources */,
 				B7467AFD229BFA050015794D /* HTTPClientMock.swift in Sources */,

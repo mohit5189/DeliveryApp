@@ -1,5 +1,5 @@
 //
-//  DestinationListViewController+UITableViewDataSource.swift
+//  DeliveryListViewController+UITableViewDataSource.swift
 //  RouteApp
 //
 //  Created by Mohit Kumar on 5/27/19.
@@ -8,16 +8,16 @@
 
 import UIKit
 
-extension DestinationListViewController: UITableViewDataSource {
+extension DeliveryListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return destinationListViewModel.numberOfRows()
+        return deliveryListViewModel.numberOfRows()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
-        if indexPath.row < destinationListViewModel.destinationList.count, let locationCell = tableView.dequeueReusableCell(withIdentifier: String(describing: LocationCell.self)) as? LocationCell {
-            locationCell.configureUI(location: destinationListViewModel.getDestination(index: indexPath.row))
-            cell = locationCell
+        if indexPath.row < deliveryListViewModel.getDeliveriesCount(), let deliveryCell = tableView.dequeueReusableCell(withIdentifier: String(describing: DeliveryCell.self)) as? DeliveryCell {
+            deliveryCell.configureUI(deliveryModel: deliveryListViewModel, indexPath: indexPath)
+            cell = deliveryCell
         } else if let loaderCell = tableView.dequeueReusableCell(withIdentifier: String(describing: LoaderCell.self)) as? LoaderCell {
             cell = loaderCell
         }

@@ -9,13 +9,15 @@
 import Foundation
 import MapKit
 
+fileprivate let routeAreaExtraSize: Double = 5000
+
 extension MapViewController: MKMapViewDelegate{
     func drawRoute() {
-        guard let destinationLatitude = viewModel.selectedLocation?.location.lat, let destinationLongitude = viewModel.selectedLocation?.location.lng, let currentLocation = viewModel.currentLocation else {
+        guard let currentLocation = viewModel.currentLocation else {
             return
         }
         
-        let destinationLocation = CLLocationCoordinate2D(latitude:destinationLatitude , longitude: destinationLongitude)
+        let destinationLocation = CLLocationCoordinate2D(latitude: viewModel.getLatitude() , longitude: viewModel.getLongitude())
         
         let sourcePlaceMark = MKPlacemark(coordinate: currentLocation.coordinate)
         let destinationPlaceMark = MKPlacemark(coordinate: destinationLocation)
@@ -33,18 +35,18 @@ extension MapViewController: MKMapViewDelegate{
             
             let route = response.routes[0]
             weakSelf.mapView.addOverlay(route.polyline, level: .aboveRoads)
-            let rect = route.polyline.boundingMapRect
+            var rect = route.polyline.boundingMapRect
+            rect.origin.y -= routeAreaExtraSize
+            rect.size.width += routeAreaExtraSize
+            rect.size.height += routeAreaExtraSize
             weakSelf.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+            
         }
     }
     
     func dropDestinationPin() {
-        guard let destinationLatitude = viewModel.selectedLocation?.location.lat, let destinationLongitude = viewModel.selectedLocation?.location.lng else {
-            return
-        }
-        
-        let destinationLocation = CLLocationCoordinate2D(latitude:destinationLatitude , longitude: destinationLongitude)
-        let destinationPin = CustomPin(title: viewModel.selectedLocation?.location.address ?? "", location: destinationLocation)
+        let destinationLocation = CLLocationCoordinate2D(latitude: viewModel.getLatitude() , longitude: viewModel.getLongitude())
+        let destinationPin = CustomPin(title: viewModel.getAddress(), location: destinationLocation)
         mapView.addAnnotation(destinationPin)
         let viewRegion = MKCoordinateRegion(center: destinationLocation, latitudinalMeters: routeVisibilityArea, longitudinalMeters: routeVisibilityArea)
         mapView.setRegion(viewRegion, animated: true)
@@ -58,6 +60,7 @@ extension MapViewController: MKMapViewDelegate{
         polineLineRenderer.lineWidth = routeLineWidth
         return polineLineRenderer
     }
+    
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? CustomPin else { return nil }

@@ -1,5 +1,5 @@
 //
-//  DestinationListViewController+Stub.swift
+//  DeliveryListViewControllerTests+Stub.swift
 //  RouteAppTests
 //
 //  Created by Mohit Kumar on 5/26/19.
@@ -9,12 +9,12 @@
 @testable import RouteApp
 import UIKit
 
-extension DestinationListViewController {
-    static func stub(reachabilityManager: ReachabilityManagerMock = ReachabilityManagerMock()) -> DestinationListViewController {
-        let viewController = DestinationListViewController()
+extension DeliveryListViewController {
+    static func stub(reachabilityManager: ReachabilityManagerMock = ReachabilityManagerMock()) -> DeliveryListViewController {
+        let viewController = DeliveryListViewController()
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
-        viewController.destinationListViewModel.reachabilityManager = reachabilityManager
+        viewController.deliveryListViewModel.reachabilityManager = reachabilityManager
         viewController.reachabilityManager = reachabilityManager
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController

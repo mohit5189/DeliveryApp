@@ -11,9 +11,8 @@ import UIKit
 
 extension MapViewController {
     static func stub() -> MapViewController {
-        let viewController = MapViewController()
-        viewController.viewModel = MapControllerViewModel()
-        viewController.viewModel.selectedLocation = DestinationModel(id: 0, description: "way to delhi", imageUrl: "", location: AddressModel(lat: 28.6927189, lng: 76.8111519, address: "delhi"))
+        let mapViewModel = MapControllerViewModel(selectedDelivery: DeliveryModel(id: 0, description: "way to delhi", imageUrl: "", location: LocationModel(lat: 28.6927189, lng: 76.8111519, address: "delhi")))
+        let viewController = MapViewController(viewModel: mapViewModel)
         _ = viewController.view
         return viewController
     }
