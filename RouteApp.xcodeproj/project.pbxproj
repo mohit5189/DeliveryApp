@@ -20,6 +20,10 @@
 		B7337C2822ACA6B8001F853E /* ReachabilityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2522ACA6B8001F853E /* ReachabilityAdapter.swift */; };
 		B7337C2B22ACA73B001F853E /* DBManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2A22ACA73B001F853E /* DBManagerAdapter.swift */; };
 		B7337C2D22ACA98C001F853E /* DeliveryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2C22ACA98C001F853E /* DeliveryModel.swift */; };
+		B7337C2F22ACBB1B001F853E /* DataManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2E22ACBB1B001F853E /* DataManagerAdapter.swift */; };
+		B7337C3122ACBCC1001F853E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3022ACBCC1001F853E /* DataManager.swift */; };
+		B7337C3522ACC612001F853E /* DeliveryListControllerViewModel+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3422ACC612001F853E /* DeliveryListControllerViewModel+Networking.swift */; };
+		B7337C3722ACC692001F853E /* DeliveryListControllerViewModel+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3622ACC692001F853E /* DeliveryListControllerViewModel+Model.swift */; };
 		B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A89229AAC2E0015794D /* AppDelegate.swift */; };
 		B7467A8C229AAC2E0015794D /* DeliveryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */; };
 		B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7467A90229AAC2F0015794D /* Assets.xcassets */; };
@@ -28,7 +32,7 @@
 		B7467ABB229AAD440015794D /* DeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ABA229AAD440015794D /* DeliveryCell.swift */; };
 		B7467ABE229AAF780015794D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ABD229AAF780015794D /* HTTPClient.swift */; };
 		B7467AC9229AB2620015794D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AC8229AB2620015794D /* Constants.swift */; };
-		B7467ACC229AB4DB0015794D /* DeliveryListAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ACB229AB4DB0015794D /* DeliveryListAdapter.swift */; };
+		B7467ACC229AB4DB0015794D /* DeliveryListManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ACB229AB4DB0015794D /* DeliveryListManager.swift */; };
 		B7467ACE229AB66F0015794D /* NetworkClientAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ACD229AB66F0015794D /* NetworkClientAdapter.swift */; };
 		B7467AD5229AC37C0015794D /* CustomPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AD4229AC37C0015794D /* CustomPin.swift */; };
 		B7467AD7229AC3EB0015794D /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AD6229AC3EB0015794D /* LocationHelper.swift */; };
@@ -86,6 +90,10 @@
 		B7337C2522ACA6B8001F853E /* ReachabilityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityAdapter.swift; sourceTree = "<group>"; };
 		B7337C2A22ACA73B001F853E /* DBManagerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManagerAdapter.swift; sourceTree = "<group>"; };
 		B7337C2C22ACA98C001F853E /* DeliveryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryModel.swift; sourceTree = "<group>"; };
+		B7337C2E22ACBB1B001F853E /* DataManagerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerAdapter.swift; sourceTree = "<group>"; };
+		B7337C3022ACBCC1001F853E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		B7337C3422ACC612001F853E /* DeliveryListControllerViewModel+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListControllerViewModel+Networking.swift"; sourceTree = "<group>"; };
+		B7337C3622ACC692001F853E /* DeliveryListControllerViewModel+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListControllerViewModel+Model.swift"; sourceTree = "<group>"; };
 		B7467A86229AAC2E0015794D /* RouteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467A89229AAC2E0015794D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewController.swift; sourceTree = "<group>"; };
@@ -100,7 +108,7 @@
 		B7467ABA229AAD440015794D /* DeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCell.swift; sourceTree = "<group>"; };
 		B7467ABD229AAF780015794D /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		B7467AC8229AB2620015794D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		B7467ACB229AB4DB0015794D /* DeliveryListAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListAdapter.swift; sourceTree = "<group>"; };
+		B7467ACB229AB4DB0015794D /* DeliveryListManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListManager.swift; sourceTree = "<group>"; };
 		B7467ACD229AB66F0015794D /* NetworkClientAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientAdapter.swift; sourceTree = "<group>"; };
 		B7467AD4229AC37C0015794D /* CustomPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomPin.swift; sourceTree = "<group>"; };
 		B7467AD6229AC3EB0015794D /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
@@ -203,6 +211,7 @@
 		B7337C1A22ACA289001F853E /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				B7467ACA229AB45D0015794D /* Network Managers */,
 				B7337C2922ACA701001F853E /* Data Manager */,
 				B7467B0B229D596C0015794D /* DB Manager */,
 			);
@@ -238,6 +247,7 @@
 		B7337C1E22ACA3BD001F853E /* Data Manager Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C2E22ACBB1B001F853E /* DataManagerAdapter.swift */,
 			);
 			path = "Data Manager Protocol";
 			sourceTree = "<group>";
@@ -273,8 +283,27 @@
 		B7337C2922ACA701001F853E /* Data Manager */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C3022ACBCC1001F853E /* DataManager.swift */,
 			);
 			path = "Data Manager";
+			sourceTree = "<group>";
+		};
+		B7337C3222ACC5E1001F853E /* DeliveryListControllerViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B7467B03229D28EA0015794D /* DeliveryListControllerViewModel.swift */,
+				B7337C3422ACC612001F853E /* DeliveryListControllerViewModel+Networking.swift */,
+				B7337C3622ACC692001F853E /* DeliveryListControllerViewModel+Model.swift */,
+			);
+			path = DeliveryListControllerViewModel;
+			sourceTree = "<group>";
+		};
+		B7337C3322ACC5EE001F853E /* MapControllerViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B7467B05229D3B150015794D /* MapControllerViewModel.swift */,
+			);
+			path = MapControllerViewModel;
 			sourceTree = "<group>";
 		};
 		B7467A7D229AAC2E0015794D = {
@@ -381,12 +410,12 @@
 			path = Helper;
 			sourceTree = "<group>";
 		};
-		B7467ACA229AB45D0015794D /* Network Adapter */ = {
+		B7467ACA229AB45D0015794D /* Network Managers */ = {
 			isa = PBXGroup;
 			children = (
-				B7467ACB229AB4DB0015794D /* DeliveryListAdapter.swift */,
+				B7467ACB229AB4DB0015794D /* DeliveryListManager.swift */,
 			);
-			path = "Network Adapter";
+			path = "Network Managers";
 			sourceTree = "<group>";
 		};
 		B7467AD3229AC3650015794D /* Views */ = {
@@ -490,8 +519,8 @@
 		B7467B00229D284D0015794D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				B7467B03229D28EA0015794D /* DeliveryListControllerViewModel.swift */,
-				B7467B05229D3B150015794D /* MapControllerViewModel.swift */,
+				B7337C3322ACC5EE001F853E /* MapControllerViewModel */,
+				B7337C3222ACC5E1001F853E /* DeliveryListControllerViewModel */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -500,7 +529,6 @@
 			isa = PBXGroup;
 			children = (
 				B7467ABC229AAF430015794D /* HTTPClient */,
-				B7467ACA229AB45D0015794D /* Network Adapter */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -800,6 +828,9 @@
 				B7467AE6229BB6690015794D /* URLBuilder.swift in Sources */,
 				B7467AF7229BF5390015794D /* MapViewController+Map.swift in Sources */,
 				B7467AF4229BF3F10015794D /* DeliveryListViewController+UITableViewDelegate.swift in Sources */,
+				B7337C2F22ACBB1B001F853E /* DataManagerAdapter.swift in Sources */,
+				B7337C3122ACBCC1001F853E /* DataManager.swift in Sources */,
+				B7337C3522ACC612001F853E /* DeliveryListControllerViewModel+Networking.swift in Sources */,
 				B7467AD5229AC37C0015794D /* CustomPin.swift in Sources */,
 				B7337C2B22ACA73B001F853E /* DBManagerAdapter.swift in Sources */,
 				B7467ABB229AAD440015794D /* DeliveryCell.swift in Sources */,
@@ -810,9 +841,10 @@
 				B7467AB9229AAD2C0015794D /* MapViewController.swift in Sources */,
 				B7337C2822ACA6B8001F853E /* ReachabilityAdapter.swift in Sources */,
 				B7337C2622ACA6B8001F853E /* ReachabilityManager.swift in Sources */,
-				B7467ACC229AB4DB0015794D /* DeliveryListAdapter.swift in Sources */,
+				B7467ACC229AB4DB0015794D /* DeliveryListManager.swift in Sources */,
 				B7337C2722ACA6B8001F853E /* Reachability.swift in Sources */,
 				B7337C1122A3BE16001F853E /* LoaderCell.swift in Sources */,
+				B7337C3722ACC692001F853E /* DeliveryListControllerViewModel+Model.swift in Sources */,
 				B7467B0E229D597A0015794D /* MyDB.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

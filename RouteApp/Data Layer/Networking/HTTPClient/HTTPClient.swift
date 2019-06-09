@@ -15,7 +15,7 @@ enum ApiType:String{
 class HTTPClient: NetworkClientAdapter {
     var url: String
     var requestJson: [String:String]?
-
+    
     init(url: String, requestJson: [String:String] = [:]) {
         self.url = url
         self.requestJson = requestJson

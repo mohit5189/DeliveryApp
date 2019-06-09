@@ -1,5 +1,5 @@
 //
-//  DeliveryListAdapter.swift
+//  DeliveryListManager.swift
 //  RouteApp
 //
 //  Created by Mohit Kumar on 5/26/19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DeliveryListAdapter: NSObject {
+class DeliveryListManager: NSObject {
     var networkClient: NetworkClientAdapter
     typealias CompletionBlock = (_ response: Any?, _ error: Error?) -> Void
 
