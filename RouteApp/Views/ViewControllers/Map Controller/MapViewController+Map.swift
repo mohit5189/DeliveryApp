@@ -53,7 +53,7 @@ extension MapViewController: MKMapViewDelegate{
         
     }
     
-    
+    // MARK: MKMapView delegate methods
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let polineLineRenderer = MKPolylineRenderer(overlay: overlay)
         polineLineRenderer.strokeColor = .red
@@ -65,13 +65,12 @@ extension MapViewController: MKMapViewDelegate{
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         guard let annotation = annotation as? CustomPin else { return nil }
         var view: MKMarkerAnnotationView
-        // 4
+        
         if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: markerIdentifier)
             as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
-            // 5
             view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: markerIdentifier)
             view.canShowCallout = true
             view.detailCalloutAccessoryView = UIView()

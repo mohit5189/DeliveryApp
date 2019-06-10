@@ -13,7 +13,7 @@ import Quick
 @testable import RouteApp
 
 class DBManagerTests: QuickSpec {
-    var dbManager: DBManagerAdapter!
+    var dbManager: DBManagerProtocol!
     let deliveryListJson = "deliveryList"
     let deliveryListJsonWithNull = "deliveryList2"
     override func spec() {
@@ -79,12 +79,12 @@ class DBManagerTests: QuickSpec {
                 
                 context("and when fetching item with offset and limit") {
                     it("should return proper list as required") {
-                        waitUntil(action: { done in
+                        waitUntil(timeout: RouteAppTestConstants.timeoutInterval) { done in
                             self.dbManager.getDeliveries(offset: 0, limit: 5, onSuccess: { destinations, error in
                                 expect(destinations?.count == 5).to(beTrue())
                                 done()
                             })
-                        })
+                        }
                     }
                 }
                 

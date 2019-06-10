@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 extension DataManager {
-    static func stub(reachabilityManager: ReachabilityManagerMock = ReachabilityManagerMock(isReachable: true)) -> DataManagerAdapter {
+    static func stub(reachabilityManager: ReachabilityManagerMock = ReachabilityManagerMock(isReachable: true)) -> DataManagerProtocol {
         let dataManager = DataManager()
         dataManager.reachabilityManager = reachabilityManager
         return dataManager

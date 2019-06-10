@@ -31,13 +31,13 @@ class MapViewControllerTests: QuickSpec {
                 }
                 
                 it("should add marker at destination address") {
-                    waitUntil(action: { done in
+                    waitUntil(timeout: RouteAppTestConstants.timeoutInterval) { done in
                         for annotation in self.mapVC.mapView.annotations {
                             if annotation.title == self.mapVC.viewModel.selectedDelivery.location!.address {
                                 done()
                             }
                         }
-                    })
+                    }
                 }
             }
         }

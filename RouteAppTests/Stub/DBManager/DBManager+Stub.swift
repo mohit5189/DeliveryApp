@@ -11,7 +11,7 @@ import Foundation
 import CoreData
 
 extension DBManager {
-    static func stub() -> DBManagerAdapter {
+    static func stub() -> DBManagerProtocol {
         let dbManager = DBManager.sharedInstance
         
         let mockManagedObjectModel = NSManagedObjectModel.mergedModel(from: nil)

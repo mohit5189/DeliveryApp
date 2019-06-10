@@ -16,7 +16,7 @@ extension DeliveryListViewController {
         window.makeKeyAndVisible()
         viewController.deliveryListViewModel.reachabilityManager = reachabilityManager
         viewController.reachabilityManager = reachabilityManager
-        (viewController.deliveryListViewModel.dataManagerAdapter as! DataManager).reachabilityManager = reachabilityManager
+        (viewController.deliveryListViewModel.dataManager as! DataManager).reachabilityManager = reachabilityManager
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         _ = viewController.view

@@ -1,56 +1,19 @@
-//
-//  DBManagerMock.swift
-//  RouteAppTests
-//
-//  Created by Mohit Kumar on 10/06/19.
-//  Copyright © 2019 Mohit Kumar. All rights reserved.
-//
-
-import Foundation
-@testable import RouteApp
-import CoreData
 import UIKit
+import CoreData
 
-enum DBActionType {
-    case deliveryList
-    case error
+class DBManager: NSObject, DBManagerProtocol {
     
-    func handleResponse(onSuccess: @escaping ResponseBlock) {
-        switch self {
-        case .deliveryList:
-            onSuccess(getDeliveries(), nil)
-        case .error:
-            onSuccess(nil, NSError(domain: Constants.serverErrorDomain, code: Constants.serverErrorCode, userInfo: nil))
-        }
-    }
-    
-    fileprivate func getDeliveries() -> [DeliveryModel] {
-        let data = JSONHelper.jsonFileToData(jsonName: "deliveryList")
-        do {
-            let decoder = JSONDecoder()
-            let deliveries = try decoder.decode([DeliveryModel].self, from: data!)
-            return deliveries
-        } catch {
-            
-        }
-        return []
-    }
-}
-
-class DBManagerMock: NSObject, DBManagerProtocol {
-    var managedObjectContext: NSManagedObjectContext?
+    static var sharedInstance = DBManager()
+    var managedObjectContext:NSManagedObjectContext?
     let deliveryEntity = "Delivery"
     let locationEntity = "Location"
-    var dbActionType: DBActionType!
     
-    init(dbActionType: DBActionType) {
-        let mockManagedObjectModel = NSManagedObjectModel.mergedModel(from: nil)
-        let mockStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: mockManagedObjectModel!)
-        let _ = try? mockStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
-        self.managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-        self.managedObjectContext!.persistentStoreCoordinator = mockStoreCoordinator
-        self.dbActionType = dbActionType
+    override fileprivate init() {
+        
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        managedObjectContext = appDelegate.persistentContainer.viewContext
     }
+    
     
     func saveDeliveries(deliveries: [DeliveryModel]) -> Void {
         
@@ -90,13 +53,41 @@ class DBManagerMock: NSObject, DBManagerProtocol {
             if records.count > 0 {
                 return records[0]
             }
-        } catch {
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
         }
         return nil
     }
     
     func getDeliveries(offset: Int, limit: Int, onSuccess: @escaping ResponseBlock) {
-        dbActionType.handleResponse(onSuccess: onSuccess)
+        var deliveries:[DeliveryModel] = []
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: deliveryEntity)
+        fetchRequest.fetchOffset = offset
+        fetchRequest.fetchLimit = limit
+        
+        let asynchronousFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (asynchronousFetchResult) -> Void in
+            DispatchQueue.main.async {
+                if let result = asynchronousFetchResult.finalResult {
+                    let records = result as! [Delivery]
+                    deliveries = records.map({ delivery -> DeliveryModel in
+                        let id = delivery.id
+                        let desc = delivery.desc
+                        let imageUrl = delivery.imageUrl
+                        let lat = delivery.location?.lat
+                        let long = delivery.location?.long
+                        let address = delivery.location?.address
+                        return DeliveryModel(id: Int(id), description: desc ?? "", imageUrl: imageUrl ?? "", location: LocationModel(lat: lat ?? 0, lng: long ?? 0, address: address ?? ""))
+                    })
+                }
+                onSuccess(deliveries, nil)
+            }
+            
+        }
+        do {
+            try managedObjectContext?.execute(asynchronousFetchRequest)
+        } catch {
+            onSuccess(nil, NSError(domain: "Invalid Query", code: 0, userInfo: nil))
+        }
     }
     
     func cleanCache() {
@@ -115,12 +106,12 @@ class DBManagerMock: NSObject, DBManagerProtocol {
     }
     
     func allRecords() -> [Delivery] {
+        var records: [Delivery] = []
         do {
-            let records = try managedObjectContext!.fetch(NSFetchRequest<NSFetchRequestResult>(entityName: deliveryEntity)) as! [Delivery]
-            return records
+            records = try managedObjectContext!.fetch(NSFetchRequest<NSFetchRequestResult>(entityName: deliveryEntity)) as! [Delivery]
         } catch {
         }
-        return []
+        return records
     }
     
     func isCacheAvailable() -> Bool {

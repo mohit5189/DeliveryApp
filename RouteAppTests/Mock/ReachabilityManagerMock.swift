@@ -9,7 +9,7 @@
 import Foundation
 @testable import RouteApp
 
-class ReachabilityManagerMock: ReachabilityAdapter {
+class ReachabilityManagerMock: ReachabilityProtocol {
     var isReachable: Bool!
     
     init(isReachable: Bool) {

@@ -14,7 +14,7 @@ enum ResponseType {
     case emptyDeliveryList
     case errorFromServer
     
-    func handleRequest(completionHandler: @escaping DataManagerAdapter.CompletionBlock) {
+    func handleRequest(completionHandler: @escaping DataManagerProtocol.CompletionBlock) {
         switch self {
         case .deliveryList:
             completionHandler(getDeliveries(), nil)
@@ -38,7 +38,7 @@ enum ResponseType {
     }
 }
 
-class DataManagerMock: NSObject, DataManagerAdapter {
+class DataManagerMock: NSObject, DataManagerProtocol {
     var responseType: ResponseType!
     
     init(responseType: ResponseType) {

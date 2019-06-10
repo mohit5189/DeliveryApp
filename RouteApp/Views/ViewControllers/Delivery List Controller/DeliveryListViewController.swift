@@ -13,7 +13,7 @@ class DeliveryListViewController: UIViewController {
     var tableView: UITableView!
     var deliveryListViewModel:DeliveryListControllerViewModel = DeliveryListControllerViewModel()
     let refreshControl = UIRefreshControl()
-    var reachabilityManager: ReachabilityAdapter = ReachabilityManager.sharedInstance
+    var reachabilityManager: ReachabilityProtocol = ReachabilityManager.sharedInstance
     
     override func loadView() {
         super.loadView()
@@ -34,9 +34,8 @@ class DeliveryListViewController: UIViewController {
             }
         }
         
-        deliveryListViewModel.errorHandler = { [weak self] error in
+        deliveryListViewModel.errorHandler = { [weak self] errorMessage in
             DispatchQueue.main.async { [weak self] in
-                let errorMessage = error._code == Constants.internetErrorCode ? LocalizeStrings.ErrorMessage.internetErrorMessage : LocalizeStrings.ErrorMessage.genericErrorMessage
                 self?.showAlert(title: LocalizeStrings.ErrorMessage.errorTitle, message: errorMessage)
             }
         }

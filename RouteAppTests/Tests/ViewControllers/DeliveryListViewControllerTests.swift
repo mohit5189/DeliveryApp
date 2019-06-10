@@ -37,7 +37,7 @@ class DeliveryListViewControllerTests: QuickSpec {
                 context("and when server return valid list of response") {
                     beforeEach {
                         let dataManagerMock = DataManagerMock(responseType: .deliveryList)
-                        self.deliveryListVC.deliveryListViewModel.dataManagerAdapter = dataManagerMock
+                        self.deliveryListVC.deliveryListViewModel.dataManager = dataManagerMock
                         self.deliveryListVC.deliveryListViewModel.fetchDeliveries()
                     }
                     
@@ -82,7 +82,7 @@ class DeliveryListViewControllerTests: QuickSpec {
                     context("and when server return error on next page call") {
                         beforeEach {
                             let dataManagerMock = DataManagerMock(responseType: .errorFromServer)
-                            self.deliveryListVC.deliveryListViewModel.dataManagerAdapter = dataManagerMock
+                            self.deliveryListVC.deliveryListViewModel.dataManager = dataManagerMock
                             self.deliveryListVC.tableView(self.deliveryListVC.tableView, willDisplay: LoaderCell(), forRowAt: IndexPath(row: self.deliveryListVC.deliveryListViewModel.numberOfRows() - 1, section: 0))
                         }
                         
@@ -104,7 +104,7 @@ class DeliveryListViewControllerTests: QuickSpec {
                         let reachabilityMock = ReachabilityManagerMock(isReachable: false)
                         self.deliveryListVC = DeliveryListViewController.stub(reachabilityManager: reachabilityMock)
                         self.deliveryListVC.deliveryListViewModel.dbManager = dbManagerMock
-                        (self.deliveryListVC.deliveryListViewModel.dataManagerAdapter as! DataManager).dbManager = dbManagerMock
+                        (self.deliveryListVC.deliveryListViewModel.dataManager as! DataManager).dbManager = dbManagerMock
                         self.deliveryListVC.deliveryListViewModel.getDeliveryList()
                     }
                     
@@ -133,7 +133,7 @@ class DeliveryListViewControllerTests: QuickSpec {
                     context("and when internet available") {
                         beforeEach {
                             let dataManagerMock = DataManagerMock(responseType: .deliveryList)
-                            self.deliveryListVC.deliveryListViewModel.dataManagerAdapter = dataManagerMock
+                            self.deliveryListVC.deliveryListViewModel.dataManager = dataManagerMock
                             self.deliveryListVC.handlePullToRefresh(self.deliveryListVC.tableView)
                         }
                         
@@ -159,7 +159,7 @@ class DeliveryListViewControllerTests: QuickSpec {
                 context("and when server return empty array in response") {
                     beforeEach {
                         let dataManagerMock = DataManagerMock(responseType: .emptyDeliveryList)
-                        self.deliveryListVC.deliveryListViewModel.dataManagerAdapter = dataManagerMock
+                        self.deliveryListVC.deliveryListViewModel.dataManager = dataManagerMock
                         self.deliveryListVC.deliveryListViewModel.fetchDeliveries()
                     }
                     
