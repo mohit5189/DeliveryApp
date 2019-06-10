@@ -16,7 +16,7 @@ class DataManager: NSObject, DataManagerAdapter {
     let offsetJsonKey   = "offset"
     let limitJsonKey    = "limit"
     var dbManager: DBManagerAdapter = DBManager.sharedInstance
-    let deliveryAdapter = DeliveryListManager()
+    var deliveryAdapter: DeliveryListManagerAdapter = DeliveryListManager()
     
     func getEndPoint(offset: Int, limit: Int) -> String {
         let url = URLBuilder(baseUrl: Constants.baseURL, endPoint: Constants.endPoint)

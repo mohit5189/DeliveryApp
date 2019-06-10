@@ -32,27 +32,30 @@ class MapControllerViewModel: NSObject {
     
     // Model properties
     func getDeliveryText() -> String {
-        return String(format: "%@ at %@", selectedDelivery.description, selectedDelivery.location.address)
+        guard let desc = selectedDelivery.description, let address = selectedDelivery.location?.address else {
+            return ""
+        }
+        return String(format: "%@ at %@", desc, address)
     }
     
     func getImageUrl() -> URL? {
-        return URL(string: selectedDelivery.imageUrl)
+        return URL(string: selectedDelivery.imageUrl ?? "")
     }
     
     func getLatitude() -> Double {
-        return selectedDelivery.location.lat
+        return selectedDelivery.location?.lat ?? 0
     }
     
     func getLongitude() -> Double {
-        return selectedDelivery.location.lng
+        return selectedDelivery.location?.lng ?? 0
     }
     
     func getAddress() -> String {
-        return selectedDelivery.location.address
+        return selectedDelivery.location?.address ?? ""
     }
     
     func getDescription() -> String {
-        return selectedDelivery.description
+        return selectedDelivery.description ?? ""
     }
 
 }

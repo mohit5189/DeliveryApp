@@ -15,5 +15,6 @@ protocol DBManagerAdapter {
     func getDeliveries(offset: Int, limit: Int, onSuccess: @escaping ResponseBlock)
     func cleanCache()
     func allRecords() -> [Delivery]
+    func getDeliveryFromCache(deliveryID: Int) -> Delivery?
     func isCacheAvailable() -> Bool
 }

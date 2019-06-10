@@ -16,7 +16,6 @@
 		B7337C1522A8E12F001F853E /* ReachabilityManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */; };
 		B7337C1922A92227001F853E /* RouteAppTestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1822A92227001F853E /* RouteAppTestConstants.swift */; };
 		B7337C2622ACA6B8001F853E /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2322ACA6B8001F853E /* ReachabilityManager.swift */; };
-		B7337C2722ACA6B8001F853E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2422ACA6B8001F853E /* Reachability.swift */; };
 		B7337C2822ACA6B8001F853E /* ReachabilityAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2522ACA6B8001F853E /* ReachabilityAdapter.swift */; };
 		B7337C2B22ACA73B001F853E /* DBManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2A22ACA73B001F853E /* DBManagerAdapter.swift */; };
 		B7337C2D22ACA98C001F853E /* DeliveryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2C22ACA98C001F853E /* DeliveryModel.swift */; };
@@ -26,7 +25,16 @@
 		B7337C3722ACC692001F853E /* DeliveryListControllerViewModel+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3622ACC692001F853E /* DeliveryListControllerViewModel+Model.swift */; };
 		B7337C3A22ACCD9E001F853E /* DBManager+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3922ACCD9E001F853E /* DBManager+Stub.swift */; };
 		B7337C3C22ACDDCC001F853E /* DataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3B22ACDDCC001F853E /* DataManagerMock.swift */; };
-		B7337C3E22ADF740001F853E /* DBManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3D22ADF740001F853E /* DBManagerMock.swift */; };
+		B7337C4122AE2359001F853E /* deliveryList2.json in Resources */ = {isa = PBXBuildFile; fileRef = B7337C4022AE2359001F853E /* deliveryList2.json */; };
+		B7337C4222AE2FE3001F853E /* deliveryList2.json in Resources */ = {isa = PBXBuildFile; fileRef = B7337C4022AE2359001F853E /* deliveryList2.json */; };
+		B7337C4422AE30B0001F853E /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C4322AE30B0001F853E /* DataManagerTests.swift */; };
+		B7337C4722AE312B001F853E /* DataManager+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C4622AE312B001F853E /* DataManager+Stub.swift */; };
+		B7337C4922AE3193001F853E /* DBManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C4822AE3192001F853E /* DBManagerMock.swift */; };
+		B7337C4B22AE348B001F853E /* DeliveryListManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C4A22AE348B001F853E /* DeliveryListManagerMock.swift */; };
+		B7337C4E22AE34FB001F853E /* DeliveryListManagerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C4D22AE34FB001F853E /* DeliveryListManagerAdapter.swift */; };
+		B7337C5122AE3C3E001F853E /* DeliveryListManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C5022AE3C3E001F853E /* DeliveryListManagerTests.swift */; };
+		B7337C5322AE3D21001F853E /* deliveryList3.json in Resources */ = {isa = PBXBuildFile; fileRef = B7337C5222AE3D21001F853E /* deliveryList3.json */; };
+		B7337C5422AE3D21001F853E /* deliveryList3.json in Resources */ = {isa = PBXBuildFile; fileRef = B7337C5222AE3D21001F853E /* deliveryList3.json */; };
 		B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A89229AAC2E0015794D /* AppDelegate.swift */; };
 		B7467A8C229AAC2E0015794D /* DeliveryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */; };
 		B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7467A90229AAC2F0015794D /* Assets.xcassets */; };
@@ -89,7 +97,6 @@
 		B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManagerMock.swift; sourceTree = "<group>"; };
 		B7337C1822A92227001F853E /* RouteAppTestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAppTestConstants.swift; sourceTree = "<group>"; };
 		B7337C2322ACA6B8001F853E /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
-		B7337C2422ACA6B8001F853E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		B7337C2522ACA6B8001F853E /* ReachabilityAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityAdapter.swift; sourceTree = "<group>"; };
 		B7337C2A22ACA73B001F853E /* DBManagerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManagerAdapter.swift; sourceTree = "<group>"; };
 		B7337C2C22ACA98C001F853E /* DeliveryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryModel.swift; sourceTree = "<group>"; };
@@ -99,7 +106,14 @@
 		B7337C3622ACC692001F853E /* DeliveryListControllerViewModel+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListControllerViewModel+Model.swift"; sourceTree = "<group>"; };
 		B7337C3922ACCD9E001F853E /* DBManager+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBManager+Stub.swift"; sourceTree = "<group>"; };
 		B7337C3B22ACDDCC001F853E /* DataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerMock.swift; sourceTree = "<group>"; };
-		B7337C3D22ADF740001F853E /* DBManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManagerMock.swift; sourceTree = "<group>"; };
+		B7337C4022AE2359001F853E /* deliveryList2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deliveryList2.json; sourceTree = "<group>"; };
+		B7337C4322AE30B0001F853E /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
+		B7337C4622AE312B001F853E /* DataManager+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DataManager+Stub.swift"; sourceTree = "<group>"; };
+		B7337C4822AE3192001F853E /* DBManagerMock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBManagerMock.swift; sourceTree = "<group>"; };
+		B7337C4A22AE348B001F853E /* DeliveryListManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListManagerMock.swift; sourceTree = "<group>"; };
+		B7337C4D22AE34FB001F853E /* DeliveryListManagerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListManagerAdapter.swift; sourceTree = "<group>"; };
+		B7337C5022AE3C3E001F853E /* DeliveryListManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListManagerTests.swift; sourceTree = "<group>"; };
+		B7337C5222AE3D21001F853E /* deliveryList3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deliveryList3.json; sourceTree = "<group>"; };
 		B7467A86229AAC2E0015794D /* RouteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467A89229AAC2E0015794D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +241,7 @@
 		B7337C1B22ACA37C001F853E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C4C22AE34E3001F853E /* DeliveryListManager Protocol */,
 				B7337C1E22ACA3BD001F853E /* Data Manager Protocol */,
 				B7337C1D22ACA3B3001F853E /* Networking Protocol */,
 				B7337C1C22ACA388001F853E /* DB Protocol */,
@@ -280,7 +295,6 @@
 			isa = PBXGroup;
 			children = (
 				B7337C2322ACA6B8001F853E /* ReachabilityManager.swift */,
-				B7337C2422ACA6B8001F853E /* Reachability.swift */,
 				B7337C2522ACA6B8001F853E /* ReachabilityAdapter.swift */,
 			);
 			path = Reachability;
@@ -323,8 +337,33 @@
 		B7337C3F22AE1E5A001F853E /* Data Manager */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C4322AE30B0001F853E /* DataManagerTests.swift */,
 			);
 			path = "Data Manager";
+			sourceTree = "<group>";
+		};
+		B7337C4522AE311A001F853E /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C4622AE312B001F853E /* DataManager+Stub.swift */,
+			);
+			path = DataManager;
+			sourceTree = "<group>";
+		};
+		B7337C4C22AE34E3001F853E /* DeliveryListManager Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C4D22AE34FB001F853E /* DeliveryListManagerAdapter.swift */,
+			);
+			path = "DeliveryListManager Protocol";
+			sourceTree = "<group>";
+		};
+		B7337C4F22AE3B93001F853E /* DeliveryListManager */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C5022AE3C3E001F853E /* DeliveryListManagerTests.swift */,
+			);
+			path = DeliveryListManager;
 			sourceTree = "<group>";
 		};
 		B7467A7D229AAC2E0015794D = {
@@ -452,6 +491,7 @@
 		B7467AD8229ACBF50015794D /* Stub */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C4522AE311A001F853E /* DataManager */,
 				B7337C3822ACCD88001F853E /* DBManager */,
 				B7467ADB229ACC140015794D /* ViewControllers */,
 			);
@@ -479,6 +519,7 @@
 		B7467ADC229ACC400015794D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C4F22AE3B93001F853E /* DeliveryListManager */,
 				B7337C3F22AE1E5A001F853E /* Data Manager */,
 				B7467B2F229D6B2A0015794D /* DBManager */,
 				B7467AD9229ACBFC0015794D /* ViewControllers */,
@@ -525,6 +566,8 @@
 		B7467AF8229BF7B10015794D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C5222AE3D21001F853E /* deliveryList3.json */,
+				B7337C4022AE2359001F853E /* deliveryList2.json */,
 				B7467AF9229BF9860015794D /* deliveryList.json */,
 			);
 			path = Resources;
@@ -533,10 +576,11 @@
 		B7467AFB229BF9F40015794D /* Mock */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C4822AE3192001F853E /* DBManagerMock.swift */,
 				B7467AFC229BFA050015794D /* HTTPClientMock.swift */,
 				B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */,
 				B7337C3B22ACDDCC001F853E /* DataManagerMock.swift */,
-				B7337C3D22ADF740001F853E /* DBManagerMock.swift */,
+				B7337C4A22AE348B001F853E /* DeliveryListManagerMock.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -694,8 +738,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7337C4222AE2FE3001F853E /* deliveryList2.json in Resources */,
 				B7337C0D22A3B9AC001F853E /* Localizable.strings in Resources */,
 				B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */,
+				B7337C5322AE3D21001F853E /* deliveryList3.json in Resources */,
 				B7467AFE229BFCDC0015794D /* deliveryList.json in Resources */,
 				B7467AEF229BD0D50015794D /* LaunchScreen.storyboard in Resources */,
 			);
@@ -705,6 +751,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B7337C5422AE3D21001F853E /* deliveryList3.json in Resources */,
+				B7337C4122AE2359001F853E /* deliveryList2.json in Resources */,
 				B7467AFA229BF9860015794D /* deliveryList.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -860,6 +908,7 @@
 				B7337C2B22ACA73B001F853E /* DBManagerAdapter.swift in Sources */,
 				B7467ABB229AAD440015794D /* DeliveryCell.swift in Sources */,
 				B7467AF2229BF3BB0015794D /* DeliveryListViewController+UITableViewDataSource.swift in Sources */,
+				B7337C4E22AE34FB001F853E /* DeliveryListManagerAdapter.swift in Sources */,
 				B7337C2D22ACA98C001F853E /* DeliveryModel.swift in Sources */,
 				B7467AC9229AB2620015794D /* Constants.swift in Sources */,
 				B7467B29229D5BBB0015794D /* DBManager.swift in Sources */,
@@ -867,7 +916,6 @@
 				B7337C2822ACA6B8001F853E /* ReachabilityAdapter.swift in Sources */,
 				B7337C2622ACA6B8001F853E /* ReachabilityManager.swift in Sources */,
 				B7467ACC229AB4DB0015794D /* DeliveryListManager.swift in Sources */,
-				B7337C2722ACA6B8001F853E /* Reachability.swift in Sources */,
 				B7337C1122A3BE16001F853E /* LoaderCell.swift in Sources */,
 				B7337C3722ACC692001F853E /* DeliveryListControllerViewModel+Model.swift in Sources */,
 				B7467B0E229D597A0015794D /* MyDB.xcdatamodeld in Sources */,
@@ -879,16 +927,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7337BFD229F8ED0001F853E /* MapVireController+Stub.swift in Sources */,
-				B7337C3E22ADF740001F853E /* DBManagerMock.swift in Sources */,
+				B7337C4422AE30B0001F853E /* DataManagerTests.swift in Sources */,
+				B7337C4722AE312B001F853E /* DataManager+Stub.swift in Sources */,
 				B7337C3A22ACCD9E001F853E /* DBManager+Stub.swift in Sources */,
 				B7467B33229D6EBD0015794D /* MapViewControllerTests.swift in Sources */,
 				B7467AE1229ACD650015794D /* DeliveryListViewControllerTests.swift in Sources */,
 				B7467AE3229ACE620015794D /* DeliveryListViewController+Stub.swift in Sources */,
+				B7337C5122AE3C3E001F853E /* DeliveryListManagerTests.swift in Sources */,
+				B7337C4922AE3193001F853E /* DBManagerMock.swift in Sources */,
 				B7337C1922A92227001F853E /* RouteAppTestConstants.swift in Sources */,
 				B7467B31229D6B3D0015794D /* DBManagerTests.swift in Sources */,
 				B7467AFD229BFA050015794D /* HTTPClientMock.swift in Sources */,
 				B7337C3C22ACDDCC001F853E /* DataManagerMock.swift in Sources */,
 				B7337C1522A8E12F001F853E /* ReachabilityManagerMock.swift in Sources */,
+				B7337C4B22AE348B001F853E /* DeliveryListManagerMock.swift in Sources */,
 				B7467ADF229ACC6B0015794D /* JSONHelper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

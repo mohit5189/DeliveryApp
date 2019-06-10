@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DeliveryListManager: NSObject {
+class DeliveryListManager: NSObject, DeliveryListManagerAdapter {
     typealias CompletionBlock = (_ response: Any?, _ error: Error?) -> Void
     
     func fetchDeliveries(networkClient: NetworkClientAdapter, completion: @escaping CompletionBlock) {
@@ -17,8 +17,8 @@ class DeliveryListManager: NSObject {
                 let data = responseData {
                 do {
                     let decoder = JSONDecoder()
-                    let locations = try decoder.decode([DeliveryModel].self, from: data)
-                    completion(locations, nil)
+                    let deliveries = try decoder.decode([DeliveryModel].self, from: data)
+                    completion(deliveries, nil)
                 } catch {
                     completion(nil, NSError(domain: Constants.serverErrorDomain, code: Constants.serverErrorCode, userInfo: nil))
                 }

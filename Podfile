@@ -4,6 +4,7 @@ target 'RouteApp' do
   use_frameworks!
 pod 'SDWebImage', '~> 5.0'
 pod 'MBProgressHUD', '~> 1.1.0'
+pod 'ReachabilitySwift', '~> 4.3.1'
 def testing_pods
   pod 'Quick', '~> 2.1.0'
   pod 'Nimble', '~> 8.0.1'

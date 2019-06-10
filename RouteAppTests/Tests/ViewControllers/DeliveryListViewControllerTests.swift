@@ -99,7 +99,7 @@ class DeliveryListViewControllerTests: QuickSpec {
                 
                 context("and when internet and cache not available and app try to fetch deliveries") {
                     beforeEach {
-                        let dbManagerMock = DBManagerMock.sharedInstance
+                        let dbManagerMock = DBManager.stub()
                         dbManagerMock.cleanCache()
                         let reachabilityMock = ReachabilityManagerMock(isReachable: false)
                         self.deliveryListVC = DeliveryListViewController.stub(reachabilityManager: reachabilityMock)

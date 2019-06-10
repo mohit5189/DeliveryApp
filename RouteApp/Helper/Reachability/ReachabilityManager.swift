@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Reachability
 
 class ReachabilityManager: ReachabilityAdapter {
     var reachabilityManager: Reachability!
@@ -17,6 +18,6 @@ class ReachabilityManager: ReachabilityAdapter {
     }
 
     func isReachableToInternet() -> Bool {
-        return reachabilityManager.isReachable
+        return reachabilityManager.connection != .none
     }
 }

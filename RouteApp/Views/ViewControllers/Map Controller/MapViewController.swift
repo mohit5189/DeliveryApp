@@ -30,7 +30,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        title = LocalizeStrings.mapScreenTitle
+        title = LocalizeStrings.MapScreen.mapScreenTitle
         viewModel.getCurrentLocation()
         viewModel.currentLocationCompletionHandler = { [weak self] in
             self?.drawRoute()

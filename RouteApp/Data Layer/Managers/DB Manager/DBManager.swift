@@ -24,18 +24,15 @@ class DBManager: NSObject, DBManagerAdapter {
             var cacheDeliveryModel: Delivery? = getDeliveryFromCache(deliveryID: delivery.id)
             if cacheDeliveryModel == nil {
                 cacheDeliveryModel = NSManagedObject(entity: deliveryEntity, insertInto: managedObjectContext!) as? Delivery
+                cacheDeliveryModel?.location = NSManagedObject(entity: locationEntity, insertInto: managedObjectContext!) as? Location
             }
-            if let DeliveryModel = cacheDeliveryModel {
-                DeliveryModel.id = Int32(delivery.id)
-                DeliveryModel.desc = delivery.description
-                DeliveryModel.imageUrl = delivery.imageUrl
-                
-                let location: Location = NSManagedObject(entity: locationEntity, insertInto: managedObjectContext!) as! Location
-                location.lat = delivery.location.lat
-                location.long = delivery.location.lng
-                location.address = delivery.location.address
-                
-                DeliveryModel.location = location
+            if let deliveryModel = cacheDeliveryModel {
+                deliveryModel.id = Int32(delivery.id)
+                deliveryModel.desc = delivery.description
+                deliveryModel.imageUrl = delivery.imageUrl
+                deliveryModel.location?.setValue(delivery.location?.lat, forKey: "lat")
+                deliveryModel.location?.setValue(delivery.location?.lng, forKey: "long")
+                deliveryModel.location?.setValue(delivery.location?.address, forKey: "address")
                 
                 do {
                     try managedObjectContext?.save()
@@ -56,7 +53,8 @@ class DBManager: NSObject, DBManagerAdapter {
             if records.count > 0 {
                 return records[0]
             }
-        } catch {
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
         }
         return nil
     }
@@ -109,12 +107,12 @@ class DBManager: NSObject, DBManagerAdapter {
     }
     
     func allRecords() -> [Delivery] {
+        var records: [Delivery] = []
         do {
-            let records = try managedObjectContext!.fetch(NSFetchRequest<NSFetchRequestResult>(entityName: deliveryEntity)) as! [Delivery]
-            return records
+            records = try managedObjectContext!.fetch(NSFetchRequest<NSFetchRequestResult>(entityName: deliveryEntity)) as! [Delivery]
         } catch {
         }
-        return []
+        return records
     }
     
     func isCacheAvailable() -> Bool {

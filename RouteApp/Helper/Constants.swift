@@ -18,11 +18,19 @@ struct Constants {
 }
 
 struct LocalizeStrings {
-    static let genericErrorMessage = NSLocalizedString("networkErrorMessage", comment: "")
-    static let errorTitle = NSLocalizedString("networkErrorTitle", comment: "")
-    static let okButtonTitle = NSLocalizedString("okButtonTitle", comment: "")
-    static let deliveryListScreenTitle = NSLocalizedString("deliveryListTitle", comment: "")
-    static let mapScreenTitle = NSLocalizedString("mapScreenTitle", comment: "")
-    static let internetErrorMessage = NSLocalizedString("internetErrorMessage", comment: "")
-    static let currentLocationTitle = NSLocalizedString("currentLocationTitle", comment: "")
+    struct DeliveryListScreen {
+        static let deliveryListScreenTitle = NSLocalizedString("deliveryListTitle", comment: "")
+    }
+    struct ErrorMessage {
+        static let genericErrorMessage = NSLocalizedString("networkErrorMessage", comment: "")
+        static let errorTitle = NSLocalizedString("networkErrorTitle", comment: "")
+        static let internetErrorMessage = NSLocalizedString("internetErrorMessage", comment: "")
+    }
+    struct MapScreen {
+        static let mapScreenTitle = NSLocalizedString("mapScreenTitle", comment: "")
+        static let currentLocationTitle = NSLocalizedString("currentLocationTitle", comment: "")
+    }
+    struct CommonStrings {
+        static let okButtonTitle = NSLocalizedString("okButtonTitle", comment: "")
+    }
 }
