@@ -9,24 +9,13 @@
 import Foundation
 
 extension DeliveryListControllerViewModel {
-    func getEndPoint() -> String {
-        let url = URLBuilder(baseUrl: Constants.baseURL, endPoint: Constants.endPoint)
-        url.addQueryParameter(paramKey: offsetJsonKey, value: "\(offset)")
-        url.addQueryParameter(paramKey: limitJsonKey, value: "\(limit)")
-        return url.getFinalUrl()
-    }
-    
     func getDeliveryList() {
         guard reachabilityManager.isReachableToInternet() || dbManager.isCacheAvailable() else {
             loadMoreCompletionHandler()
             errorHandler(getInternetErrorObject())
             return
         }
-        fetchDeliveries(networkClient: getNetworkClient())
-    }
-    
-    func getNetworkClient() -> NetworkClientAdapter {
-        return HTTPClient(url: getEndPoint())
+        fetchDeliveries()
     }
     
     func makeNextPageCall() {
@@ -37,10 +26,9 @@ extension DeliveryListControllerViewModel {
         getDeliveryList()
     }
     
-    func fetchDeliveries(networkClient: NetworkClientAdapter) {
+    func fetchDeliveries() {
         handleProgressLoader(showLoader: true)
-        dataManagerAdapter = DataManager(networkAdapter: networkClient, dbAdapter: dbManager, offset: offset, limit: limit)
-        dataManagerAdapter?.fetchData { [weak self] deliveries, error in
+        dataManagerAdapter.fetchData(offset: offset, limit: limit) { [weak self] deliveries, error in
             guard let weakSelf = self else {
                 return
             }

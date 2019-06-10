@@ -10,7 +10,11 @@ import Foundation
 @testable import RouteApp
 
 class ReachabilityManagerMock: ReachabilityAdapter {
-    var isReachable = true
+    var isReachable: Bool!
+    
+    init(isReachable: Bool) {
+        self.isReachable = isReachable
+    }
     
     func isReachableToInternet() -> Bool {
         return isReachable

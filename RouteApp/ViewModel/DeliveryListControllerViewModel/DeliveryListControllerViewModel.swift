@@ -12,8 +12,6 @@ import MBProgressHUD
 class DeliveryListControllerViewModel: NSObject {
     var offset  = 0
     let limit   = 20
-    let offsetJsonKey   = "offset"
-    let limitJsonKey    = "limit"
     
     var completionHandler = {() -> () in }
     var errorHandler = {(error: Error) -> () in }
@@ -22,7 +20,7 @@ class DeliveryListControllerViewModel: NSObject {
     var loadMoreCompletionHandler = {() -> () in}
     var reachabilityManager: ReachabilityAdapter = ReachabilityManager.sharedInstance
     var dbManager: DBManagerAdapter = DBManager.sharedInstance
-    var dataManagerAdapter: DataManager? = nil
+    var dataManagerAdapter: DataManagerAdapter = DataManager()
     
     var isNextPageAvailable = true
     var isPerformingPullToRefresh = false {

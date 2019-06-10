@@ -106,7 +106,7 @@ class DeliveryListViewController: UIViewController {
     }
     
     @objc
-    private func handlePullToRefresh(_ sender: Any) {
+    func handlePullToRefresh(_ sender: Any) {
         deliveryListViewModel.handlePullToRefresh()
     }
 }

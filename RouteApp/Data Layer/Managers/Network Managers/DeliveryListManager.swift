@@ -9,14 +9,9 @@
 import Foundation
 
 class DeliveryListManager: NSObject {
-    var networkClient: NetworkClientAdapter
     typealias CompletionBlock = (_ response: Any?, _ error: Error?) -> Void
-
-    init(networkClient: NetworkClientAdapter) {
-        self.networkClient = networkClient
-    }
     
-    func fetchDeliveries(completion: @escaping CompletionBlock) {
+    func fetchDeliveries(networkClient: NetworkClientAdapter, completion: @escaping CompletionBlock) {
         networkClient.sendRequest { responseData, error in
             if error == nil,
                 let data = responseData {

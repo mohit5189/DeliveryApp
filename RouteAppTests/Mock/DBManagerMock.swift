@@ -1,19 +1,30 @@
-import UIKit
-import CoreData
+//
+//  DBManagerMock.swift
+//  RouteAppTests
+//
+//  Created by Mohit Kumar on 10/06/19.
+//  Copyright © 2019 Mohit Kumar. All rights reserved.
+//
 
-class DBManager: NSObject, DBManagerAdapter {
-    
-    static var sharedInstance = DBManager()
-    var managedObjectContext:NSManagedObjectContext?
+import Foundation
+@testable import RouteApp
+import CoreData
+import UIKit
+
+class DBManagerMock: NSObject, DBManagerAdapter {
+    static var sharedInstance = DBManagerMock()
+    var managedObjectContext: NSManagedObjectContext?
     let deliveryEntity = "Delivery"
     let locationEntity = "Location"
     
-    override fileprivate init() {
-        
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        managedObjectContext = appDelegate.persistentContainer.viewContext
+    fileprivate override init() {
+        super.init()
+        let mockManagedObjectModel = NSManagedObjectModel.mergedModel(from: nil)
+        let mockStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: mockManagedObjectModel!)
+        let _ = try? mockStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+        self.managedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        self.managedObjectContext!.persistentStoreCoordinator = mockStoreCoordinator
     }
-    
     
     func saveDeliveries(deliveries: [DeliveryModel]) -> Void {
         

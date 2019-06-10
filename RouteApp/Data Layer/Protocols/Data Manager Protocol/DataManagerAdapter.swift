@@ -9,5 +9,5 @@
 import Foundation
 protocol DataManagerAdapter {
     typealias CompletionBlock = (_ response: [DeliveryModel]?, _ error: Error?) -> Void
-    func fetchData(completionHandler: @escaping CompletionBlock)
+    func fetchData(offset: Int, limit: Int, completionHandler: @escaping CompletionBlock)
 }

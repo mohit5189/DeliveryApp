@@ -9,5 +9,5 @@
 import Foundation
 
 struct RouteAppTestConstants {
-    static let timeoutInterval: Double = 20
+    static let timeoutInterval: Double = 5
 }

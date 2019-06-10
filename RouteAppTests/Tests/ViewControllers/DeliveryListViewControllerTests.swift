@@ -18,11 +18,10 @@ class DeliveryListViewControllerTests: QuickSpec {
     
     override func spec() {
         describe("DestinationListViewController") {
+            beforeEach {
+                self.deliveryListVC = DeliveryListViewController.stub()
+            }
             context("when view is loaded") {
-                beforeEach {
-                    self.deliveryListVC = DeliveryListViewController.stub()
-                }
-                
                 context("and when setupUI is called") {
                     beforeEach {
                         self.deliveryListVC.setupUI()
@@ -32,40 +31,26 @@ class DeliveryListViewControllerTests: QuickSpec {
                         expect(self.deliveryListVC.tableView).notTo(beNil())
                     }
                 }
-                
-                context("and when making api call for destination list and server gives error and no cache found") {
+            }
+            
+            context("when making api call to get deliveries list") {
+                context("and when server return valid list of response") {
                     beforeEach {
-                        DBManager.sharedInstance.cleanCache()
-                        let networkClient = HTTPClientMock()
-                        networkClient.jsonData = nil
-                        networkClient.nextError = NSError(domain: "testError", code: 1, userInfo: nil)
-                        self.deliveryListVC.deliveryListViewModel.fetchDeliveries(networkClient: networkClient)
+                        let dataManagerMock = DataManagerMock(responseType: .deliveryList)
+                        self.deliveryListVC.deliveryListViewModel.dataManagerAdapter = dataManagerMock
+                        self.deliveryListVC.deliveryListViewModel.fetchDeliveries()
                     }
                     
-                    it("should display error alert") {
-                        expect(self.deliveryListVC.presentedViewController?.isKind(of: UIAlertController.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
+                    it("shold return valid list of deliveries") {
+                        expect(self.deliveryListVC.deliveryListViewModel.deliveryList.isEmpty).to(beFalse())
                     }
                     
-                    it("should not reset next page boolean variable") {
+                    it("should load all deliveries in tableView") {
+                        expect(self.deliveryListVC.tableView(self.deliveryListVC.tableView, numberOfRowsInSection: 0) == self.deliveryListVC.deliveryListViewModel.numberOfRows()).to(beTrue())
+                    }
+                    
+                    it("should keep pagination enabled") {
                         expect(self.deliveryListVC.deliveryListViewModel.isNextPageAvailable).to(beTrue())
-                    }
-                }
-                
-                context("and when making api call for destination list and server return valid list") {
-                    beforeEach {
-                        DBManager.sharedInstance.cleanCache()
-                        let networkClient = HTTPClientMock()
-                        networkClient.jsonData = JSONHelper.jsonFileToData(jsonName: "deliveryList")
-                        networkClient.nextError = nil
-                        self.deliveryListVC.deliveryListViewModel.fetchDeliveries(networkClient: networkClient)
-                    }
-                    
-                    it("should render data in tableview") {
-                        expect(self.deliveryListVC.tableView.numberOfRows(inSection: 0) == self.deliveryListVC.deliveryListViewModel.numberOfRows()).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
-                    }
-                    
-                    it("should display loader at bottom") {
-                        expect(self.deliveryListVC.tableView(self.deliveryListVC.tableView, cellForRowAt: IndexPath(row: self.deliveryListVC.deliveryListViewModel.numberOfRows() - 1, section: 0)).isKind(of: LoaderCell.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                     }
                     
                     context("and when stopSpinner method is called for loader cell") {
@@ -94,67 +79,44 @@ class DeliveryListViewControllerTests: QuickSpec {
                         }
                     }
                     
-                    
-                    context("and when network not available") {
+                    context("and when server return error on next page call") {
                         beforeEach {
-                            let reachabilityMock = ReachabilityManagerMock()
-                            reachabilityMock.isReachable = false
-                            self.deliveryListVC = DeliveryListViewController.stub(reachabilityManager: reachabilityMock)
-                            self.deliveryListVC.deliveryListViewModel.deliveryList = []
-                            self.deliveryListVC.deliveryListViewModel.offset = 0
-                            let networkClient = HTTPClientMock()
-                            networkClient.jsonData = JSONHelper.jsonFileToData(jsonName: "deliveryList")
-                            networkClient.nextError = nil
-                            self.deliveryListVC.deliveryListViewModel.fetchDeliveries(networkClient: networkClient)
+                            let dataManagerMock = DataManagerMock(responseType: .errorFromServer)
+                            self.deliveryListVC.deliveryListViewModel.dataManagerAdapter = dataManagerMock
+                            self.deliveryListVC.tableView(self.deliveryListVC.tableView, willDisplay: LoaderCell(), forRowAt: IndexPath(row: self.deliveryListVC.deliveryListViewModel.numberOfRows() - 1, section: 0))
                         }
                         
-                        it("should load 20 records from cache and should show loader at bottom") {
-                            expect(self.deliveryListVC.tableView.numberOfRows(inSection: 0) == 21).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
+                        it("should display error alert") {
+                            expect(self.deliveryListVC.presentedViewController?.isKind(of: UIAlertController.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
+                        }
+                        
+                        it("should have old record displayed") {
+                            expect(self.deliveryListVC.deliveryListViewModel.deliveryList.isEmpty).to(beFalse())
                         }
                     }
-                    
-                    context("and when table scroll to bottom and will displaycell method called for next page") {
-                        beforeEach {
-                            self.deliveryListVC.deliveryListViewModel.offset = 0
-                            self.deliveryListVC.tableView.delegate!.tableView!(self.deliveryListVC.tableView, willDisplay: DeliveryCell(), forRowAt: IndexPath(row: self.deliveryListVC.deliveryListViewModel.numberOfRows() - 1, section: 0))
-                        }
-                        
-                        it("should update offset value for next page api call") {
-                            expect(self.deliveryListVC.deliveryListViewModel.offset == self.deliveryListVC.deliveryListViewModel.deliveryList.count).to(beTrue())
-                        }
-                        
-                        context("and when next page api call return success") {
-                            beforeEach {
-                                let networkClient = HTTPClientMock()
-                                networkClient.jsonData = JSONHelper.jsonFileToData(jsonName: "deliveryList")
-                                networkClient.nextError = nil
-                                self.deliveryListVC.deliveryListViewModel.fetchDeliveries(networkClient: networkClient)
-                            }
-                            
-                            it("should append data in array and should return numberOfRows accordingly") {
-                                expect(self.deliveryListVC.deliveryListViewModel.numberOfRows() == 41).to(beTrue())
-                            }
-                        }
+
+                }
+                
+                context("and when internet and cache not available and app try to fetch deliveries") {
+                    beforeEach {
+                        let dbManagerMock = DBManagerMock.sharedInstance
+                        dbManagerMock.cleanCache()
+                        let reachabilityMock = ReachabilityManagerMock(isReachable: false)
+                        self.deliveryListVC = DeliveryListViewController.stub(reachabilityManager: reachabilityMock)
+                        self.deliveryListVC.deliveryListViewModel.dbManager = dbManagerMock
+                        (self.deliveryListVC.deliveryListViewModel.dataManagerAdapter as! DataManager).dbManager = dbManagerMock
+                        self.deliveryListVC.deliveryListViewModel.getDeliveryList()
                     }
                     
-                    context("and when tapped on any address") {
-                        beforeEach {
-                            self.deliveryListVC.tableView!.delegate?.tableView!(self.deliveryListVC.tableView, didSelectRowAt: IndexPath (row: 1, section: 0))
-                        }
-                        
-                        it("should open map screen with selected location parameter") {
-                            expect(self.deliveryListVC.navigationController?.topViewController!.isKind(of: MapViewController.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
-                            
-                            expect((self.deliveryListVC.navigationController!.topViewController! as! MapViewController).viewModel.getDescription() == self.deliveryListVC.deliveryListViewModel.getDelivery(index: 1).description).to(beTrue())
-                        }
+                    it("should display error alert") {
+                        expect(self.deliveryListVC.presentedViewController?.isKind(of: UIAlertController.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                     }
                 }
                 
-                context("and when perform pull to refresh") {
-                    context("and when internet if off") {
+                context("and when calling view model method for pull to refresh action") {
+                    context("and when internet not available") {
                         beforeEach {
-                            let reachabilityMock = ReachabilityManagerMock()
-                            reachabilityMock.isReachable = false
+                            let reachabilityMock = ReachabilityManagerMock(isReachable: false)
                             self.deliveryListVC = DeliveryListViewController.stub(reachabilityManager: reachabilityMock)
                             self.deliveryListVC.deliveryListViewModel.handlePullToRefresh()
                         }
@@ -163,10 +125,57 @@ class DeliveryListViewControllerTests: QuickSpec {
                             expect(self.deliveryListVC.presentedViewController?.isKind(of: UIAlertController.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                         }
                         
-                        it("should set isPerformingPullToRefresh to false") {
+                        it("should make false to pullToRefresh boolean variable") {
                             expect(self.deliveryListVC.deliveryListViewModel.isPerformingPullToRefresh).to(beFalse())
                         }
                     }
+                    
+                    context("and when internet available") {
+                        beforeEach {
+                            let dataManagerMock = DataManagerMock(responseType: .deliveryList)
+                            self.deliveryListVC.deliveryListViewModel.dataManagerAdapter = dataManagerMock
+                            self.deliveryListVC.handlePullToRefresh(self.deliveryListVC.tableView)
+                        }
+                        
+                        it("should load number of records and loader at bottom") {
+                            expect(self.deliveryListVC.tableView.numberOfRows(inSection: 0) == 21).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
+                        }
+                        
+                        context("and when tap on any delivery in list") {
+                            beforeEach {
+                                self.deliveryListVC.tableView(self.deliveryListVC.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+                            }
+                            
+                            it("should navigate to Map controller with view model object") {
+                                expect(self.deliveryListVC.navigationController?.topViewController!.isKind(of: MapViewController.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
+                                
+                                expect((self.deliveryListVC.navigationController!.topViewController! as! MapViewController).viewModel.getDescription() == self.deliveryListVC.deliveryListViewModel.getDelivery(index: 0).description).to(beTrue())
+                            }
+                            
+                        }
+                    }
+                }
+                
+                context("and when server return empty array in response") {
+                    beforeEach {
+                        let dataManagerMock = DataManagerMock(responseType: .emptyDeliveryList)
+                        self.deliveryListVC.deliveryListViewModel.dataManagerAdapter = dataManagerMock
+                        self.deliveryListVC.deliveryListViewModel.fetchDeliveries()
+                    }
+                    
+                    it("should disabled pagination") {
+                        expect(self.deliveryListVC.deliveryListViewModel.isNextPageAvailable).to(beFalse())
+                    }
+                }
+            }
+            
+            context("when trying to get delivery from viewModel and delivery index not found") {
+                it("should return blank text if trying for text") {
+                    expect(self.deliveryListVC.deliveryListViewModel.getDeliveryText(index: 100).isEmpty).to(beTrue())
+                }
+                
+                it("should return nil if trying for image URL") {
+                    expect(self.deliveryListVC.deliveryListViewModel.getImageUrl(index: 100)).to(beNil())
                 }
             }
         }

@@ -24,6 +24,9 @@
 		B7337C3122ACBCC1001F853E /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3022ACBCC1001F853E /* DataManager.swift */; };
 		B7337C3522ACC612001F853E /* DeliveryListControllerViewModel+Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3422ACC612001F853E /* DeliveryListControllerViewModel+Networking.swift */; };
 		B7337C3722ACC692001F853E /* DeliveryListControllerViewModel+Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3622ACC692001F853E /* DeliveryListControllerViewModel+Model.swift */; };
+		B7337C3A22ACCD9E001F853E /* DBManager+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3922ACCD9E001F853E /* DBManager+Stub.swift */; };
+		B7337C3C22ACDDCC001F853E /* DataManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3B22ACDDCC001F853E /* DataManagerMock.swift */; };
+		B7337C3E22ADF740001F853E /* DBManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C3D22ADF740001F853E /* DBManagerMock.swift */; };
 		B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A89229AAC2E0015794D /* AppDelegate.swift */; };
 		B7467A8C229AAC2E0015794D /* DeliveryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */; };
 		B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7467A90229AAC2F0015794D /* Assets.xcassets */; };
@@ -38,7 +41,7 @@
 		B7467AD7229AC3EB0015794D /* LocationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AD6229AC3EB0015794D /* LocationHelper.swift */; };
 		B7467ADF229ACC6B0015794D /* JSONHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ADE229ACC6B0015794D /* JSONHelper.swift */; };
 		B7467AE1229ACD650015794D /* DeliveryListViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AE0229ACD650015794D /* DeliveryListViewControllerTests.swift */; };
-		B7467AE3229ACE620015794D /* DeliveryListViewControllerTests+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AE2229ACE620015794D /* DeliveryListViewControllerTests+Stub.swift */; };
+		B7467AE3229ACE620015794D /* DeliveryListViewController+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AE2229ACE620015794D /* DeliveryListViewController+Stub.swift */; };
 		B7467AE6229BB6690015794D /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AE5229BB6690015794D /* URLBuilder.swift */; };
 		B7467AEF229BD0D50015794D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7467AEE229BD0D50015794D /* LaunchScreen.storyboard */; };
 		B7467AF2229BF3BB0015794D /* DeliveryListViewController+UITableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AF1229BF3BB0015794D /* DeliveryListViewController+UITableViewDataSource.swift */; };
@@ -94,6 +97,9 @@
 		B7337C3022ACBCC1001F853E /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		B7337C3422ACC612001F853E /* DeliveryListControllerViewModel+Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListControllerViewModel+Networking.swift"; sourceTree = "<group>"; };
 		B7337C3622ACC692001F853E /* DeliveryListControllerViewModel+Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListControllerViewModel+Model.swift"; sourceTree = "<group>"; };
+		B7337C3922ACCD9E001F853E /* DBManager+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DBManager+Stub.swift"; sourceTree = "<group>"; };
+		B7337C3B22ACDDCC001F853E /* DataManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerMock.swift; sourceTree = "<group>"; };
+		B7337C3D22ADF740001F853E /* DBManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManagerMock.swift; sourceTree = "<group>"; };
 		B7467A86229AAC2E0015794D /* RouteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467A89229AAC2E0015794D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewController.swift; sourceTree = "<group>"; };
@@ -114,7 +120,7 @@
 		B7467AD6229AC3EB0015794D /* LocationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationHelper.swift; sourceTree = "<group>"; };
 		B7467ADE229ACC6B0015794D /* JSONHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONHelper.swift; sourceTree = "<group>"; };
 		B7467AE0229ACD650015794D /* DeliveryListViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewControllerTests.swift; sourceTree = "<group>"; };
-		B7467AE2229ACE620015794D /* DeliveryListViewControllerTests+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListViewControllerTests+Stub.swift"; sourceTree = "<group>"; };
+		B7467AE2229ACE620015794D /* DeliveryListViewController+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListViewController+Stub.swift"; sourceTree = "<group>"; };
 		B7467AE5229BB6690015794D /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
 		B7467AEE229BD0D50015794D /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7467AF1229BF3BB0015794D /* DeliveryListViewController+UITableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListViewController+UITableViewDataSource.swift"; sourceTree = "<group>"; };
@@ -306,6 +312,21 @@
 			path = MapControllerViewModel;
 			sourceTree = "<group>";
 		};
+		B7337C3822ACCD88001F853E /* DBManager */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C3922ACCD9E001F853E /* DBManager+Stub.swift */,
+			);
+			path = DBManager;
+			sourceTree = "<group>";
+		};
+		B7337C3F22AE1E5A001F853E /* Data Manager */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Data Manager";
+			sourceTree = "<group>";
+		};
 		B7467A7D229AAC2E0015794D = {
 			isa = PBXGroup;
 			children = (
@@ -431,6 +452,7 @@
 		B7467AD8229ACBF50015794D /* Stub */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C3822ACCD88001F853E /* DBManager */,
 				B7467ADB229ACC140015794D /* ViewControllers */,
 			);
 			path = Stub;
@@ -448,7 +470,7 @@
 		B7467ADB229ACC140015794D /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				B7467AE2229ACE620015794D /* DeliveryListViewControllerTests+Stub.swift */,
+				B7467AE2229ACE620015794D /* DeliveryListViewController+Stub.swift */,
 				B7337BFC229F8ED0001F853E /* MapVireController+Stub.swift */,
 			);
 			path = ViewControllers;
@@ -457,6 +479,7 @@
 		B7467ADC229ACC400015794D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C3F22AE1E5A001F853E /* Data Manager */,
 				B7467B2F229D6B2A0015794D /* DBManager */,
 				B7467AD9229ACBFC0015794D /* ViewControllers */,
 			);
@@ -512,6 +535,8 @@
 			children = (
 				B7467AFC229BFA050015794D /* HTTPClientMock.swift */,
 				B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */,
+				B7337C3B22ACDDCC001F853E /* DataManagerMock.swift */,
+				B7337C3D22ADF740001F853E /* DBManagerMock.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -854,12 +879,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7337BFD229F8ED0001F853E /* MapVireController+Stub.swift in Sources */,
+				B7337C3E22ADF740001F853E /* DBManagerMock.swift in Sources */,
+				B7337C3A22ACCD9E001F853E /* DBManager+Stub.swift in Sources */,
 				B7467B33229D6EBD0015794D /* MapViewControllerTests.swift in Sources */,
 				B7467AE1229ACD650015794D /* DeliveryListViewControllerTests.swift in Sources */,
-				B7467AE3229ACE620015794D /* DeliveryListViewControllerTests+Stub.swift in Sources */,
+				B7467AE3229ACE620015794D /* DeliveryListViewController+Stub.swift in Sources */,
 				B7337C1922A92227001F853E /* RouteAppTestConstants.swift in Sources */,
 				B7467B31229D6B3D0015794D /* DBManagerTests.swift in Sources */,
 				B7467AFD229BFA050015794D /* HTTPClientMock.swift in Sources */,
+				B7337C3C22ACDDCC001F853E /* DataManagerMock.swift in Sources */,
 				B7337C1522A8E12F001F853E /* ReachabilityManagerMock.swift in Sources */,
 				B7467ADF229ACC6B0015794D /* JSONHelper.swift in Sources */,
 			);

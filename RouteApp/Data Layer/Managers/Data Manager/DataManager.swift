@@ -11,48 +11,52 @@ import Foundation
 class DataManager: NSObject, DataManagerAdapter {
     var deliveryList: [DeliveryModel] = []
     var networkAdapter: NetworkClientAdapter!
-    var dbAdapter: DBManagerAdapter!
     var reachabilityManager: ReachabilityAdapter = ReachabilityManager.sharedInstance
     var completionHandler: CompletionBlock!
-    var offset, limit: Int!
+    let offsetJsonKey   = "offset"
+    let limitJsonKey    = "limit"
+    var dbManager: DBManagerAdapter = DBManager.sharedInstance
+    let deliveryAdapter = DeliveryListManager()
     
-    init(networkAdapter: NetworkClientAdapter, dbAdapter: DBManagerAdapter, offset: Int, limit: Int) {
-        super.init()
-        self.dbAdapter = dbAdapter
-        self.networkAdapter = networkAdapter
-        self.offset = offset
-        self.limit = limit
+    func getEndPoint(offset: Int, limit: Int) -> String {
+        let url = URLBuilder(baseUrl: Constants.baseURL, endPoint: Constants.endPoint)
+        url.addQueryParameter(paramKey: offsetJsonKey, value: "\(offset)")
+        url.addQueryParameter(paramKey: limitJsonKey, value: "\(limit)")
+        return url.getFinalUrl()
     }
     
-    func fetchData(completionHandler: @escaping CompletionBlock) {
+    func getNetworkClient(offset: Int, limit: Int) -> NetworkClientAdapter {
+        return HTTPClient(url: getEndPoint(offset: offset, limit: limit))
+    }
+
+    func fetchData(offset: Int, limit: Int, completionHandler: @escaping CompletionBlock) {
         self.completionHandler = completionHandler
         
         guard reachabilityManager.isReachableToInternet() else {
-            handleListFromCache()
+            handleListFromCache(offset: offset, limit: limit)
             return
         }
         
-        let deliveryAdapter = DeliveryListManager(networkClient: networkAdapter)
-        deliveryAdapter.fetchDeliveries { [weak self] response, error in
+        deliveryAdapter.fetchDeliveries(networkClient: getNetworkClient(offset: offset, limit: limit)) { [weak self] response, error in
             guard let weakSelf = self else {
                 return
             }
             if error == nil, let deliveries = response as? [DeliveryModel] {
                 DispatchQueue.main.async {
-                    weakSelf.dbAdapter.saveDeliveries(deliveries: deliveries) // save deliveries in DB
+                    weakSelf.dbManager.saveDeliveries(deliveries: deliveries) // save deliveries in DB
                 }
                 completionHandler(deliveries, nil)
             } else {
-                weakSelf.handleListFromCache(serverError: error)
+                weakSelf.handleListFromCache(offset: offset, limit: limit, serverError: error)
             }
         }
     }
     
     // MARK: Cache handling
-    func handleListFromCache(serverError: Error? = nil) {
+    func handleListFromCache(offset: Int, limit: Int, serverError: Error? = nil) {
         DispatchQueue.main.async { [weak self] in
             guard let weakSelf = self else { return }
-            weakSelf.dbAdapter.getDeliveries(offset: weakSelf.offset, limit: weakSelf.limit) { [weak self] deliveries, dbError in
+            weakSelf.dbManager.getDeliveries(offset: offset, limit: limit) { [weak self] deliveries, dbError in
                 guard let weakSelf = self else { return }
                 if dbError == nil, let deliveries = deliveries, deliveries.count > 0 {
                     weakSelf.completionHandler(deliveries, nil)

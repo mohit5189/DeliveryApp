@@ -14,11 +14,11 @@ import Quick
 
 class DBManagerTests: QuickSpec {
     var dbManager: DBManagerAdapter!
-    
+    let deliveryListJson = "deliveryList"
     override func spec() {
         describe("DBManager") {
             beforeEach {
-                self.dbManager = DBManager.sharedInstance
+                self.dbManager = DBManager.stub()
             }
             
             context("When saving records") {
@@ -26,7 +26,7 @@ class DBManagerTests: QuickSpec {
                     self.dbManager.cleanCache()
                     do {
                         let decoder = JSONDecoder()
-                        let deliveries = try decoder.decode([DeliveryModel].self, from: JSONHelper.jsonFileToData(jsonName: "deliveryList")!)
+                        let deliveries = try decoder.decode([DeliveryModel].self, from: JSONHelper.jsonFileToData(jsonName: self.deliveryListJson)!)
                         self.dbManager.saveDeliveries(deliveries: deliveries)
                     } catch {
                         fail()
@@ -41,7 +41,7 @@ class DBManagerTests: QuickSpec {
                     beforeEach {
                         do {
                             let decoder = JSONDecoder()
-                            let deliveries = try decoder.decode([DeliveryModel].self, from: JSONHelper.jsonFileToData(jsonName: "deliveryList")!)
+                            let deliveries = try decoder.decode([DeliveryModel].self, from: JSONHelper.jsonFileToData(jsonName: self.deliveryListJson)!)
                             self.dbManager.saveDeliveries(deliveries: deliveries)
                         } catch {
                             fail()
@@ -52,17 +52,16 @@ class DBManagerTests: QuickSpec {
                         expect(self.dbManager.allRecords().count == 20).to(beTrue())
                     }
                 }
-            }
-            
-            context("when fetching item with offset and limit") {
-                it("should return proper list as required") {
-                    waitUntil(action: { done in
-                        self.dbManager.getDeliveries(offset: 0, limit: 5, onSuccess: { destinations, error in
-                            expect(destinations?.count == 5).to(beTrue())
+                
+                context("and when fetching item with offset and limit") {
+                    it("should return proper list as required") {
+                        waitUntil(action: { done in
+                            self.dbManager.getDeliveries(offset: 0, limit: 5, onSuccess: { destinations, error in
+                                expect(destinations?.count == 5).to(beTrue())
+                                done()
+                            })
                         })
-                        
-                        done()
-                    })
+                    }
                 }
             }
         }
