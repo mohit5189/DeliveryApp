@@ -17,24 +17,12 @@ enum ResponseType {
     func handleRequest(completionHandler: @escaping DataManagerProtocol.CompletionBlock) {
         switch self {
         case .deliveryList:
-            completionHandler(getDeliveries(), nil)
+            completionHandler(JSONHelper.getDeliveries(), nil)
         case .emptyDeliveryList:
             completionHandler([], nil)
         case .errorFromServer:
             completionHandler([], NSError(domain: Constants.serverErrorDomain, code: Constants.serverErrorCode, userInfo: nil))
         }
-    }
-    
-    fileprivate func getDeliveries() -> [DeliveryModel] {
-        let data = JSONHelper.jsonFileToData(jsonName: "deliveryList")
-        do {
-            let decoder = JSONDecoder()
-            let deliveries = try decoder.decode([DeliveryModel].self, from: data!)
-            return deliveries
-        } catch {
-            
-        }
-        return []
     }
 }
 

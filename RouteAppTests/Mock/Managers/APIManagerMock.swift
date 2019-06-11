@@ -16,22 +16,10 @@ enum DeliveryListResponseType {
     func handleRequest(completion: @escaping APIManagerProtocol.CompletionBlock) {
         switch self {
         case .deliveriesList:
-            completion(getDeliveries(), nil)
+            completion(JSONHelper.getDeliveries(), nil)
         case .errorFromServer:
             completion([], NSError(domain: Constants.serverErrorDomain, code: Constants.serverErrorCode, userInfo: nil))
         }
-    }
-    
-    fileprivate func getDeliveries() -> [DeliveryModel] {
-        let data = JSONHelper.jsonFileToData(jsonName: "deliveryList")
-        do {
-            let decoder = JSONDecoder()
-            let deliveries = try decoder.decode([DeliveryModel].self, from: data!)
-            return deliveries
-        } catch {
-            
-        }
-        return []
     }
 }
 

@@ -64,7 +64,7 @@ class DeliveryCell: UITableViewCell {
     }
     
     
-    func configureUI(deliveryModel: DeliveryListControllerViewModel, indexPath: IndexPath) {
+    func configureUI(deliveryModel: DeliveryListViewModelProtocol, indexPath: IndexPath) {
         deliveryLabel.text = deliveryModel.getDeliveryText(index: indexPath.row)
         deliveryImageView.sd_setImage(with: deliveryModel.getImageUrl(index: indexPath.row), placeholderImage: nil)
     }

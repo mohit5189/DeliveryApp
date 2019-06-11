@@ -35,10 +35,16 @@
 		B7337C5122AE3C3E001F853E /* APIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C5022AE3C3E001F853E /* APIManagerTests.swift */; };
 		B7337C5322AE3D21001F853E /* deliveryList3.json in Resources */ = {isa = PBXBuildFile; fileRef = B7337C5222AE3D21001F853E /* deliveryList3.json */; };
 		B7337C5422AE3D21001F853E /* deliveryList3.json in Resources */ = {isa = PBXBuildFile; fileRef = B7337C5222AE3D21001F853E /* deliveryList3.json */; };
+		B7337C5822AE6814001F853E /* HTTPClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C5722AE6814001F853E /* HTTPClientTests.swift */; };
+		B7337C5A22AE6861001F853E /* URLSessionMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C5922AE6861001F853E /* URLSessionMock.swift */; };
+		B7337C5C22AE6D4F001F853E /* DeliveryListControllerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C5B22AE6D4F001F853E /* DeliveryListControllerViewModelTests.swift */; };
+		B7337C5F22AE6DBD001F853E /* DeliveryListControllerViewModel+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C5E22AE6DBD001F853E /* DeliveryListControllerViewModel+Stub.swift */; };
+		B7337C6522AE7D20001F853E /* DeliveryListControllerViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C6422AE7D20001F853E /* DeliveryListControllerViewModelMock.swift */; };
+		B7337C6E22AF504A001F853E /* DeliveryListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C6D22AF504A001F853E /* DeliveryListViewModelProtocol.swift */; };
+		B7337C7122AF60AC001F853E /* MapControllerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C6F22AF6099001F853E /* MapControllerViewModelTests.swift */; };
 		B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A89229AAC2E0015794D /* AppDelegate.swift */; };
 		B7467A8C229AAC2E0015794D /* DeliveryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */; };
 		B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7467A90229AAC2F0015794D /* Assets.xcassets */; };
-		B7467AAA229AAC2F0015794D /* RouteAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AA9229AAC2F0015794D /* RouteAppUITests.swift */; };
 		B7467AB9229AAD2C0015794D /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467AB8229AAD2C0015794D /* MapViewController.swift */; };
 		B7467ABB229AAD440015794D /* DeliveryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ABA229AAD440015794D /* DeliveryCell.swift */; };
 		B7467ABE229AAF780015794D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467ABD229AAF780015794D /* HTTPClient.swift */; };
@@ -114,6 +120,13 @@
 		B7337C4D22AE34FB001F853E /* APIManagerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerProtocol.swift; sourceTree = "<group>"; };
 		B7337C5022AE3C3E001F853E /* APIManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManagerTests.swift; sourceTree = "<group>"; };
 		B7337C5222AE3D21001F853E /* deliveryList3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deliveryList3.json; sourceTree = "<group>"; };
+		B7337C5722AE6814001F853E /* HTTPClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClientTests.swift; sourceTree = "<group>"; };
+		B7337C5922AE6861001F853E /* URLSessionMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionMock.swift; sourceTree = "<group>"; };
+		B7337C5B22AE6D4F001F853E /* DeliveryListControllerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListControllerViewModelTests.swift; sourceTree = "<group>"; };
+		B7337C5E22AE6DBD001F853E /* DeliveryListControllerViewModel+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DeliveryListControllerViewModel+Stub.swift"; sourceTree = "<group>"; };
+		B7337C6422AE7D20001F853E /* DeliveryListControllerViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListControllerViewModelMock.swift; sourceTree = "<group>"; };
+		B7337C6D22AF504A001F853E /* DeliveryListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewModelProtocol.swift; sourceTree = "<group>"; };
+		B7337C6F22AF6099001F853E /* MapControllerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapControllerViewModelTests.swift; sourceTree = "<group>"; };
 		B7467A86229AAC2E0015794D /* RouteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467A89229AAC2E0015794D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewController.swift; sourceTree = "<group>"; };
@@ -122,8 +135,6 @@
 		B7467A9A229AAC2F0015794D /* RouteAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouteAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467AA0229AAC2F0015794D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7467AA5229AAC2F0015794D /* RouteAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RouteAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B7467AA9229AAC2F0015794D /* RouteAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAppUITests.swift; sourceTree = "<group>"; };
-		B7467AAB229AAC2F0015794D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B7467AB8229AAD2C0015794D /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B7467ABA229AAD440015794D /* DeliveryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryCell.swift; sourceTree = "<group>"; };
 		B7467ABD229AAF780015794D /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
@@ -241,7 +252,8 @@
 		B7337C1B22ACA37C001F853E /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
-				B7337C4C22AE34E3001F853E /* DeliveryListManager Protocol */,
+				B7337C6C22AF5018001F853E /* View Model Protocols */,
+				B7337C4C22AE34E3001F853E /* APIManager Protocol */,
 				B7337C1E22ACA3BD001F853E /* Data Manager Protocol */,
 				B7337C1D22ACA3B3001F853E /* Networking Protocol */,
 				B7337C1C22ACA388001F853E /* DB Protocol */,
@@ -350,12 +362,12 @@
 			path = DataManager;
 			sourceTree = "<group>";
 		};
-		B7337C4C22AE34E3001F853E /* DeliveryListManager Protocol */ = {
+		B7337C4C22AE34E3001F853E /* APIManager Protocol */ = {
 			isa = PBXGroup;
 			children = (
 				B7337C4D22AE34FB001F853E /* APIManagerProtocol.swift */,
 			);
-			path = "DeliveryListManager Protocol";
+			path = "APIManager Protocol";
 			sourceTree = "<group>";
 		};
 		B7337C4F22AE3B93001F853E /* API Manager */ = {
@@ -366,12 +378,79 @@
 			path = "API Manager";
 			sourceTree = "<group>";
 		};
+		B7337C5522AE6795001F853E /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C6F22AF6099001F853E /* MapControllerViewModelTests.swift */,
+				B7337C5B22AE6D4F001F853E /* DeliveryListControllerViewModelTests.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
+		B7337C5622AE6801001F853E /* HTTP Client */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C5722AE6814001F853E /* HTTPClientTests.swift */,
+			);
+			path = "HTTP Client";
+			sourceTree = "<group>";
+		};
+		B7337C5D22AE6DA7001F853E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C5E22AE6DBD001F853E /* DeliveryListControllerViewModel+Stub.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B7337C6022AE7CDA001F853E /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C4822AE3192001F853E /* DBManagerMock.swift */,
+				B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */,
+				B7337C3B22ACDDCC001F853E /* DataManagerMock.swift */,
+				B7337C4A22AE348B001F853E /* APIManagerMock.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		B7337C6122AE7CEC001F853E /* HTTPClient */ = {
+			isa = PBXGroup;
+			children = (
+				B7467AFC229BFA050015794D /* HTTPClientMock.swift */,
+			);
+			path = HTTPClient;
+			sourceTree = "<group>";
+		};
+		B7337C6222AE7CF8001F853E /* URL Session */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C5922AE6861001F853E /* URLSessionMock.swift */,
+			);
+			path = "URL Session";
+			sourceTree = "<group>";
+		};
+		B7337C6322AE7D03001F853E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C6422AE7D20001F853E /* DeliveryListControllerViewModelMock.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		B7337C6C22AF5018001F853E /* View Model Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C6D22AF504A001F853E /* DeliveryListViewModelProtocol.swift */,
+			);
+			path = "View Model Protocols";
+			sourceTree = "<group>";
+		};
 		B7467A7D229AAC2E0015794D = {
 			isa = PBXGroup;
 			children = (
 				B7467A88229AAC2E0015794D /* RouteApp */,
 				B7467A9D229AAC2F0015794D /* RouteAppTests */,
-				B7467AA8229AAC2F0015794D /* RouteAppUITests */,
 				B7467A87229AAC2E0015794D /* Products */,
 				85651F16FC99AE3CF844368B /* Pods */,
 				D09BFF2B4A2CC6A5FF087261 /* Frameworks */,
@@ -414,15 +493,6 @@
 				B7467AA0229AAC2F0015794D /* Info.plist */,
 			);
 			path = RouteAppTests;
-			sourceTree = "<group>";
-		};
-		B7467AA8229AAC2F0015794D /* RouteAppUITests */ = {
-			isa = PBXGroup;
-			children = (
-				B7467AA9229AAC2F0015794D /* RouteAppUITests.swift */,
-				B7467AAB229AAC2F0015794D /* Info.plist */,
-			);
-			path = RouteAppUITests;
 			sourceTree = "<group>";
 		};
 		B7467AB7229AAD0E0015794D /* Cells */ = {
@@ -491,6 +561,7 @@
 		B7467AD8229ACBF50015794D /* Stub */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C5D22AE6DA7001F853E /* ViewModel */,
 				B7337C4522AE311A001F853E /* DataManager */,
 				B7337C3822ACCD88001F853E /* DBManager */,
 				B7467ADB229ACC140015794D /* ViewControllers */,
@@ -519,6 +590,8 @@
 		B7467ADC229ACC400015794D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C5622AE6801001F853E /* HTTP Client */,
+				B7337C5522AE6795001F853E /* View Models */,
 				B7337C4F22AE3B93001F853E /* API Manager */,
 				B7337C3F22AE1E5A001F853E /* Data Manager */,
 				B7467B2F229D6B2A0015794D /* DBManager */,
@@ -576,11 +649,10 @@
 		B7467AFB229BF9F40015794D /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				B7337C4822AE3192001F853E /* DBManagerMock.swift */,
-				B7467AFC229BFA050015794D /* HTTPClientMock.swift */,
-				B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */,
-				B7337C3B22ACDDCC001F853E /* DataManagerMock.swift */,
-				B7337C4A22AE348B001F853E /* APIManagerMock.swift */,
+				B7337C6322AE7D03001F853E /* ViewModels */,
+				B7337C6222AE7CF8001F853E /* URL Session */,
+				B7337C6122AE7CEC001F853E /* HTTPClient */,
+				B7337C6022AE7CDA001F853E /* Managers */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -893,6 +965,7 @@
 			files = (
 				B7467ACE229AB66F0015794D /* HTTPClientProtocol.swift in Sources */,
 				B7467B06229D3B150015794D /* MapControllerViewModel.swift in Sources */,
+				B7337C6E22AF504A001F853E /* DeliveryListViewModelProtocol.swift in Sources */,
 				B7467AD7229AC3EB0015794D /* LocationHelper.swift in Sources */,
 				B7467A8C229AAC2E0015794D /* DeliveryListViewController.swift in Sources */,
 				B7467B04229D28EA0015794D /* DeliveryListControllerViewModel.swift in Sources */,
@@ -928,8 +1001,10 @@
 			files = (
 				B7337BFD229F8ED0001F853E /* MapVireController+Stub.swift in Sources */,
 				B7337C4422AE30B0001F853E /* DataManagerTests.swift in Sources */,
+				B7337C5F22AE6DBD001F853E /* DeliveryListControllerViewModel+Stub.swift in Sources */,
 				B7337C4722AE312B001F853E /* DataManager+Stub.swift in Sources */,
 				B7337C3A22ACCD9E001F853E /* DBManager+Stub.swift in Sources */,
+				B7337C5C22AE6D4F001F853E /* DeliveryListControllerViewModelTests.swift in Sources */,
 				B7467B33229D6EBD0015794D /* MapViewControllerTests.swift in Sources */,
 				B7467AE1229ACD650015794D /* DeliveryListViewControllerTests.swift in Sources */,
 				B7467AE3229ACE620015794D /* DeliveryListViewController+Stub.swift in Sources */,
@@ -938,10 +1013,14 @@
 				B7337C1922A92227001F853E /* RouteAppTestConstants.swift in Sources */,
 				B7467B31229D6B3D0015794D /* DBManagerTests.swift in Sources */,
 				B7467AFD229BFA050015794D /* HTTPClientMock.swift in Sources */,
+				B7337C6522AE7D20001F853E /* DeliveryListControllerViewModelMock.swift in Sources */,
+				B7337C5A22AE6861001F853E /* URLSessionMock.swift in Sources */,
+				B7337C5822AE6814001F853E /* HTTPClientTests.swift in Sources */,
 				B7337C3C22ACDDCC001F853E /* DataManagerMock.swift in Sources */,
 				B7337C1522A8E12F001F853E /* ReachabilityManagerMock.swift in Sources */,
 				B7337C4B22AE348B001F853E /* APIManagerMock.swift in Sources */,
 				B7467ADF229ACC6B0015794D /* JSONHelper.swift in Sources */,
+				B7337C7122AF60AC001F853E /* MapControllerViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -949,7 +1028,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7467AAA229AAC2F0015794D /* RouteAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -53,11 +53,6 @@ class MapControllerViewModel: NSObject {
     func getAddress() -> String {
         return selectedDelivery.location?.address ?? ""
     }
-    
-    func getDescription() -> String {
-        return selectedDelivery.description ?? ""
-    }
-
 }
 
 extension MapControllerViewModel: LocationHelperDelegate {

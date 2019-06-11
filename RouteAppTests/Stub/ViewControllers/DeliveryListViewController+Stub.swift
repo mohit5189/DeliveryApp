@@ -10,15 +10,14 @@
 import UIKit
 
 extension DeliveryListViewController {
-    static func stub(reachabilityManager: ReachabilityManagerMock = ReachabilityManagerMock(isReachable: true)) -> DeliveryListViewController {
+    static func stub(reachabilityManager: ReachabilityManagerMock = ReachabilityManagerMock(isReachable: true), viewModel: DeliveryListControllerViewModelMock) -> DeliveryListViewController {
         let viewController = DeliveryListViewController()
         let window = UIWindow(frame: UIScreen.main.bounds)
         window.makeKeyAndVisible()
-        viewController.deliveryListViewModel.reachabilityManager = reachabilityManager
         viewController.reachabilityManager = reachabilityManager
-        (viewController.deliveryListViewModel.dataManager as! DataManager).reachabilityManager = reachabilityManager
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
+        viewController.deliveryListViewModel = viewModel
         _ = viewController.view
 
         return viewController

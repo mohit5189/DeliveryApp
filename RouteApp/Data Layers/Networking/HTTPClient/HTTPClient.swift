@@ -15,6 +15,7 @@ enum ApiType:String{
 class HTTPClient: HTTPClientProtocol {
     var url: String
     var requestJson: [String:String]?
+    var session = URLSession.shared
     
     init(url: String, requestJson: [String:String] = [:]) {
         self.url = url
@@ -25,8 +26,6 @@ class HTTPClient: HTTPClientProtocol {
         
         let request:NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string: url)! as URL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: Constants.networkTimeoutInterval)
         request.httpMethod = ApiType.GET.rawValue
-
-        let session = URLSession.shared
         
         let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
             completionHandler(data, error)

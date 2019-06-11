@@ -7,6 +7,7 @@
 //
 
 import Foundation
+@testable import RouteApp
 
 class JSONHelper {
     class func jsonFileToDict(jsonName: String) -> [String: AnyObject]? {
@@ -35,4 +36,17 @@ class JSONHelper {
         }
         return nil
     }
+    
+    class func getDeliveries() -> [DeliveryModel] {
+        let data = jsonFileToData(jsonName: "deliveryList")
+        do {
+            let decoder = JSONDecoder()
+            let deliveries = try decoder.decode([DeliveryModel].self, from: data!)
+            return deliveries
+        } catch {
+            
+        }
+        return []
+    }
+
 }

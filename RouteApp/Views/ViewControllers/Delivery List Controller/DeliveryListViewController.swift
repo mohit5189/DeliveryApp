@@ -11,7 +11,7 @@ import MBProgressHUD
 
 class DeliveryListViewController: UIViewController {
     var tableView: UITableView!
-    var deliveryListViewModel:DeliveryListControllerViewModel = DeliveryListControllerViewModel()
+    var deliveryListViewModel: DeliveryListViewModelProtocol = DeliveryListControllerViewModel()
     let refreshControl = UIRefreshControl()
     var reachabilityManager: ReachabilityProtocol = ReachabilityManager.sharedInstance
     
@@ -24,7 +24,7 @@ class DeliveryListViewController: UIViewController {
         super.viewDidLoad()
         title = LocalizeStrings.DeliveryListScreen.deliveryListScreenTitle
         setupEventHandlers()
-        deliveryListViewModel.getDeliveryList()
+        deliveryListViewModel.fetchDeliveryList()
     }
     
     private func setupEventHandlers() {

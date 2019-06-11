@@ -9,10 +9,10 @@
 import Foundation
 
 extension DeliveryListControllerViewModel {
-    func getDeliveryList() {
+    func fetchDeliveryList() {
         guard reachabilityManager.isReachableToInternet() || dbManager.isCacheAvailable() else {
-            loadMoreCompletionHandler()
-            errorHandler(LocalizeStrings.ErrorMessage.internetErrorMessage)
+            loadMoreCompletionHandler?()
+            errorHandler?(LocalizeStrings.ErrorMessage.internetErrorMessage)
             return
         }
         fetchDeliveries()
@@ -23,7 +23,7 @@ extension DeliveryListControllerViewModel {
             return
         }
         offset = deliveryList.count
-        getDeliveryList()
+        fetchDeliveryList()
     }
     
     func fetchDeliveries() {
@@ -37,9 +37,9 @@ extension DeliveryListControllerViewModel {
                 weakSelf.isNextPageAvailable = deliveries.count > 0 // set pagination true if got records
                 weakSelf.deliveryList = weakSelf.isPerformingPullToRefresh ? deliveries : (weakSelf.deliveryList + deliveries)
             } else {
-                weakSelf.loadMoreCompletionHandler()
+                weakSelf.loadMoreCompletionHandler?()
                 if error != nil {
-                    weakSelf.errorHandler(LocalizeStrings.ErrorMessage.genericErrorMessage)
+                    weakSelf.errorHandler?(LocalizeStrings.ErrorMessage.genericErrorMessage)
                 }
             }
             weakSelf.updatePullToRefreshFlag()

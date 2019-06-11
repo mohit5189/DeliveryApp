@@ -9,15 +9,16 @@
 import UIKit
 import MBProgressHUD
 
-class DeliveryListControllerViewModel: NSObject {
+class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
+    var completionHandler: CompletionClosure?
+    var errorHandler: ErrorClosure?
+    var loaderHandler: LoaderClosure?
+    var pullToRefreshCompletionHandler: CompletionClosure?
+    var loadMoreCompletionHandler: CompletionClosure?
+    
     var offset  = 0
     let limit   = 20
     
-    var completionHandler = {() -> () in }
-    var errorHandler = {(errorMessage: String) -> () in }
-    var loaderHandler = {(showLoader: Bool) -> () in }
-    var pullToRefreshCompletionHandler = {() -> () in}
-    var loadMoreCompletionHandler = {() -> () in}
     var reachabilityManager: ReachabilityProtocol = ReachabilityManager.sharedInstance
     var dbManager: DBManagerProtocol = DBManager.sharedInstance
     var dataManager: DataManagerProtocol = DataManager()
@@ -26,7 +27,7 @@ class DeliveryListControllerViewModel: NSObject {
     var isPerformingPullToRefresh = false {
         didSet {
             if !isPerformingPullToRefresh {
-                pullToRefreshCompletionHandler()
+                pullToRefreshCompletionHandler?()
             }
         }
     }
@@ -38,7 +39,7 @@ class DeliveryListControllerViewModel: NSObject {
     }
     
     func refreshData() {
-        completionHandler();
+        completionHandler?();
     }
     
     func updatePullToRefreshFlag() {
@@ -56,15 +57,15 @@ class DeliveryListControllerViewModel: NSObject {
         guard offset == 0, !isPerformingPullToRefresh else {
             return
         }
-        loaderHandler(showLoader)
+        loaderHandler?(showLoader)
     }
     
     // MARK: TableView methods
     func numberOfRows() -> Int {
         if isNextPageAvailable, deliveryList.count > 0 {
-            return deliveryList.count + 1
+            return getDeliveriesCount() + 1
         }
-        return deliveryList.count
+        return getDeliveriesCount()
     }
     
     func getDelivery(index:Int) -> DeliveryModel {
@@ -78,9 +79,9 @@ class DeliveryListControllerViewModel: NSObject {
         offset = 0
         isNextPageAvailable = true
         if reachabilityManager.isReachableToInternet() {
-            getDeliveryList()
+            fetchDeliveryList()
         } else {
-            errorHandler(LocalizeStrings.ErrorMessage.internetErrorMessage)
+            errorHandler?(LocalizeStrings.ErrorMessage.internetErrorMessage)
             updatePullToRefreshFlag()
         }
     }    

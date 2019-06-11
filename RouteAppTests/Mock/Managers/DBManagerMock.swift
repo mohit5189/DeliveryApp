@@ -18,22 +18,19 @@ enum DBActionType {
     func handleResponse(onSuccess: @escaping ResponseBlock) {
         switch self {
         case .deliveryList:
-            onSuccess(getDeliveries(), nil)
+            onSuccess(JSONHelper.getDeliveries(), nil)
         case .error:
             onSuccess(nil, NSError(domain: Constants.serverErrorDomain, code: Constants.serverErrorCode, userInfo: nil))
         }
     }
     
-    fileprivate func getDeliveries() -> [DeliveryModel] {
-        let data = JSONHelper.jsonFileToData(jsonName: "deliveryList")
-        do {
-            let decoder = JSONDecoder()
-            let deliveries = try decoder.decode([DeliveryModel].self, from: data!)
-            return deliveries
-        } catch {
-            
+    func getDeliveriesList() -> [DeliveryModel] {
+        switch self {
+        case .deliveryList:
+            return JSONHelper.getDeliveries()
+        case .error:
+             return [DeliveryModel]()
         }
-        return []
     }
 }
 
@@ -115,15 +112,10 @@ class DBManagerMock: NSObject, DBManagerProtocol {
     }
     
     func allRecords() -> [Delivery] {
-        do {
-            let records = try managedObjectContext!.fetch(NSFetchRequest<NSFetchRequestResult>(entityName: deliveryEntity)) as! [Delivery]
-            return records
-        } catch {
-        }
-        return []
+        return [Delivery]()
     }
     
     func isCacheAvailable() -> Bool {
-        return allRecords().count > 0
+        return dbActionType.getDeliveriesList().count > 0
     }
 }
