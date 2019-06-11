@@ -1,4 +1,4 @@
-# DestinationsSample
+# Delivery App
 
 To run this project, please follow following steps:
 
