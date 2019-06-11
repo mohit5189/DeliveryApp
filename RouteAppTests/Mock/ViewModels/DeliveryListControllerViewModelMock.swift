@@ -38,6 +38,7 @@ class DeliveryListControllerViewModelMock: NSObject, DeliveryListViewModelProtoc
     
     func fetchDeliveryList() {
         guard errorExist else {
+            deliveries = JSONHelper.getDeliveries()
             completionHandler?()
             loaderHandler?(showLoader)
             return
