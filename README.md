@@ -11,16 +11,16 @@ To run this project, please follow following steps:
 - XCode 10.2
 - MAC 10.14
 
-# Supported iOS version
+# Supported iOS Version
 
 - iOS 11+
 
-# Unit Testing frameworks
+# Unit Testing Frameworks
 
 - Used Nimble/Quick for unit testing purpose
 - XCUITest not covered in this sample.
 
-# Design patterns
+# Design Patterns
 
 1. MVVM
 2. Adapter design pattern
@@ -37,14 +37,14 @@ To run this project, please follow following steps:
   # Note
   App is not deleting data from cache, instead its updating data on pull to refresh operation  
 
-# Third Party framwworks
+# Third Party Framwworks
 
 1. Quick
 2. Nimble
 3. MBProgressHud
 4. SDWebImage
 
-# Network calling
+# Network Calling
 
 App used NSURLSession for making http call.
 
@@ -70,7 +70,7 @@ This app perform network api call for destinations listing, if network call is s
 6. HTTPClient - Responsible to make HTTP api call.
 
 
-# Displaying map
+# Displaying Map
 
 1. Once user select any addess, app shows annotation to selected address and in backgroung start fetching current location of user. 
 
