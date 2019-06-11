@@ -3,8 +3,8 @@
 To run this project, please follow following steps:
 
 1. Open terminal and go to project folder where .podfile is stored.
-2. Run pod install.
-3. Once command run successfully, go to project folder and open xcworkspace file in xcode.
+2. Run pod install / pod update.
+3. Once command run successfully, go to project folder and open .xcworkspace file in xcode.
 
 # Requirements
 
@@ -18,7 +18,6 @@ To run this project, please follow following steps:
 # Unit Testing frameworks
 
 - Used Nimble/Quick for unit testing purpose
-- Test cases are written with BDD (Behaviour driven development) approach.
 - XCUITest not covered in this sample.
 
 # Design patterns
@@ -28,8 +27,8 @@ To run this project, please follow following steps:
 
 # Caching
 
-1. App used CoreData with Sqlite to make cache of JSON response
-2. For Image caching, App is using third party library SDWebImage
+1. App using CoreData with Sqlite to make cache of JSON response.
+2. For Image caching, App is using third party library SDWebImage.
 3. App has implemented pull to refresh functionality in following way:
   - If user make pull to refresh class and either internet is off OR server return error, previous rendered list will remain unchanged in that case.
   - If server return error but cache found, then app fetches cached data and display initial page in TableView.
