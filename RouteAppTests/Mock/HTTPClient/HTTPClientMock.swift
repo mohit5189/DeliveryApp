@@ -12,7 +12,7 @@ import Foundation
 class HTTPClientMock: HTTPClientProtocol {
     var jsonData: Data!
     var nextError: NSError?
-    
+
     func sendRequest(completionHandler: @escaping HTTPClientProtocol.CompletionBlock) {
         completionHandler(jsonData, nextError)
     }

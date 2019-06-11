@@ -8,29 +8,29 @@
 
 import UIKit
 
-enum ApiType:String{
-    case GET = "GET"
+enum ApiType: String {
+    case GET
 }
 
 class HTTPClient: HTTPClientProtocol {
     var url: String
-    var requestJson: [String:String]?
+    var requestJson: [String: String]?
     var session = URLSession.shared
-    
-    init(url: String, requestJson: [String:String] = [:]) {
+
+    init(url: String, requestJson: [String: String] = [:]) {
         self.url = url
         self.requestJson = requestJson
     }
-    
+
     func sendRequest(completionHandler: @escaping CompletionBlock) {
-        
-        let request:NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string: url)! as URL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: Constants.networkTimeoutInterval)
+
+        let request: NSMutableURLRequest = NSMutableURLRequest(url: NSURL(string: url)! as URL, cachePolicy: .reloadIgnoringLocalCacheData, timeoutInterval: Constants.networkTimeoutInterval)
         request.httpMethod = ApiType.GET.rawValue
-        
-        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, response, error -> Void in
+
+        let task = session.dataTask(with: request as URLRequest, completionHandler: {data, _, error -> Void in
             completionHandler(data, error)
         })
-        
+
         task.resume()
     }
 }

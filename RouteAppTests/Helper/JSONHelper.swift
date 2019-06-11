@@ -24,7 +24,7 @@ class JSONHelper {
         }
         return nil
     }
-    
+
     class func jsonFileToData(jsonName: String) -> Data? {
         if let path = Bundle.main.path(forResource: jsonName, ofType: "json") {
             do {
@@ -36,7 +36,7 @@ class JSONHelper {
         }
         return nil
     }
-    
+
     class func getDeliveries() -> [DeliveryModel] {
         let data = jsonFileToData(jsonName: "deliveryList")
         do {
@@ -44,7 +44,7 @@ class JSONHelper {
             let deliveries = try decoder.decode([DeliveryModel].self, from: data!)
             return deliveries
         } catch {
-            
+
         }
         return []
     }

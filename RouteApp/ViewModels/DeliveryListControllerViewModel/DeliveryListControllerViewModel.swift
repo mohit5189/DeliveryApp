@@ -15,14 +15,14 @@ class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
     var loaderHandler: LoaderClosure?
     var pullToRefreshCompletionHandler: CompletionClosure?
     var loadMoreCompletionHandler: CompletionClosure?
-    
+
     var offset  = 0
     let limit   = 20
-    
+
     var reachabilityManager: ReachabilityProtocol = ReachabilityManager.sharedInstance
     var dbManager: DBManagerProtocol = DBManager.sharedInstance
     var dataManager: DataManagerProtocol = DataManager()
-    
+
     var isNextPageAvailable = true
     var isPerformingPullToRefresh = false {
         didSet {
@@ -31,27 +31,27 @@ class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
             }
         }
     }
-    
+
     var deliveryList: [DeliveryModel] = [] {
         didSet {
             refreshData()
         }
     }
-    
+
     func refreshData() {
-        completionHandler?();
+        completionHandler?()
     }
-    
+
     func updatePullToRefreshFlag() {
         if isPerformingPullToRefresh { // check to avoid unrequired processing to hide refresh control
             isPerformingPullToRefresh = false
         }
     }
-    
+
     func getDeliveriesCount() -> Int {
         return deliveryList.count
     }
-        
+
     // MARK: Handle loader
     func handleProgressLoader(showLoader: Bool) {
         guard offset == 0, !isPerformingPullToRefresh else {
@@ -59,20 +59,19 @@ class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
         }
         loaderHandler?(showLoader)
     }
-    
+
     // MARK: TableView methods
     func numberOfRows() -> Int {
-        if isNextPageAvailable, deliveryList.count > 0 {
+        if isNextPageAvailable, !deliveryList.isEmpty {
             return getDeliveriesCount() + 1
         }
         return getDeliveriesCount()
     }
-    
-    func getDelivery(index:Int) -> DeliveryModel {
+
+    func getDelivery(index: Int) -> DeliveryModel {
         return deliveryList[index]
     }
-    
-    
+
     // MARk: pull to refresh actiom
     func handlePullToRefresh() {
         isPerformingPullToRefresh = true
@@ -84,5 +83,5 @@ class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
             errorHandler?(LocalizeStrings.ErrorMessage.internetErrorMessage)
             updatePullToRefreshFlag()
         }
-    }    
+    }
 }

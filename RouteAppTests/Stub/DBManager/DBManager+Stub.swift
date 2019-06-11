@@ -13,15 +13,15 @@ import CoreData
 extension DBManager {
     static func stub() -> DBManagerProtocol {
         let dbManager = DBManager.sharedInstance
-        
+
         let mockManagedObjectModel = NSManagedObjectModel.mergedModel(from: nil)
         let mockStoreCoordinator = NSPersistentStoreCoordinator(managedObjectModel: mockManagedObjectModel!)
-        let _ = try? mockStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
+        _ = try? mockStoreCoordinator.addPersistentStore(ofType: NSInMemoryStoreType, configurationName: nil, at: nil, options: nil)
         let mockManagedObjectContext = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         mockManagedObjectContext.persistentStoreCoordinator = mockStoreCoordinator
 
         dbManager.managedObjectContext = mockManagedObjectContext
-        
+
         return dbManager
     }
 }

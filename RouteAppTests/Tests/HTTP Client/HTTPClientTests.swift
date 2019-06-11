@@ -14,13 +14,13 @@ import Quick
 
 class HTTPClientTests: QuickSpec {
     var httpClient: HTTPClient!
-    
+
     override func spec() {
         describe("HTTPClient") {
             beforeEach {
                 self.httpClient = HTTPClient(url: "https://mock-api-mobile.dev.lalamove.com/deliveries")
             }
-            
+
             context("when making api call") {
                 context("and when server return error") {
                     beforeEach {
@@ -29,7 +29,7 @@ class HTTPClientTests: QuickSpec {
                         session.data = nil
                         self.httpClient.session = session
                     }
-                    
+
                     it("should call completion block with error object") {
                         waitUntil(timeout: RouteAppTestConstants.timeoutInterval) { done in
                             self.httpClient.sendRequest(completionHandler: { data, error in
@@ -40,7 +40,7 @@ class HTTPClientTests: QuickSpec {
                         }
                     }
                 }
-                
+
                 context("and server return data") {
                     beforeEach {
                         let session = URLSessionMock()
@@ -48,7 +48,7 @@ class HTTPClientTests: QuickSpec {
                         session.data = Data(bytes: [0, 1, 0, 1])
                         self.httpClient.session = session
                     }
-                    
+
                     it("should call completion block with data") {
                         waitUntil(timeout: RouteAppTestConstants.timeoutInterval) { done in
                             self.httpClient.sendRequest(completionHandler: { data, error in

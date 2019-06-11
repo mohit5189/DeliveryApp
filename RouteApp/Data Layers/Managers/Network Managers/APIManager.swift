@@ -10,7 +10,7 @@ import Foundation
 
 class APIManager: NSObject, APIManagerProtocol {
     typealias CompletionBlock = (_ response: Any?, _ error: Error?) -> Void
-    
+
     func fetchDeliveries(networkClient: HTTPClientProtocol, completion: @escaping CompletionBlock) {
         networkClient.sendRequest { responseData, error in
             if error == nil,

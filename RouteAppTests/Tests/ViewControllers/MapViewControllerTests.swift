@@ -14,28 +14,26 @@ import MapKit
 
 class MapViewControllerTests: QuickSpec {
     var mapVC: MapViewController!
-    
+
     override func spec() {
         describe("MapViewController") {
             context("when view is loaded") {
                 beforeEach {
                     self.mapVC = MapViewController.stub()
                 }
-                
+
                 it("should have mapview added") {
                     expect(self.mapVC.mapView).notTo(beNil())
                 }
-                
+
                 it("should display address at bottom") {
                     expect(self.mapVC.destinationLabel.text == String(format: "%@ at %@", self.mapVC.viewModel.selectedDelivery.description!, self.mapVC.viewModel.selectedDelivery.location!.address!)).to(beTrue())
                 }
-                
+
                 it("should add marker at destination address") {
                     waitUntil(timeout: RouteAppTestConstants.timeoutInterval) { done in
-                        for annotation in self.mapVC.mapView.annotations {
-                            if annotation.title == self.mapVC.viewModel.selectedDelivery.location!.address {
+                        for annotation in self.mapVC.mapView.annotations where annotation.title == self.mapVC.viewModel.selectedDelivery.location!.address {
                                 done()
-                            }
                         }
                     }
                 }

@@ -12,7 +12,7 @@ extension DeliveryListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return deliveryListViewModel.numberOfRows()
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
         if indexPath.row < deliveryListViewModel.getDeliveriesCount(), let deliveryCell = tableView.dequeueReusableCell(withIdentifier: String(describing: DeliveryCell.self)) as? DeliveryCell {

@@ -17,7 +17,7 @@ extension DeliveryListControllerViewModel {
         }
         fetchDeliveries()
     }
-    
+
     func makeNextPageCall() {
         guard isNextPageAvailable else {
             return
@@ -25,7 +25,7 @@ extension DeliveryListControllerViewModel {
         offset = deliveryList.count
         fetchDeliveryList()
     }
-    
+
     func fetchDeliveries() {
         handleProgressLoader(showLoader: true)
         dataManager.fetchData(offset: offset, limit: limit) { [weak self] deliveries, error in
@@ -34,7 +34,7 @@ extension DeliveryListControllerViewModel {
             }
             weakSelf.handleProgressLoader(showLoader: false)
             if error == nil, let deliveries = deliveries {
-                weakSelf.isNextPageAvailable = deliveries.count > 0 // set pagination true if got records
+                weakSelf.isNextPageAvailable = !deliveries.isEmpty // set pagination true if got records
                 weakSelf.deliveryList = weakSelf.isPerformingPullToRefresh ? deliveries : (weakSelf.deliveryList + deliveries)
             } else {
                 weakSelf.loadMoreCompletionHandler?()

@@ -1,25 +1,25 @@
 import UIKit
 import CoreData
 
+// swiftlint:disable force_cast
 class DBManager: NSObject, DBManagerProtocol {
-    
+
     static var sharedInstance = DBManager()
-    var managedObjectContext:NSManagedObjectContext?
+    var managedObjectContext: NSManagedObjectContext?
     let deliveryEntity = "Delivery"
     let locationEntity = "Location"
-    
+
     override fileprivate init() {
-        
+
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         managedObjectContext = appDelegate.persistentContainer.viewContext
     }
-    
-    
-    func saveDeliveries(deliveries: [DeliveryModel]) -> Void {
-        
+
+    func saveDeliveries(deliveries: [DeliveryModel]) {
+
         let deliveryEntity = NSEntityDescription.entity(forEntityName: self.deliveryEntity, in: managedObjectContext!)!
         let locationEntity = NSEntityDescription.entity(forEntityName: self.locationEntity, in: managedObjectContext!)!
-        
+
         for delivery in deliveries {
             var cacheDeliveryModel: Delivery? = getDeliveryFromCache(deliveryID: delivery.id)
             if cacheDeliveryModel == nil {
@@ -33,7 +33,7 @@ class DBManager: NSObject, DBManagerProtocol {
                 deliveryModel.location?.setValue(delivery.location?.lat, forKey: "lat")
                 deliveryModel.location?.setValue(delivery.location?.lng, forKey: "long")
                 deliveryModel.location?.setValue(delivery.location?.address, forKey: "address")
-                
+
                 do {
                     try managedObjectContext?.save()
                 } catch let error as NSError {
@@ -42,15 +42,15 @@ class DBManager: NSObject, DBManagerProtocol {
             }
         }
     }
-    
+
     func getDeliveryFromCache(deliveryID: Int) -> Delivery? {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: deliveryEntity)
         let predicate = NSPredicate(format: "id = %d", deliveryID)
         fetchRequest.predicate = predicate
-        
+
         do {
             let records = try managedObjectContext!.fetch(fetchRequest) as! [Delivery]
-            if records.count > 0 {
+            if !records.isEmpty {
                 return records[0]
             }
         } catch let error as NSError {
@@ -58,13 +58,13 @@ class DBManager: NSObject, DBManagerProtocol {
         }
         return nil
     }
-    
+
     func getDeliveries(offset: Int, limit: Int, onSuccess: @escaping ResponseBlock) {
-        var deliveries:[DeliveryModel] = []
+        var deliveries: [DeliveryModel] = []
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: deliveryEntity)
         fetchRequest.fetchOffset = offset
         fetchRequest.fetchLimit = limit
-        
+
         let asynchronousFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (asynchronousFetchResult) -> Void in
             DispatchQueue.main.async {
                 if let result = asynchronousFetchResult.finalResult {
@@ -81,7 +81,7 @@ class DBManager: NSObject, DBManagerProtocol {
                 }
                 onSuccess(deliveries, nil)
             }
-            
+
         }
         do {
             try managedObjectContext?.execute(asynchronousFetchRequest)
@@ -89,7 +89,7 @@ class DBManager: NSObject, DBManagerProtocol {
             onSuccess(nil, NSError(domain: "Invalid Query", code: 0, userInfo: nil))
         }
     }
-    
+
     func cleanCache() {
         do {
             let records = try managedObjectContext!.fetch(NSFetchRequest<NSFetchRequestResult>(entityName: deliveryEntity)) as! [NSManagedObject]
@@ -104,7 +104,7 @@ class DBManager: NSObject, DBManagerProtocol {
             print("Could not delete. \(error), \(error.userInfo)")
         }
     }
-    
+
     func allRecords() -> [Delivery] {
         var records: [Delivery] = []
         do {
@@ -113,8 +113,8 @@ class DBManager: NSObject, DBManagerProtocol {
         }
         return records
     }
-    
+
     func isCacheAvailable() -> Bool {
-        return allRecords().count > 0
+        return !allRecords().isEmpty
     }
 }

@@ -18,14 +18,14 @@ extension LocationHelperDelegate {
 }
 
 class LocationHelper: NSObject {
-    
+
     static let sharedInstance = LocationHelper()
-    
+
     override fileprivate init() {
         super.init()
         manager = CLLocationManager()
     }
-    
+
     weak var delegate: LocationHelperDelegate?
     private var manager: CLLocationManager!
     var currentLocation: CLLocation? {
@@ -35,7 +35,7 @@ class LocationHelper: NSObject {
             }
         }
     }
-    
+
     //Entry point to Location Manager. First the initialization has to be done
     func initializeLocationManager() {
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -45,14 +45,14 @@ class LocationHelper: NSObject {
         manager.allowsBackgroundLocationUpdates = false
         startUpdating()
     }
-    
+
     //Start updating locations
     func startUpdating() {
         manager.startUpdatingLocation()
     }
 }
 
-//MARK: - CLLocation Manager delegate methods
+// MARK: - CLLocation Manager delegate methods
 extension LocationHelper: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = locations.last else {

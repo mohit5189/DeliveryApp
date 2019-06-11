@@ -17,37 +17,37 @@ class APIManagerTests: QuickSpec {
     let validJson = "deliveryList"
     let invalidJson = "deliveryList3"
     var networkClientMock: HTTPClientMock!
-    
+
     override func spec() {
         describe("DeliveryListManager") {
             beforeEach {
                 self.apiManager = APIManager()
             }
-            
+
             context("when make api call and server return valid response") {
                 beforeEach {
                     self.networkClientMock = HTTPClientMock()
                     self.networkClientMock.nextError = nil
                     self.networkClientMock.jsonData = JSONHelper.jsonFileToData(jsonName: self.validJson)
                 }
-                
+
                 it("should call completion block with data") {
                     waitUntil(timeout: RouteAppTestConstants.timeoutInterval) { done in
-                        self.apiManager.fetchDeliveries(networkClient: self.networkClientMock, completion: { json, error in
+                        self.apiManager.fetchDeliveries(networkClient: self.networkClientMock, completion: { json, _ in
                             expect(json).notTo(beNil())
                             done()
                         })
                     }
                 }
             }
-            
+
             context("when make api call and server return invalid response") {
                 beforeEach {
                     self.networkClientMock = HTTPClientMock()
                     self.networkClientMock.nextError = nil
                     self.networkClientMock.jsonData = JSONHelper.jsonFileToData(jsonName: self.invalidJson)
                 }
-                
+
                 it("should call completion block with error") {
                     waitUntil(timeout: RouteAppTestConstants.timeoutInterval) { done in
                         self.apiManager.fetchDeliveries(networkClient: self.networkClientMock, completion: { json, error in
@@ -58,25 +58,23 @@ class APIManagerTests: QuickSpec {
                     }
                 }
             }
-            
+
             context("when make api call and server return error") {
                 beforeEach {
                     self.networkClientMock = HTTPClientMock()
                     self.networkClientMock.nextError = NSError(domain: Constants.serverErrorDomain, code: Constants.serverErrorCode, userInfo: nil)
                     self.networkClientMock.jsonData = nil
                 }
-                
+
                 it("should call completion block with error") {
                     waitUntil(timeout: RouteAppTestConstants.timeoutInterval) { done in
-                        self.apiManager.fetchDeliveries(networkClient: self.networkClientMock, completion: { json, error in
+                        self.apiManager.fetchDeliveries(networkClient: self.networkClientMock, completion: { _, error in
                             expect(error).notTo(beNil())
                             done()
                         })
                     }
                 }
             }
-
-
         }
     }
 }

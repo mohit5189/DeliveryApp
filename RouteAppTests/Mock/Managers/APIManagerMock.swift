@@ -12,7 +12,7 @@ import Foundation
 enum DeliveryListResponseType {
     case deliveriesList
     case errorFromServer
-    
+
     func handleRequest(completion: @escaping APIManagerProtocol.CompletionBlock) {
         switch self {
         case .deliveriesList:
@@ -25,11 +25,11 @@ enum DeliveryListResponseType {
 
 class APIManagerMock: NSObject, APIManagerProtocol {
     var deliveryListResponseType: DeliveryListResponseType!
-    
+
     init(deliveryListResponseType: DeliveryListResponseType) {
         self.deliveryListResponseType = deliveryListResponseType
     }
-    
+
     func fetchDeliveries(networkClient: HTTPClientProtocol, completion: @escaping CompletionBlock) {
         deliveryListResponseType.handleRequest(completion: completion)
     }

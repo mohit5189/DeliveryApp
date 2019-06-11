@@ -16,7 +16,7 @@ extension DeliveryListViewController: UITableViewDelegate {
             navigationController?.pushViewController(mapVC, animated: true)
         }
     }
-    
+
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if indexPath.row == deliveryListViewModel.numberOfRows() - 1 { // call api for next page before 1 rows to visible
             deliveryListViewModel.makeNextPageCall()

@@ -17,16 +17,16 @@ class MapViewController: UIViewController {
     let markerIdentifier = "marker"
     let routeVisibilityArea: Double = 1000
     let routeLineWidth: CGFloat = 5.0
-    
+
     init(viewModel: MapControllerViewModel) {
         super.init(nibName: nil, bundle: nil)
         self.viewModel = viewModel
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -37,7 +37,7 @@ class MapViewController: UIViewController {
         }
         dropDestinationPin()
     }
-    
+
     func setupUI() {
         view.backgroundColor = .white
         mapView = MKMapView(frame: .zero)
@@ -45,54 +45,54 @@ class MapViewController: UIViewController {
         mapView.delegate = self
         mapView.showsUserLocation = true
         view.addSubview(mapView)
-        
+
         destinationImageView = UIImageView(frame: .zero)
         destinationImageView.translatesAutoresizingMaskIntoConstraints = false
         destinationImageView.sd_setImage(with: viewModel.getImageUrl(), placeholderImage: nil)
         view.addSubview(destinationImageView)
-        
+
         destinationLabel = UILabel(frame: .zero)
         destinationLabel.numberOfLines = 0
         destinationLabel.translatesAutoresizingMaskIntoConstraints = false
         destinationLabel.text = viewModel.getDeliveryText()
         view.addSubview(destinationLabel)
-        
+
         addCOnstraints()
     }
-    
+
     func addCOnstraints() {
         let views: [String: Any] = [
             "mapView": mapView,
             "destinationImageView": destinationImageView,
             "destinationLabel": destinationLabel]
-        
+
         var allConstraints: [NSLayoutConstraint] = []
-        
+
         let mapHorizontalConstraints = NSLayoutConstraint.constraints(
             withVisualFormat: "H:|[mapView]|",
             metrics: nil,
             views: views)
         allConstraints += mapHorizontalConstraints
-        
+
         let bottomViewHorizontalConstraints = NSLayoutConstraint.constraints(
             withVisualFormat: "H:|-10-[destinationImageView(80)]-10-[destinationLabel]-10-|",
             metrics: nil,
             views: views)
         allConstraints += bottomViewHorizontalConstraints
-        
+
         let imageVerticalConstraint = NSLayoutConstraint.constraints(
             withVisualFormat: "V:|[mapView]-10-[destinationImageView(80)]-50-|",
             metrics: nil,
             views: views)
         allConstraints += imageVerticalConstraint
-        
+
         let labelVerticalConstraint = NSLayoutConstraint.constraints(
             withVisualFormat: "V:|[mapView]-10-[destinationLabel]-50-|",
             metrics: nil,
             views: views)
         allConstraints += labelVerticalConstraint
-        
+
         view.addConstraints(allConstraints)
-        
+
     }
 }

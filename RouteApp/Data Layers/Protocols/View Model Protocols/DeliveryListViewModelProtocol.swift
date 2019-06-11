@@ -8,9 +8,9 @@
 
 import Foundation
 
-typealias CompletionClosure = (() -> ())
-typealias ErrorClosure = ((_ errorMessage: String) -> ())
-typealias LoaderClosure = ((_ showLoader: Bool) -> ())
+typealias CompletionClosure = (() -> Void)
+typealias ErrorClosure = ((_ errorMessage: String) -> Void)
+typealias LoaderClosure = ((_ showLoader: Bool) -> Void)
 
 protocol DeliveryListViewModelProtocol {
     var completionHandler: CompletionClosure? {get set}
@@ -21,7 +21,7 @@ protocol DeliveryListViewModelProtocol {
 
     func handlePullToRefresh()
     func numberOfRows() -> Int
-    func getDelivery(index:Int) -> DeliveryModel
+    func getDelivery(index: Int) -> DeliveryModel
     func fetchDeliveryList()
     func makeNextPageCall()
     func getDeliveryText(index: Int) -> String

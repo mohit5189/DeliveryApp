@@ -15,7 +15,7 @@ extension DeliveryListControllerViewModel {
         }
         return  String(format: "%@ at %@", desc, address)
     }
-    
+
     func getImageUrl(index: Int) -> URL? {
         guard deliveryList.indices.contains(index), let imageUrl = deliveryList[index].imageUrl else {
             return nil

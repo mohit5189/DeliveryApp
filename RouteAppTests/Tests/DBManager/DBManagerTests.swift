@@ -21,7 +21,7 @@ class DBManagerTests: QuickSpec {
             beforeEach {
                 self.dbManager = DBManager.stub()
             }
-            
+
             context("When saving records") {
                 beforeEach {
                     self.dbManager.cleanCache()
@@ -33,17 +33,17 @@ class DBManagerTests: QuickSpec {
                         fail()
                     }
                 }
-                
+
                 it("should save data in local db") {
                     expect(self.dbManager.allRecords().count == 20).to(beTrue())
                     expect(self.dbManager.isCacheAvailable()).to(beTrue())
                 }
-                
+
                 it("should return proper delivery object based on ID") {
                     // used hardcoded value to verify JSON stored properly
                     expect(self.dbManager.getDeliveryFromCache(deliveryID: 0)?.desc == "Deliver documents to Andrio").to(beTrue())
                 }
-                
+
                 context("and when record contains null records") {
                     beforeEach {
                         do {
@@ -54,13 +54,13 @@ class DBManagerTests: QuickSpec {
                             fail()
                         }
                     }
-                    
+
                     it("should return update null value with same ID") {
                         // used hardcoded value to verify JSON stored properly
                         expect(self.dbManager.getDeliveryFromCache(deliveryID: 0)?.desc).to(beNil())
                     }
                 }
-                
+
                 context("and when make caching call again") {
                     beforeEach {
                         do {
@@ -71,28 +71,28 @@ class DBManagerTests: QuickSpec {
                             fail()
                         }
                     }
-                    
+
                     it("should not make duplicate entries") {
                         expect(self.dbManager.allRecords().count == 20).to(beTrue())
                     }
                 }
-                
+
                 context("and when fetching item with offset and limit") {
                     it("should return proper list as required") {
                         waitUntil(timeout: RouteAppTestConstants.timeoutInterval) { done in
-                            self.dbManager.getDeliveries(offset: 0, limit: 5, onSuccess: { destinations, error in
+                            self.dbManager.getDeliveries(offset: 0, limit: 5, onSuccess: { destinations, _ in
                                 expect(destinations?.count == 5).to(beTrue())
                                 done()
                             })
                         }
                     }
                 }
-                
+
                 context("and when clean cache called") {
                     beforeEach {
                         self.dbManager.cleanCache()
                     }
-                    
+
                     it("should clean cache from Database") {
                         expect(self.dbManager.isCacheAvailable()).to(beFalse())
                     }

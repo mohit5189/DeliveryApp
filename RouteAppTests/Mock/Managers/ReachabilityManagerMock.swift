@@ -11,11 +11,11 @@ import Foundation
 
 class ReachabilityManagerMock: ReachabilityProtocol {
     var isReachable: Bool!
-    
+
     init(isReachable: Bool) {
         self.isReachable = isReachable
     }
-    
+
     func isReachableToInternet() -> Bool {
         return isReachable
     }
