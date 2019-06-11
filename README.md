@@ -34,7 +34,8 @@ To run this project, please follow following steps:
   - If server return error but cache found, then app fetches cached data and display initial page in TableView.
   - If server return proper response, app display data and call for DB cache.
 
-  # please note that app is not deleting data from cache, instead its updating data on pull to refresh operation  
+  # Note
+  App is not deleting data from cache, instead its updating data on pull to refresh operation  
 
 # Third Party framwworks
 
@@ -61,12 +62,12 @@ This app perform network api call for destinations listing, if network call is s
 
 ![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/Architecture.png)
 
-1. View / View Controller - This layer is responsible to handle UI operation
-2. ViewModel - This layer contains all business logic
+1. View / View Controller - This layer is responsible to handle UI operation based on callback from viewModel class.
+2. ViewModel - This layer contains all business logic and list of models.
 3. DataManager - This class is responsible to fetch data either from server OR from DB based on several scenario defined above in App Flow section.
 4. APIManager - On this layer we have kept logic to parse individual response. This layer is designed by keeping in mind that all checks on server response and parsing will be implemented here. DataManager will either receive response OR error based on logic defined on this layer.
-5. DBManager - Responsible to handle data from DB
-6. HTTPClient - Responsible to make api call
+5. DBManager - Responsible to handle data from DB.
+6. HTTPClient - Responsible to make HTTP api call.
 
 
 # Displaying map
@@ -75,18 +76,19 @@ This app perform network api call for destinations listing, if network call is s
 
 2. In case if current location found and their is a route between current location and selected address, App display that route to the user.
 
-# Assumption
+# Pagination Handling
 
 For pagination logic, App will assume more pages till the time it don't get empty list of response from server. In case of offline mode, it will always try for next page ( this is to make sure that if app comes online then it should return response).
 
 # TODO / Improvements
 
-- Implement UI test cases
-- Implement SwiftLint
-- Implement crashlytics
+-  UI test cases
+-  SwiftLint
+-  Crashlytics
 
 # ScreenShots
 
 ![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/destinationList.png)
+
 ![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/map.png)
 
