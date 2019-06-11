@@ -48,7 +48,7 @@ To run this project, please follow following steps:
 
 App used NSURLSession for making http call.
 
-# App Flow
+# Delivery List Api Flow
 
 This app perform network api call for destinations listing, if network call is successful, it display the list and save in DB to show it later in offline mode. In case if user come next time and make network call for any specific page, app try to fetch data from network and if not found then try to find same page data in local DB. So sequence will be like:
 
