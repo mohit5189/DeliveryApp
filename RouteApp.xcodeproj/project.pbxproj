@@ -42,6 +42,7 @@
 		B7337C6522AE7D20001F853E /* DeliveryListControllerViewModelMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C6422AE7D20001F853E /* DeliveryListControllerViewModelMock.swift */; };
 		B7337C6E22AF504A001F853E /* DeliveryListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C6D22AF504A001F853E /* DeliveryListViewModelProtocol.swift */; };
 		B7337C7122AF60AC001F853E /* MapControllerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C6F22AF6099001F853E /* MapControllerViewModelTests.swift */; };
+		B7337C7922B0A564001F853E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B7337C7822B0A564001F853E /* README.md */; };
 		B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A89229AAC2E0015794D /* AppDelegate.swift */; };
 		B7467A8C229AAC2E0015794D /* DeliveryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */; };
 		B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7467A90229AAC2F0015794D /* Assets.xcassets */; };
@@ -127,6 +128,7 @@
 		B7337C6422AE7D20001F853E /* DeliveryListControllerViewModelMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListControllerViewModelMock.swift; sourceTree = "<group>"; };
 		B7337C6D22AF504A001F853E /* DeliveryListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewModelProtocol.swift; sourceTree = "<group>"; };
 		B7337C6F22AF6099001F853E /* MapControllerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapControllerViewModelTests.swift; sourceTree = "<group>"; };
+		B7337C7822B0A564001F853E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		B7467A86229AAC2E0015794D /* RouteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467A89229AAC2E0015794D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewController.swift; sourceTree = "<group>"; };
@@ -449,6 +451,7 @@
 		B7467A7D229AAC2E0015794D = {
 			isa = PBXGroup;
 			children = (
+				B7337C7822B0A564001F853E /* README.md */,
 				B7467A88229AAC2E0015794D /* RouteApp */,
 				B7467A9D229AAC2F0015794D /* RouteAppTests */,
 				B7467A87229AAC2E0015794D /* Products */,
@@ -815,6 +818,7 @@
 				B7337C4222AE2FE3001F853E /* deliveryList2.json in Resources */,
 				B7337C0D22A3B9AC001F853E /* Localizable.strings in Resources */,
 				B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */,
+				B7337C7922B0A564001F853E /* README.md in Resources */,
 				B7337C5322AE3D21001F853E /* deliveryList3.json in Resources */,
 				B7467AFE229BFCDC0015794D /* deliveryList.json in Resources */,
 				B7467AEF229BD0D50015794D /* LaunchScreen.storyboard in Resources */,
