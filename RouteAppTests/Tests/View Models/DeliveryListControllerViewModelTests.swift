@@ -32,6 +32,21 @@ class DeliveryListControllerViewModelTests: QuickSpec {
                         expect(self.deliveryListViewModel.deliveryList.count == 20).to(beTrue())
                     }
 
+                    it("should make false to api call boolean variable") {
+                        expect(self.deliveryListViewModel.isApiCallInProgress).to(beFalse())
+                    }
+
+                    context("and when making api call in case existing api going on") {
+                        beforeEach {
+                            self.deliveryListViewModel.isApiCallInProgress = true
+                            self.deliveryListViewModel.fetchDeliveryList()
+                        }
+
+                        it("should not make further api call") {
+                            expect(self.deliveryListViewModel.deliveryList.count == 20).to(beTrue())
+                        }
+                    }
+
                     context("and when returning delivery text and image URL") {
                         it("should return proper values") {
                             // using hardcoded values to match with JSON
