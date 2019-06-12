@@ -74,13 +74,6 @@ class DeliveryListViewController: UIViewController {
         }
     }
 
-    func showAlert(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: LocalizeStrings.CommonStrings.okButtonTitle, style: .default, handler: nil)
-        alertController.addAction(okAction)
-        present(alertController, animated: true)
-    }
-
     func setupUI() {
         tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false

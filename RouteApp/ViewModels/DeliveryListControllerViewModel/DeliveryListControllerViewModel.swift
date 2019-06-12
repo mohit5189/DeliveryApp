@@ -6,8 +6,7 @@
 //  Copyright © 2019 Mohit Kumar. All rights reserved.
 //
 
-import UIKit
-import MBProgressHUD
+import Foundation
 
 class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
     var completionHandler: CompletionClosure?

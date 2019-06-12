@@ -42,6 +42,7 @@
 		B7337C6E22AF504A001F853E /* DeliveryListViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C6D22AF504A001F853E /* DeliveryListViewModelProtocol.swift */; };
 		B7337C7122AF60AC001F853E /* MapControllerViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C6F22AF6099001F853E /* MapControllerViewModelTests.swift */; };
 		B7337C7922B0A564001F853E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = B7337C7822B0A564001F853E /* README.md */; };
+		B7337C7C22B10B8B001F853E /* UIViewController+Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C7B22B10B8B001F853E /* UIViewController+Common.swift */; };
 		B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A89229AAC2E0015794D /* AppDelegate.swift */; };
 		B7467A8C229AAC2E0015794D /* DeliveryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */; };
 		B7467A91229AAC2F0015794D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7467A90229AAC2F0015794D /* Assets.xcassets */; };
@@ -121,6 +122,7 @@
 		B7337C6D22AF504A001F853E /* DeliveryListViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewModelProtocol.swift; sourceTree = "<group>"; };
 		B7337C6F22AF6099001F853E /* MapControllerViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapControllerViewModelTests.swift; sourceTree = "<group>"; };
 		B7337C7822B0A564001F853E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		B7337C7B22B10B8B001F853E /* UIViewController+Common.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Common.swift"; sourceTree = "<group>"; };
 		B7467A86229AAC2E0015794D /* RouteApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RouteApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7467A89229AAC2E0015794D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7467A8B229AAC2E0015794D /* DeliveryListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryListViewController.swift; sourceTree = "<group>"; };
@@ -431,6 +433,14 @@
 			path = "View Model Protocols";
 			sourceTree = "<group>";
 		};
+		B7337C7A22B10B4D001F853E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B7337C7B22B10B8B001F853E /* UIViewController+Common.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		B7467A7D229AAC2E0015794D = {
 			isa = PBXGroup;
 			children = (
@@ -517,6 +527,7 @@
 		B7467AC7229AB2440015794D /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				B7337C7A22B10B4D001F853E /* Extensions */,
 				B7337C1F22ACA44A001F853E /* Builders */,
 				B7337C2222ACA6B8001F853E /* Reachability */,
 				B7467AC8229AB2620015794D /* Constants.swift */,
@@ -925,6 +936,7 @@
 				B7467ABE229AAF780015794D /* HTTPClient.swift in Sources */,
 				B7467A8A229AAC2E0015794D /* AppDelegate.swift in Sources */,
 				B7467AE6229BB6690015794D /* URLBuilder.swift in Sources */,
+				B7337C7C22B10B8B001F853E /* UIViewController+Common.swift in Sources */,
 				B7467AF7229BF5390015794D /* MapViewController+Map.swift in Sources */,
 				B7467AF4229BF3F10015794D /* DeliveryListViewController+UITableViewDelegate.swift in Sources */,
 				B7337C2F22ACBB1B001F853E /* DataManagerProtocol.swift in Sources */,

@@ -9,8 +9,6 @@
 import Foundation
 import MapKit
 
-private let routeAreaExtraSize: Double = 5000
-
 extension MapViewController: MKMapViewDelegate {
     func drawRoute() {
         guard let currentLocation = viewModel.currentLocation else {
@@ -30,15 +28,18 @@ extension MapViewController: MKMapViewDelegate {
         let directions = MKDirections(request: directionRequest)
         directions.calculate { [weak self] (response, _) in
             guard let response = response, let weakSelf = self else {
+                DispatchQueue.main.async { [weak self] in
+                    self?.showAlert(title: LocalizeStrings.ErrorMessage.errorTitle, message: LocalizeStrings.ErrorMessage.routeErrorMessage)
+                }
                 return
             }
 
             let route = response.routes[0]
             weakSelf.mapView.addOverlay(route.polyline, level: .aboveRoads)
             var rect = route.polyline.boundingMapRect
-            rect.origin.y -= routeAreaExtraSize
-            rect.size.width += routeAreaExtraSize
-            rect.size.height += routeAreaExtraSize
+            rect.origin.y -= MapConstants.routeAreaExtraSize
+            rect.size.width += MapConstants.routeAreaExtraSize
+            rect.size.height += MapConstants.routeAreaExtraSize
             weakSelf.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
 
         }
@@ -48,7 +49,7 @@ extension MapViewController: MKMapViewDelegate {
         let destinationLocation = CLLocationCoordinate2D(latitude: viewModel.getLatitude(), longitude: viewModel.getLongitude())
         let destinationPin = CustomPin(title: viewModel.getAddress(), location: destinationLocation)
         mapView.addAnnotation(destinationPin)
-        let viewRegion = MKCoordinateRegion(center: destinationLocation, latitudinalMeters: routeVisibilityArea, longitudinalMeters: routeVisibilityArea)
+        let viewRegion = MKCoordinateRegion(center: destinationLocation, latitudinalMeters: MapConstants.routeVisibilityArea, longitudinalMeters: MapConstants.routeVisibilityArea)
         mapView.setRegion(viewRegion, animated: true)
 
     }
@@ -56,8 +57,8 @@ extension MapViewController: MKMapViewDelegate {
     // MARK: MKMapView delegate methods
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
         let polineLineRenderer = MKPolylineRenderer(overlay: overlay)
-        polineLineRenderer.strokeColor = .red
-        polineLineRenderer.lineWidth = routeLineWidth
+        polineLineRenderer.strokeColor = MapConstants.routeColor
+        polineLineRenderer.lineWidth = MapConstants.routeLineWidth
         return polineLineRenderer
     }
 
@@ -65,12 +66,12 @@ extension MapViewController: MKMapViewDelegate {
         guard let annotation = annotation as? CustomPin else { return nil }
         var view: MKMarkerAnnotationView
 
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: markerIdentifier)
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapConstants.markerIdentifier)
             as? MKMarkerAnnotationView {
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
-            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: markerIdentifier)
+            view = MKMarkerAnnotationView(annotation: annotation, reuseIdentifier: MapConstants.markerIdentifier)
             view.canShowCallout = true
             view.detailCalloutAccessoryView = UIView()
         }

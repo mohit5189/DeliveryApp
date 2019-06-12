@@ -5,3 +5,4 @@
 "deliveryListTitle" = "Things to Deliver";
 "mapScreenTitle" = "Delivery Details";
 "internetErrorMessage" = "Please check your internet connection and try again.";
+"routeErrorMessage" = "Sorry! We are unable to find route to given address";

@@ -9,14 +9,19 @@
 import UIKit
 import MapKit
 
+struct MapConstants {
+    static let routeVisibilityArea: Double = 1000
+    static let routeLineWidth: CGFloat = 5.0
+    static let markerIdentifier = "marker"
+    static let routeAreaExtraSize: Double = 5000
+    static let routeColor: UIColor = .red
+}
+
 class MapViewController: UIViewController {
     var mapView: MKMapView!
     var destinationImageView: UIImageView!
     var destinationLabel: UILabel!
     var viewModel: MapControllerViewModel!
-    let markerIdentifier = "marker"
-    let routeVisibilityArea: Double = 1000
-    let routeLineWidth: CGFloat = 5.0
 
     init(viewModel: MapControllerViewModel) {
         super.init(nibName: nil, bundle: nil)
@@ -57,10 +62,10 @@ class MapViewController: UIViewController {
         destinationLabel.text = viewModel.getDeliveryText()
         view.addSubview(destinationLabel)
 
-        addCOnstraints()
+        addConstraints()
     }
 
-    func addCOnstraints() {
+    func addConstraints() {
         let views: [String: Any] = [
             "mapView": mapView,
             "destinationImageView": destinationImageView,

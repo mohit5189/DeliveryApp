@@ -21,6 +21,8 @@ class DeliveryCell: UITableViewCell {
 
         deliveryImageView = UIImageView(frame: .zero)
         deliveryImageView.translatesAutoresizingMaskIntoConstraints = false
+        deliveryImageView.contentMode = .scaleAspectFill
+        deliveryImageView.clipsToBounds = true
         contentView.addSubview(deliveryImageView)
 
         deliveryLabel = UILabel(frame: .zero)
