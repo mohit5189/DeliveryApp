@@ -16,8 +16,4 @@ end
   target 'RouteAppTests' do
   testing_pods
   end
-
-  target 'RouteAppUITests' do
-  end
-
 end

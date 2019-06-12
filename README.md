@@ -27,7 +27,7 @@ To run this project, please follow following steps:
 # Unit Testing Frameworks
 
 - Used Nimble/Quick for unit testing purpose
-- XCUITest not covered in this sample.
+- XCUITest not covered in this project.
 
 # Design Patterns
 
@@ -36,7 +36,7 @@ To run this project, please follow following steps:
 
 Please check below for low level diagram:
 
-![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/Architecture.png)
+![ScreenShot](https://github.com/mohit5189/DeliveryApp/blob/master/ScreenShots/Architecture.png)
 
 1. View / View Controller - This layer is responsible to handle UI operation based on callback from viewModel class.
 2. ViewModel - This layer contains all business logic and list of models.
@@ -99,7 +99,7 @@ This app perform network api call for destinations listing, if network call is s
 2. if network call succeed then app display data and cache the JSON in DB
 3. if network call failes, app try to fetch data from local DB and if found then display in list else it show error to user.
 
-![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/flow.png)
+![ScreenShot](https://github.com/mohit5189/DeliveryApp/blob/master/ScreenShots/flow.png)
 
 
 # Displaying Map
@@ -114,9 +114,9 @@ For pagination logic, App will assume more pages till the time it don't get empt
 
 # ScreenShots
 
-![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/deliveryList.png)
-![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/map.png)
-![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/route.png)
+![ScreenShot](https://github.com/mohit5189/DeliveryApp/blob/master/ScreenShots/deliveryList.png)
+![ScreenShot](https://github.com/mohit5189/DeliveryApp/blob/master/ScreenShots/map.png)
+![ScreenShot](https://github.com/mohit5189/DeliveryApp/blob/master/ScreenShots/route.png)
 
 # TODO / Improvements
 
