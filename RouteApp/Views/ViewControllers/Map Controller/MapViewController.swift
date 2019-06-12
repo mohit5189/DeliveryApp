@@ -54,6 +54,8 @@ class MapViewController: UIViewController {
         destinationImageView = UIImageView(frame: .zero)
         destinationImageView.translatesAutoresizingMaskIntoConstraints = false
         destinationImageView.sd_setImage(with: viewModel.getImageUrl(), placeholderImage: nil)
+        destinationImageView.contentMode = .scaleAspectFill
+        destinationImageView.clipsToBounds = true
         view.addSubview(destinationImageView)
 
         destinationLabel = UILabel(frame: .zero)
