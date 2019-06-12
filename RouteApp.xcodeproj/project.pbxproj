@@ -712,7 +712,8 @@
 				B7467A83229AAC2E0015794D /* Frameworks */,
 				B7467A84229AAC2E0015794D /* Resources */,
 				C74573FE378E7582949ABF2B /* [CP] Embed Pods Frameworks */,
-				B7337C7322AFDD8D001F853E /* ShellScript */,
+				B7337C7322AFDD8D001F853E /* Swiftlint */,
+				B7337C7722B0A13F001F853E /* Febric */,
 			);
 			buildRules = (
 			);
@@ -906,7 +907,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		B7337C7322AFDD8D001F853E /* ShellScript */ = {
+		B7337C7322AFDD8D001F853E /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -915,6 +916,7 @@
 			);
 			inputPaths = (
 			);
+			name = Swiftlint;
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -922,6 +924,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		B7337C7722B0A13F001F853E /* Febric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Febric;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/Fabric/run\" 3c0170eaea43d492621a0521af64f0c72767ac8d b5c5853cf04feae0ffd5e5a118ec15cd0b1529953b18ea171f8e58b7fcc04e43\n";
 		};
 		BAEF0954E8C82302DC92F18B /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;

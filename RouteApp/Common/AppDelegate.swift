@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -20,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let navigationController = UINavigationController(rootViewController: rootControoler)
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        Fabric.with([Crashlytics.self])
         return true
     }
 

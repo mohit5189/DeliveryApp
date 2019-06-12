@@ -5,6 +5,9 @@ target 'RouteApp' do
 pod 'SDWebImage', '~> 5.0'
 pod 'MBProgressHUD', '~> 1.1.0'
 pod 'ReachabilitySwift', '~> 4.3.1'
+pod 'Fabric', '~> 1.9.0'
+pod 'Crashlytics', '~> 3.12.0'
+
 def testing_pods
   pod 'Quick', '~> 2.1.0'
   pod 'Nimble', '~> 8.0.1'
