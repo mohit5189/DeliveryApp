@@ -29,7 +29,7 @@ enum DBActionType {
         case .deliveryList:
             return JSONHelper.getDeliveries()
         case .error:
-             return [DeliveryModel]()
+            return [DeliveryModel]()
         }
     }
 }
@@ -88,6 +88,7 @@ class DBManagerMock: NSObject, DBManagerProtocol {
                 return records[0]
             }
         } catch {
+            print("Could not get records.")
         }
         return nil
     }
@@ -103,6 +104,7 @@ class DBManagerMock: NSObject, DBManagerProtocol {
                 managedObjectContext?.delete(record)
             }
         } catch {
+            print("Could not get records.")
         }
         do {
             try managedObjectContext?.save()
