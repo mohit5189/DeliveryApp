@@ -27,11 +27,16 @@ extension DeliveryListControllerViewModel {
     }
 
     func fetchDeliveries() {
+        guard !isApiCallInProgress else {
+            return
+        }
+        isApiCallInProgress = true
         handleProgressLoader(showLoader: true)
         dataManager.fetchData(offset: offset, limit: limit) { [weak self] deliveries, error in
             guard let weakSelf = self else {
                 return
             }
+            weakSelf.isApiCallInProgress = false
             weakSelf.handleProgressLoader(showLoader: false)
             if error == nil, let deliveries = deliveries {
                 weakSelf.isNextPageAvailable = !deliveries.isEmpty // set pagination true if got records

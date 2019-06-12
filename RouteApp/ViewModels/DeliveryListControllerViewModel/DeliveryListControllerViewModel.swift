@@ -15,6 +15,7 @@ class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
     var loaderHandler: LoaderClosure?
     var pullToRefreshCompletionHandler: CompletionClosure?
     var loadMoreCompletionHandler: CompletionClosure?
+    var isApiCallInProgress = false
 
     var offset  = 0
     let limit   = 20
