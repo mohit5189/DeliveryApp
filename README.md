@@ -114,8 +114,9 @@ For pagination logic, App will assume more pages till the time it don't get empt
 
 # ScreenShots
 
-![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/destinationList.png)
+![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/deliveryList.png)
 ![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/map.png)
+![ScreenShot](https://github.com/mohit5189/DestinationsSample/blob/master/ScreenShots/route.png)
 
 # TODO / Improvements
 
