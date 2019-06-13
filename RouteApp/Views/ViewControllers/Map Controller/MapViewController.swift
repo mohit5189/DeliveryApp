@@ -10,10 +10,11 @@ import UIKit
 import MapKit
 
 struct MapConstants {
-    static let routeVisibilityArea: Double = 1000
+    static let routeVisibilityArea: Double = 3000
     static let routeLineWidth: CGFloat = 5.0
     static let markerIdentifier = "marker"
-    static let routeAreaExtraSize: Double = 250
+    static let routeFrameExtraMargin: Double = 6000
+    static let routeOriginExtraMargin: Double = 3000
     static let routeColor: UIColor = .red
 }
 
@@ -22,6 +23,7 @@ class MapViewController: UIViewController {
     var destinationImageView: UIImageView!
     var destinationLabel: UILabel!
     var viewModel: MapControllerViewModel!
+    var directions: MKDirections!
 
     init(viewModel: MapControllerViewModel) {
         super.init(nibName: nil, bundle: nil)

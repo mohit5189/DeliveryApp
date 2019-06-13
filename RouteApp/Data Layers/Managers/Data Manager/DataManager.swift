@@ -45,7 +45,9 @@ class DataManager: NSObject, DataManagerProtocol {
                 }
                 completionHandler(deliveries, nil)
             } else {
-                weakSelf.handleListFromCache(offset: offset, limit: limit, serverError: error)
+                DispatchQueue.main.async {
+                    weakSelf.handleListFromCache(offset: offset, limit: limit, serverError: error)
+                }
             }
         }
     }

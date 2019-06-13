@@ -25,7 +25,7 @@ extension MapViewController: MKMapViewDelegate {
         directionRequest.destination = MKMapItem(placemark: destinationPlaceMark)
         directionRequest.transportType = .automobile
 
-        let directions = MKDirections(request: directionRequest)
+        directions = MKDirections(request: directionRequest)
         directions.calculate { [weak self] (response, _) in
             guard let response = response, let weakSelf = self else {
                 DispatchQueue.main.async { [weak self] in
@@ -37,10 +37,13 @@ extension MapViewController: MKMapViewDelegate {
             let route = response.routes[0]
             weakSelf.mapView.addOverlay(route.polyline, level: .aboveRoads)
             var rect = route.polyline.boundingMapRect
-            rect.size.width += MapConstants.routeAreaExtraSize
-            rect.size.height += MapConstants.routeAreaExtraSize
-            let region  = weakSelf.mapView.regionThatFits(MKCoordinateRegion(rect))
-            weakSelf.mapView.setRegion(region, animated: true)
+            if rect.size.width > MapConstants.routeVisibilityArea || rect.size.height > MapConstants.routeVisibilityArea {
+                rect.size.width += MapConstants.routeFrameExtraMargin
+                rect.size.height += MapConstants.routeFrameExtraMargin
+                rect.origin.x -= MapConstants.routeOriginExtraMargin
+                rect.origin.y -= MapConstants.routeOriginExtraMargin
+                weakSelf.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
+            }
         }
     }
 

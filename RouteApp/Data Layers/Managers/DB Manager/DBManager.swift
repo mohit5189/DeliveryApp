@@ -66,7 +66,6 @@ class DBManager: NSObject, DBManagerProtocol {
         fetchRequest.fetchLimit = limit
 
         let asynchronousFetchRequest = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { (asynchronousFetchResult) -> Void in
-            DispatchQueue.main.async {
                 if let result = asynchronousFetchResult.finalResult {
                     let records = result as! [Delivery]
                     deliveries = records.map({ delivery -> DeliveryModel in
@@ -80,8 +79,6 @@ class DBManager: NSObject, DBManagerProtocol {
                     })
                 }
                 onSuccess(deliveries, nil)
-            }
-
         }
         do {
             try managedObjectContext?.execute(asynchronousFetchRequest)
