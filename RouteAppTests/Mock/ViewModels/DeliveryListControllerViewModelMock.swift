@@ -26,9 +26,6 @@ class DeliveryListControllerViewModelMock: NSObject, DeliveryListViewModelProtoc
     }
 
     func numberOfRows() -> Int {
-        if isNextPageAvailable {
-            return deliveries.count + 1
-        }
         return deliveries.count
     }
 

@@ -64,7 +64,7 @@ class DeliveryListViewControllerTests: QuickSpec {
                         }
 
                         it("should should append data in deliveryList") {
-                            expect(self.deliveryListVC.deliveryListViewModel.numberOfRows() == 41).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
+                            expect(self.deliveryListVC.deliveryListViewModel.numberOfRows() == 40).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                         }
                     }
                 }
