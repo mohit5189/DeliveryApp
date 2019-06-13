@@ -62,7 +62,7 @@ class DeliveryListViewController: UIViewController {
         }
 
         deliveryListViewModel.pullToRefreshCompletionHandler = { [weak self] in
-            DispatchQueue.main.async { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
                 self?.refreshControl.endRefreshing()
             }
         }

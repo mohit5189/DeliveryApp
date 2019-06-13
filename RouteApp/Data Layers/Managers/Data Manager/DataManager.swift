@@ -52,15 +52,12 @@ class DataManager: NSObject, DataManagerProtocol {
 
     // MARK: Cache handling
     func handleListFromCache(offset: Int, limit: Int, serverError: Error? = nil) {
-        DispatchQueue.main.async { [weak self] in
+        dbManager.getDeliveries(offset: offset, limit: limit) { [weak self] deliveries, dbError in
             guard let weakSelf = self else { return }
-            weakSelf.dbManager.getDeliveries(offset: offset, limit: limit) { [weak self] deliveries, dbError in
-                guard let weakSelf = self else { return }
-                if dbError == nil, let deliveries = deliveries, !deliveries.isEmpty {
-                    weakSelf.completionHandler(deliveries, nil)
-                } else {
-                    weakSelf.completionHandler(nil, serverError)
-                }
+            if dbError == nil, let deliveries = deliveries, !deliveries.isEmpty {
+                weakSelf.completionHandler(deliveries, nil)
+            } else {
+                weakSelf.completionHandler(nil, serverError)
             }
         }
     }

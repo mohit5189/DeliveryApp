@@ -37,11 +37,10 @@ extension MapViewController: MKMapViewDelegate {
             let route = response.routes[0]
             weakSelf.mapView.addOverlay(route.polyline, level: .aboveRoads)
             var rect = route.polyline.boundingMapRect
-            rect.origin.y -= MapConstants.routeAreaExtraSize
             rect.size.width += MapConstants.routeAreaExtraSize
             rect.size.height += MapConstants.routeAreaExtraSize
-            weakSelf.mapView.setRegion(MKCoordinateRegion(rect), animated: true)
-
+            let region  = weakSelf.mapView.regionThatFits(MKCoordinateRegion(rect))
+            weakSelf.mapView.setRegion(region, animated: true)
         }
     }
 

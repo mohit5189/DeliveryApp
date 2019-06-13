@@ -6,7 +6,7 @@
 //  Copyright © 2019 Mohit Kumar. All rights reserved.
 //
 
-import MapKit
+import CoreLocation
 
 class MapControllerViewModel: NSObject {
     var selectedDelivery: DeliveryModel

@@ -13,11 +13,8 @@ class ReachabilityManager: ReachabilityProtocol {
     var reachabilityManager: Reachability!
 
     static var sharedInstance = ReachabilityManager()
-    fileprivate init() {
-        reachabilityManager = Reachability(hostname: Constants.baseURL)
-    }
 
     func isReachableToInternet() -> Bool {
-        return reachabilityManager.connection != .none
+        return !(Reachability()?.connection == Reachability.Connection.none)
     }
 }

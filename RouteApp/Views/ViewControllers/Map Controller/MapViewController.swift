@@ -13,7 +13,7 @@ struct MapConstants {
     static let routeVisibilityArea: Double = 1000
     static let routeLineWidth: CGFloat = 5.0
     static let markerIdentifier = "marker"
-    static let routeAreaExtraSize: Double = 5000
+    static let routeAreaExtraSize: Double = 250
     static let routeColor: UIColor = .red
 }
 
