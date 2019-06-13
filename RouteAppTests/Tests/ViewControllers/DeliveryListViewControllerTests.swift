@@ -15,7 +15,6 @@ import Quick
 // swiftlint:disable force_cast
 class DeliveryListViewControllerTests: QuickSpec {
     var deliveryListVC: DeliveryListViewController!
-    var loaderCell: LoaderCell!
 
     override func spec() {
         describe("DestinationListViewController") {
@@ -45,16 +44,6 @@ class DeliveryListViewControllerTests: QuickSpec {
                         expect(self.deliveryListVC.tableView.numberOfRows(inSection: 0) > 0).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                     }
 
-                    it("should append loadmore cell at bottom") {
-                        expect(self.deliveryListVC.tableView(self.deliveryListVC.tableView, cellForRowAt: IndexPath(row: self.deliveryListVC.deliveryListViewModel.numberOfRows() - 1, section: 0)).isKind(of: LoaderCell.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
-                    }
-
-                    it("should hide bottom loader if stopLoader is called") {
-                        let cell = self.deliveryListVC.tableView(self.deliveryListVC.tableView, cellForRowAt: IndexPath(row: self.deliveryListVC.deliveryListViewModel.numberOfRows() - 1, section: 0)) as! LoaderCell
-                        cell.stopSpinner()
-                        expect(cell.spinner.isAnimating).to(beFalse())
-                    }
-
                     context("and when select any row") {
                         beforeEach {
                             self.deliveryListVC.tableView(self.deliveryListVC.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
@@ -77,6 +66,16 @@ class DeliveryListViewControllerTests: QuickSpec {
                         it("should should append data in deliveryList") {
                             expect(self.deliveryListVC.deliveryListViewModel.numberOfRows() == 41).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                         }
+                    }
+                }
+
+                context("and when called for bottom loader") {
+                    beforeEach {
+                        self.deliveryListVC.showBottomLoader()
+                    }
+
+                    it("should append activity indicator in table footer view") {
+                        expect(self.deliveryListVC.tableView.tableFooterView!.isKind(of: UIActivityIndicatorView.self)).toEventually(beTrue(), timeout: RouteAppTestConstants.timeoutInterval)
                     }
                 }
 

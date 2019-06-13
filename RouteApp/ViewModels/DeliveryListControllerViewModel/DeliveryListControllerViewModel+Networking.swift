@@ -11,7 +11,7 @@ import Foundation
 extension DeliveryListControllerViewModel {
     func fetchDeliveryList() {
         guard reachabilityManager.isReachableToInternet() || dbManager.isCacheAvailable() else {
-            loadMoreCompletionHandler?()
+            loadMoreCompletionHandler?(false)
             errorHandler?(LocalizeStrings.ErrorMessage.internetErrorMessage)
             return
         }
@@ -22,6 +22,7 @@ extension DeliveryListControllerViewModel {
         guard isNextPageAvailable else {
             return
         }
+        loadMoreCompletionHandler?(true)
         offset = deliveryList.count
         fetchDeliveryList()
     }
@@ -42,11 +43,11 @@ extension DeliveryListControllerViewModel {
                 weakSelf.isNextPageAvailable = !deliveries.isEmpty // set pagination true if got records
                 weakSelf.deliveryList = weakSelf.isPerformingPullToRefresh ? deliveries : (weakSelf.deliveryList + deliveries)
             } else {
-                weakSelf.loadMoreCompletionHandler?()
                 if error != nil {
                     weakSelf.errorHandler?(LocalizeStrings.ErrorMessage.genericErrorMessage)
                 }
             }
+            weakSelf.loadMoreCompletionHandler?(false)
             weakSelf.updatePullToRefreshFlag()
         }
     }

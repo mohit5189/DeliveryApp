@@ -17,7 +17,7 @@ protocol DeliveryListViewModelProtocol {
     var errorHandler: ErrorClosure? {get set}
     var loaderHandler: LoaderClosure? {get set}
     var pullToRefreshCompletionHandler: CompletionClosure? {get set}
-    var loadMoreCompletionHandler: CompletionClosure? {get set}
+    var loadMoreCompletionHandler: LoaderClosure? {get set}
 
     func handlePullToRefresh()
     func numberOfRows() -> Int
@@ -26,5 +26,4 @@ protocol DeliveryListViewModelProtocol {
     func makeNextPageCall()
     func getDeliveryText(index: Int) -> String
     func getImageUrl(index: Int) -> URL?
-    func getDeliveriesCount() -> Int
 }

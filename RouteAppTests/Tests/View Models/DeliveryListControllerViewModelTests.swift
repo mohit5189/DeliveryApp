@@ -72,8 +72,11 @@ class DeliveryListControllerViewModelTests: QuickSpec {
                                 self.deliveryListViewModel.isNextPageAvailable = true
                             }
 
-                            it("should return one extra row for loader") {
-                                expect(self.deliveryListViewModel.numberOfRows() == self.deliveryListViewModel.deliveryList.count + 1).to(beTrue())
+                            it("should call bottom loader closure to show loader") {
+                                self.deliveryListViewModel.makeNextPageCall()
+                                self.deliveryListViewModel.loadMoreCompletionHandler = { showLoader in
+                                    expect(showLoader).to(beTrue())
+                                }
                             }
                         }
 

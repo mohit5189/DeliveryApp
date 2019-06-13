@@ -14,7 +14,7 @@ class DeliveryListControllerViewModelMock: NSObject, DeliveryListViewModelProtoc
     var errorHandler: ErrorClosure?
     var loaderHandler: LoaderClosure?
     var pullToRefreshCompletionHandler: CompletionClosure?
-    var loadMoreCompletionHandler: CompletionClosure?
+    var loadMoreCompletionHandler: LoaderClosure?
 
     var deliveries: [DeliveryModel] = []
     var errorExist: Bool = false
@@ -44,7 +44,7 @@ class DeliveryListControllerViewModelMock: NSObject, DeliveryListViewModelProtoc
             return
         }
         errorHandler?("test error")
-        loadMoreCompletionHandler?()
+        loadMoreCompletionHandler?(false)
     }
 
     func makeNextPageCall() {
@@ -54,7 +54,7 @@ class DeliveryListControllerViewModelMock: NSObject, DeliveryListViewModelProtoc
             return
         }
         errorHandler?("test error")
-        loadMoreCompletionHandler?()
+        loadMoreCompletionHandler?(false)
     }
 
     func getDeliveryText(index: Int) -> String {

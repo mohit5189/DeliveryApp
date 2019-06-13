@@ -11,7 +11,6 @@
 		5CED2D016B6391A8CF487A60 /* Pods_RouteApp_RouteAppTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8CD484A1C5DCBFD20C0496CD /* Pods_RouteApp_RouteAppTests.framework */; };
 		B7337BFD229F8ED0001F853E /* MapVireController+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337BFC229F8ED0001F853E /* MapVireController+Stub.swift */; };
 		B7337C0D22A3B9AC001F853E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B7337C0F22A3B9AC001F853E /* Localizable.strings */; };
-		B7337C1122A3BE16001F853E /* LoaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1022A3BE16001F853E /* LoaderCell.swift */; };
 		B7337C1522A8E12F001F853E /* ReachabilityManagerMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */; };
 		B7337C1922A92227001F853E /* RouteAppTestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C1822A92227001F853E /* RouteAppTestConstants.swift */; };
 		B7337C2622ACA6B8001F853E /* ReachabilityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7337C2322ACA6B8001F853E /* ReachabilityManager.swift */; };
@@ -93,7 +92,6 @@
 		8CD484A1C5DCBFD20C0496CD /* Pods_RouteApp_RouteAppTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RouteApp_RouteAppTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7337BFC229F8ED0001F853E /* MapVireController+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MapVireController+Stub.swift"; sourceTree = "<group>"; };
 		B7337C0E22A3B9AC001F853E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B7337C1022A3BE16001F853E /* LoaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCell.swift; sourceTree = "<group>"; };
 		B7337C1422A8E12F001F853E /* ReachabilityManagerMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReachabilityManagerMock.swift; sourceTree = "<group>"; };
 		B7337C1822A92227001F853E /* RouteAppTestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteAppTestConstants.swift; sourceTree = "<group>"; };
 		B7337C2322ACA6B8001F853E /* ReachabilityManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReachabilityManager.swift; sourceTree = "<group>"; };
@@ -494,7 +492,6 @@
 			isa = PBXGroup;
 			children = (
 				B7467ABA229AAD440015794D /* DeliveryCell.swift */,
-				B7337C1022A3BE16001F853E /* LoaderCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -954,7 +951,6 @@
 				B7337C2822ACA6B8001F853E /* ReachabilityProtocol.swift in Sources */,
 				B7337C2622ACA6B8001F853E /* ReachabilityManager.swift in Sources */,
 				B7467ACC229AB4DB0015794D /* APIManager.swift in Sources */,
-				B7337C1122A3BE16001F853E /* LoaderCell.swift in Sources */,
 				B7337C3722ACC692001F853E /* DeliveryListControllerViewModel+Model.swift in Sources */,
 				B7467B0E229D597A0015794D /* MyDB.xcdatamodeld in Sources */,
 			);

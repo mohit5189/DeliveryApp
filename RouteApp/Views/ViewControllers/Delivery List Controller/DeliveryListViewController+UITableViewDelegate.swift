@@ -10,11 +10,9 @@ import UIKit
 
 extension DeliveryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row < deliveryListViewModel.getDeliveriesCount() {
-            let mapViewModel = MapControllerViewModel(selectedDelivery: deliveryListViewModel.getDelivery(index: indexPath.row))
-            let mapVC = MapViewController(viewModel: mapViewModel)
-            navigationController?.pushViewController(mapVC, animated: true)
-        }
+        let mapViewModel = MapControllerViewModel(selectedDelivery: deliveryListViewModel.getDelivery(index: indexPath.row))
+        let mapVC = MapViewController(viewModel: mapViewModel)
+        navigationController?.pushViewController(mapVC, animated: true)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

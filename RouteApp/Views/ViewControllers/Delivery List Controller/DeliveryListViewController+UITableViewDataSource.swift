@@ -15,11 +15,9 @@ extension DeliveryListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = UITableViewCell()
-        if indexPath.row < deliveryListViewModel.getDeliveriesCount(), let deliveryCell = tableView.dequeueReusableCell(withIdentifier: String(describing: DeliveryCell.self)) as? DeliveryCell {
+        if let deliveryCell = tableView.dequeueReusableCell(withIdentifier: String(describing: DeliveryCell.self)) as? DeliveryCell {
             deliveryCell.configureUI(deliveryModel: deliveryListViewModel, indexPath: indexPath)
             cell = deliveryCell
-        } else if let loaderCell = tableView.dequeueReusableCell(withIdentifier: String(describing: LoaderCell.self)) as? LoaderCell {
-            cell = loaderCell
         }
         return cell
     }

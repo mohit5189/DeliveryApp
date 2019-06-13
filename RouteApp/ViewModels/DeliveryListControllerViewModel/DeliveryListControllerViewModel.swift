@@ -13,7 +13,7 @@ class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
     var errorHandler: ErrorClosure?
     var loaderHandler: LoaderClosure?
     var pullToRefreshCompletionHandler: CompletionClosure?
-    var loadMoreCompletionHandler: CompletionClosure?
+    var loadMoreCompletionHandler: LoaderClosure?
     var isApiCallInProgress = false
 
     var offset  = 0
@@ -22,7 +22,6 @@ class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
     var reachabilityManager: ReachabilityProtocol = ReachabilityManager.sharedInstance
     var dbManager: DBManagerProtocol = DBManager.sharedInstance
     var dataManager: DataManagerProtocol = DataManager()
-
     var isNextPageAvailable = true
     var isPerformingPullToRefresh = false {
         didSet {
@@ -48,10 +47,6 @@ class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
         }
     }
 
-    func getDeliveriesCount() -> Int {
-        return deliveryList.count
-    }
-
     // MARK: Handle loader
     func handleProgressLoader(showLoader: Bool) {
         guard offset == 0, !isPerformingPullToRefresh else {
@@ -62,10 +57,7 @@ class DeliveryListControllerViewModel: NSObject, DeliveryListViewModelProtocol {
 
     // MARK: TableView methods
     func numberOfRows() -> Int {
-        if isNextPageAvailable, !deliveryList.isEmpty {
-            return getDeliveriesCount() + 1
-        }
-        return getDeliveriesCount()
+        return deliveryList.count
     }
 
     func getDelivery(index: Int) -> DeliveryModel {

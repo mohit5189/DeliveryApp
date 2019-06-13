@@ -14,6 +14,11 @@ class DeliveryListViewController: UIViewController {
     var deliveryListViewModel: DeliveryListViewModelProtocol = DeliveryListControllerViewModel()
     let refreshControl = UIRefreshControl()
     var reachabilityManager: ReachabilityProtocol = ReachabilityManager.sharedInstance
+    let activityIndicatorXCoordinate = 0
+    let activityIndicatorYCoordinate = 0
+    let activityIndicatorWidth = 80
+    let activityIndicatorHeight = 80
+    let bottomLoaderColor: UIColor = .gray
 
     override func loadView() {
         super.loadView()
@@ -40,9 +45,13 @@ class DeliveryListViewController: UIViewController {
             }
         }
 
-        deliveryListViewModel.loadMoreCompletionHandler = { [weak self] in
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
-                self?.hideBottomLoader()
+        deliveryListViewModel.loadMoreCompletionHandler = { [weak self] showLoader in
+            DispatchQueue.main.async { [weak self] in
+                guard showLoader else {
+                    self?.hideBottomLoader()
+                    return
+                }
+                self?.showBottomLoader()
             }
         }
 
@@ -69,9 +78,15 @@ class DeliveryListViewController: UIViewController {
     }
 
     func hideBottomLoader() {
-        if let cell = tableView.cellForRow(at: IndexPath(row: deliveryListViewModel.numberOfRows() - 1, section: 0)) as? LoaderCell {
-            cell.stopSpinner()
-        }
+        tableView.tableFooterView = UIView()
+    }
+
+    func showBottomLoader() {
+        let activityView = UIActivityIndicatorView(frame: CGRect(x: activityIndicatorXCoordinate, y: activityIndicatorYCoordinate, width: activityIndicatorWidth, height: activityIndicatorHeight))
+        activityView.style = .whiteLarge
+        activityView.color = bottomLoaderColor
+        activityView.startAnimating()
+        tableView.tableFooterView = activityView
     }
 
     func setupUI() {
@@ -82,7 +97,6 @@ class DeliveryListViewController: UIViewController {
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
         tableView.register(DeliveryCell.self, forCellReuseIdentifier: String(describing: DeliveryCell.self))
-        tableView.register(LoaderCell.self, forCellReuseIdentifier: String(describing: LoaderCell.self))
 
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
